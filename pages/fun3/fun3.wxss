@@ -9,12 +9,14 @@ fun3{
 
 }
 .bt{
-  padding: 10px;
+  padding: 1rem;
   border-radius: 5%;
   background: rgba(36, 36, 36,0.2);
   font-size:2rem;
-  width:fit-content;
-  height: 3rem;
+  width:20rem;
+  line-height: 2rem;
+  text-align: center;
+  height: 2rem;
 }
 .bt:hover{
   background: rgba(36, 36, 36,0.4);
@@ -28,23 +30,31 @@ fun3{
 }
 .row1{
   width:90%;
-  padding: 1vh;
-  border:2px solid red;
   display: flex;
   justify-content: start;
   align-items: center;
-  gap:5vh;
-  font-size: 1.5rem;
+  gap:1vw;
+  font-size: 1.3rem;
+  overflow: hidden;
 }
 .row1 text :nth-child(1){
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  background: skyblue;
 }
-
+.longText{
+  padding:0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  background:rgba(191, 225, 241,0.4);
+  width:90%;
+  height: 4rem;
+  overflow-y: scroll;
+}
 .input{
-  width: 100%;
-  height: 100%;
+  font-size: 1.5rem;
+  border: 0.1rem solid red;
+  flex:1;
+  height: 2rem;
   text-align: start;
 }
