@@ -1,0 +1,18 @@
+<!--pages/fun3/fun3.wxml-->
+<view class="container">
+<text class="title" >需求三</text>
+
+<view class="row1">
+<text> 命题公式: </text>
+<input class="input" type="text" placeholder="请输入" bindinput="bindInput" value="{{inputValue}}"/> 
+</view>
+<view class="bt" bind:tap="handleTap">输出极大值和极小值</view>
+<view class="row1">
+<text> 最大项: </text>
+<text>{{}} </text>
+</view>
+<view class="row1">
+<text> 最小项: </text>
+<text> {{}} </text>
+</view>
+</view>

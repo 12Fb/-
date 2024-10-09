@@ -1,0 +1,7 @@
+<view class="container">
+  <view wx:for="{{list}}" >
+  <navigator class="custom-navigator" url="{{item.url}}" open-type="navigateTo">
+  {{item.name}}
+  </navigator>
+  </view>
+</view> 

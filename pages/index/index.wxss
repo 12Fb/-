@@ -1,0 +1,16 @@
+.container{
+  display :flex;
+  flex-direction:column;
+  height: 90vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+
+}
+.custom-navigator {
+  padding: 20px;
+  font-size: 30px;
+  margin: 20px;
+  border: 2px solid red;
+  border-radius: 10%;
+}
