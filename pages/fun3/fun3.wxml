@@ -2,11 +2,11 @@
 <view class="container">
 <text class="title" >需求三</text>
 
+<math-Button bind:clickBt = "handleClickMathBt" ></math-Button>
 <view class="row1">
 <text> 命题公式: </text>
-<input class="input" focus="{{focus}}" type="text" placeholder="请输入" bindinput="bindInput" value="{{inputValue}}"/> 
+<input id="input" class="input" focus="{{focus}}" type="text" placeholder="请输入" bindinput="bindInput" value="{{inputValue}}"/> 
 </view>
-<math-Button catch:clickBt = "handleClickMathBt" ></math-Button>
 <view class="bt" bind:tap="handleTap">输出极大值和极小值</view>
 <view class="row1">
 <text > 主合取范式: </text>

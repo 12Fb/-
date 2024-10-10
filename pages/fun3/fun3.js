@@ -19,10 +19,11 @@ Page({
     })
   },
   handleClickMathBt: function(e) {
+    
     let text = e.detail.target.dataset.text;
-    console.log(text);
+    let str = this.data.inputValue;
     this.setData({
-      inputValue: this.data.inputValue + text
+      inputValue: str+text
     })
   },
   //输出结果

@@ -6,7 +6,6 @@ fun3{
   height: 100vh;
   width: 100vw;
   overflow-y: scroll;
-
 }
 .bt{
   padding: 1rem;
