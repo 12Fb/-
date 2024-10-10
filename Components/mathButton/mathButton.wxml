@@ -1,0 +1,7 @@
+<view class="container" bind:tap="handleClick">
+<view class="item" data-text ="∧">∧</view>
+<view class="item" data-text ="∨">∨</view>
+<view class="item" data-text ="¬">¬</view>
+<view class="item" data-text ="→">→</view>
+<view class="item" data-text ="↔">↔</view>
+</view>

@@ -1,0 +1,58 @@
+.container{
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+.row{
+  display: flex;
+  align-items: center;
+}
+.bt{
+  padding: 0.5rem;
+  border-radius: 5%;
+  background: rgba(36, 36, 36,0.2);
+  font-size:1rem;
+  width:fit-content;
+  line-height: 1rem;
+}
+.bt:hover{
+  background: rgba(36, 36, 36,0.4);
+
+}
+.title{
+  font-size: 40px;
+  font-weight: 700;
+  position:absolute;
+  top:5%;
+}
+.longText{
+  padding:0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  background:rgba(191, 225, 241,0.4);
+  width:90%;
+  height: 7rem;
+  overflow-y: scroll;
+}
+.input{
+  font-size: 1.5rem;
+  border: 0.1rem solid red;
+  flex:1;
+  height: 2rem;
+  text-align: start;
+}
+.row1{
+  width:90%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap:1vw;
+  font-size: 1.3rem;
+  overflow: hidden;
+}

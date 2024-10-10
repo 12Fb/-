@@ -1,0 +1,1 @@
+<view class="formula"><uni-icons wx:if="{{b}}" class="formula_icon" bindclick="{{a}}" u-i="75ba8185-0" bind:__l="__l" u-p="{{b}}"></uni-icons><symbol-input wx:if="{{d}}" u-i="75ba8185-1" bind:__l="__l" bindupdateModelValue="{{c}}" u-p="{{d}}"/><button class="formula_button" bindtap="{{e}}"></button></view>
