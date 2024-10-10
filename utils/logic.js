@@ -226,8 +226,9 @@ class Logic {
         val["0"] = 0;
         val["1"] = 1;
       }
-      //用结论成立的值代入带前提中看成不成立,全部前提成立即可;
-      let result = true;
+      //用结论成立的值代入带前提中看成不成立,全部前提成立即可,所以打印的成真赋值只是保证前提成立的
+      let result = false
+      if (this.pre.length > 0) result = true;
       for (let i = 0; i < this.pre.length; i++) {
         let re = this.infer(this.pre[i], letterIndex, val);
         result = re & result;
