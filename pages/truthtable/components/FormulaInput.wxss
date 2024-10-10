@@ -1,0 +1,1 @@
+.formula{display:flex;align-items:center;justify-content:center;gap:10rpx;height:100rpx}.formula .formula_input{border-radius:10rpx;border:1px solid #000;height:80rpx}.formula .formula_button{height:50rpx;width:50rpx;margin:0rpx;border-radius:50%;background-color:#ddd6fe}.formula .formula_button:after{border:none}

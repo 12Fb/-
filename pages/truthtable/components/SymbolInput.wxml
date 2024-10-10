@@ -1,0 +1,1 @@
+<view class="formula"><input class="formula_input" focus="{{a}}" placeholder="请输入逻辑表达式" bindfocus="{{b}}" bindblur="{{c}}" value="{{d}}" bindinput="{{e}}"/><view class="{{['btn_group', g && 'show']}}"><view wx:for="{{f}}" wx:for-item="item" wx:key="b" class="{{item.c}}" bindtap="{{item.d}}">{{item.a}}</view></view></view>

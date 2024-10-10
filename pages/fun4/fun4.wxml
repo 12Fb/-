@@ -1,0 +1,34 @@
+
+<view class="container" >
+<view class="title">需求4</view>
+<math-Button bind:clickBt = "handleClickMathBt" ></math-Button>
+<view class="row1">
+<view>前提:</view>
+<input class="input" id="pre" type="text" bind:focus="changeFocus"	bindinput="preInput" value="{{curPre}}" />
+<view class="bt" bind:tap="resetPre">重置</view>
+<view class="bt" bind:tap="addPre">确认</view>
+</view>
+<view class="longText">
+<view wx:for="{{pre}}" class="row" >
+{{index +1}} .{{pre[index]}}
+</view>
+</view>
+<view class="row1">
+  <view>结论:</view>
+  <input class="input" id="con" bind:focus="changeFocus" type="text" bindinput="conInput"	 value="{{curCon}}" />
+  <view class="bt" bind:tap="resetCon">重置</view>
+  <view class="bt" bind:tap="addCon">确认</view>
+</view>
+<view class="longText">
+  <view wx:for="{{con}}" class="row"  >
+  {{index+1 }}. {{con[index]}}
+  </view>
+</view>
+
+<view class="row1">
+<view class="bt" bind:tap="getResult">输出</view>
+<view>结论真假：</view>
+<view>{{result}}</view>
+
+</view>
+</view>
