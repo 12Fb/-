@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/truthtable/truthtable",
     "pages/fun3/fun3",
-    "pages/fun4/fun4"
+    "pages/fun4/fun4",
+    "pages/find/find"
   ],
   "window": {
     "navigationBarTextStyle": "black",

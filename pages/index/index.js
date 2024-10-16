@@ -18,7 +18,7 @@ const _sfc_main = {
       },
       {
         "name": "需求五",
-        "path": ""
+        "path": "/pages/find/find"
       }
     ];
     const nextRoute = (path) => {
