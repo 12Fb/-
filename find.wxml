@@ -1,0 +1,24 @@
+<!-- pages/Find/find.wxml -->  
+<view class="container">  
+  <text class="title">求一阶逻辑公式类型以及前束范式</text>  
+</view>  
+
+<view>  
+    <input bindinput="onInput" placeholder="请输入逻辑公式" value="{{inputFormula}}" />  
+    <button bindtap="onCalculate">计算</button>  
+    
+    <view class="symbol-buttons">  
+        <button bindtap="insertSymbol" data-symbol="∀">∀</button>  
+        <button bindtap="insertSymbol" data-symbol="∃">∃</button>  
+        <button bindtap="insertSymbol" data-symbol="∧">∧</button>  
+        <button bindtap="insertSymbol" data-symbol="∨">∨</button>  
+        <button bindtap="insertSymbol" data-symbol="→">→</button>  
+    </view>  
+    
+    <view>  
+        <text>结果: {{result}}</text>  
+    </view>  
+    <view>  
+        <text>公式类型: {{formulaType}}</text>  
+    </view>  
+</view>
