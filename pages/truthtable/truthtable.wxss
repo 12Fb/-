@@ -44,7 +44,7 @@
 .container .truth_table__inner .table_show .uni-table {
   width: 95%;
   background-color: #c8bdfd;
-  margin: 5rpx auto 10rpx;
+  margin: 5rpx auto;
 }
 .container .truth_table__inner .table_show .uni-table .uni-table-mask {
   background-color: #ddd6fe;

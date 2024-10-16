@@ -1,5 +1,5 @@
 "use strict";
-import { parse, calc } from './parse'
+const utils_parse = require("./parse.js");
 function generateTruthTable(expr) {
   let variables = Array.from(new Set(expr.match(/[a-zA-Z]+/g)));
   let table = [];
@@ -9,7 +9,7 @@ function generateTruthTable(expr) {
     variables.forEach((variable, index) => {
       values[variable] = (i & 1 << variables.length - 1 - index) >> variables.length - 1 - index;
     });
-    let result = calc(expr, values);
+    let result = utils_parse.calc(expr, values);
     if (result !== null) {
       table.push({ ...values, result });
     }
@@ -17,7 +17,7 @@ function generateTruthTable(expr) {
   return { variables, table };
 }
 function useTruthTable(expr) {
-  const newExpr = parse(expr);
+  const newExpr = utils_parse.parse(expr);
   let { variables, table } = generateTruthTable(newExpr);
   variables.push(expr);
   return { variables, table };

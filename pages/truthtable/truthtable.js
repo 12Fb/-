@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const hooks_truthTable = require("../../utils/truthTable.js");
+const utils_truthTable = require("../../utils/truthTable.js");
+const utils_infernce = require("../../utils/inference.js");
 if (!Array) {
   const _easycom_uni_th2 = common_vendor.resolveComponent("uni-th");
   const _easycom_uni_tr2 = common_vendor.resolveComponent("uni-tr");
@@ -17,13 +18,14 @@ const FormulaInput = () => "./components/FormulaInput.js";
 const _sfc_main = {
   __name: "truthtable",
   setup(__props) {
-    let minus = common_vendor.ref(false);
+    let type = common_vendor.ref(1);
     let f1 = common_vendor.ref("");
     let f2 = common_vendor.ref("");
     let tableTitle = common_vendor.ref("真值表1");
     let isFocus = common_vendor.ref(null);
     let cursor = common_vendor.ref(0);
     let loading = common_vendor.ref(false);
+    common_vendor.ref(1);
     const inpFocus = (s) => {
       isFocus.value = s;
     };
@@ -39,31 +41,37 @@ const _sfc_main = {
       tableTitle.value = pos === 2 ? "真值表2" : "真值表1";
       header.value = [];
       content.value = [];
-      const { variables, table } = hooks_truthTable.useTruthTable(expr);
+      const { variables, table } = utils_truthTable.useTruthTable(expr);
       header.value = [...variables];
       table.forEach((row) => {
         content.value.push(Object.values(row));
       });
       loading.value = false;
     };
-    const equalHandler = () => {
-      if (hooks_truthTable.isEqual(f1.value, f2.value)) {
-        common_vendor.index.showToast({
-          title: "两个表达式相等",
-          icon: "none",
-          duration: 1e3
-        });
-      } else {
-        common_vendor.index.showToast({
-          title: "两个表达式不相等",
-          icon: "none",
-          duration: 1e3
-        });
+    const clickHandler = () => {
+      let msg = "";
+      if (type.value === 1) {
+        if (utils_infernce.satisfiable(f1.value)) {
+          msg = `表达式${f1.value}是可满足的`;
+        } else {
+          msg = `表达式${f1.value}不可满足`;
+        }
+      } else if (type.value === 2) {
+        if (utils_truthTable.isEqual(f1.value, f2.value)) {
+          msg = "两个表达式相等";
+        } else {
+          msg = "两个表达式不相等";
+        }
       }
+      common_vendor.index.showToast({
+        title: msg,
+        icon: "none",
+        duration: 1e3
+      });
     };
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.o(($event) => common_vendor.isRef(minus) ? minus.value = $event : minus = $event),
+        a: common_vendor.o(($event) => common_vendor.isRef(type) ? type.value = $event : type = $event),
         b: common_vendor.o(($event) => inpFocus("f1")),
         c: common_vendor.o(inpBlur),
         d: common_vendor.o(($event) => getTruthTable(common_vendor.unref(f1), 1)),
@@ -72,8 +80,8 @@ const _sfc_main = {
           type: "plus",
           modelValue: common_vendor.unref(f1)
         }),
-        g: common_vendor.o(($event) => common_vendor.isRef(minus) ? minus.value = $event : minus = $event),
-        h: common_vendor.unref(minus),
+        g: common_vendor.o(($event) => common_vendor.isRef(type) ? type.value = $event : type = $event),
+        h: common_vendor.unref(type) === 2,
         i: common_vendor.o(($event) => inpFocus("f2")),
         j: common_vendor.o(inpBlur),
         k: common_vendor.o(($event) => getTruthTable(common_vendor.unref(f2), 2)),
@@ -106,8 +114,8 @@ const _sfc_main = {
         q: common_vendor.p({
           loading: common_vendor.unref(loading)
         }),
-        r: !common_vendor.unref(minus),
-        s: common_vendor.o(equalHandler)
+        r: common_vendor.t(common_vendor.unref(type) === 1 ? "可满足性判断" : "判断"),
+        s: common_vendor.o(clickHandler)
       };
     };
   }
