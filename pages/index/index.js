@@ -1,1 +1,48 @@
-"use strict";const e=require("../../common/vendor.js"),t={__name:"index",setup(t){const a=[{name:"真值表",path:"/pages/truthtable/truthtable"},{name:"需求三",path:"/pages/fun3/fun3"},{name:"需求四",path:"/pages/fun4/fun4"},{name:"需求五",path:""}];return(t,n)=>({a:e.f(a,((t,a,n)=>({a:e.t(t.name),b:a,c:e.o((a=>(t=>{const a=new Date;e.index.redirectTo({url:t,complete(){const e=new Date;console.log(e-a)}})})(t.path)),a)})))})}},a=e._export_sfc(t,[["__scopeId","data-v-e22325ee"]]);wx.createPage(a);
+"use strict";
+const common_vendor = require("../../common/vendor.js");
+const _sfc_main = {
+  __name: "index",
+  setup(__props) {
+    const funcList = [
+      {
+        "name": "真值表",
+        "path": "/pages/truthtable/truthtable"
+      },
+      {
+        "name": "需求三",
+        "path": "/pages/fun3/fun3"
+      },
+      {
+        "name": "需求四",
+        "path": "/pages/fun4/fun4"
+      },
+      {
+        "name": "需求五",
+        "path": ""
+      }
+    ];
+    const nextRoute = (path) => {
+      const startTime = /* @__PURE__ */ new Date();
+      common_vendor.index.redirectTo({
+        url: path,
+        complete() {
+          const endTime = /* @__PURE__ */ new Date();
+          console.log(endTime - startTime);
+        }
+      });
+    };
+    return (_ctx, _cache) => {
+      return {
+        a: common_vendor.f(funcList, (item, index, i0) => {
+          return {
+            a: common_vendor.t(item.name),
+            b: index,
+            c: common_vendor.o(($event) => nextRoute(item.path), index)
+          };
+        })
+      };
+    };
+  }
+};
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-1cf27b2a"]]);
+wx.createPage(MiniProgramPage);

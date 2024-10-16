@@ -1,1 +1,59 @@
-"use strict";const e=require("../common/vendor.js"),t={"(":6,"!":5,"&":4,"|":3,"-":2,"=":1};function n(e,t){let n="";if("!"===e){const e=t.pop();n=+!Number(e)}if("&"===e){const e=t.pop(),r=t.pop();n=Number(e)&&Number(r)}if("|"===e){const e=t.pop(),r=t.pop();n=Number(e)||Number(r)}if("-"===e){const e=t.pop(),r=t.pop();n=+!Number(r)||Number(e)}if("="===e){const e=t.pop(),r=t.pop();n=Number(e)===Number(r)}return n.toString()}function r(e,r){let o=Object.keys(r),u=e;o.forEach((e=>{u=u.replace(new RegExp(e,"g"),r[e])}));try{return+function(e){const r=[],o=[];for(let u of e)if("0"===u||"1"===u)r.push(u);else if(")"!==u)if(0===o.length)o.push(u);else{const e=o[o.length-1];if("("!==e&&t[e]>=t[u]){const t=n(e,r);r.push(t),o.pop()}o.push(u)}else{for(;"("!==o[o.length-1];){const e=n(o.pop(),r);r.push(e)}o.pop()}for(;0!==o.length;){const e=n(o.pop(),r);r.push(e)}if(r.length>1)throw new Error("无效的表达式");return r[0]}(u)}catch(l){return console.error("无效的表达式",l),null}}function o(e){const t=function(e){return(e=(e=(e=(e=e.replace(/¬/g,"!")).replace(/⋀/g,"&")).replace(/⋁/g,"|")).replace(/→/g,"-")).replace(/↔/g,"=")}(e);let{variables:n,table:o}=function(e){let t=Array.from(new Set(e.match(/[a-zA-Z]+/g))),n=[],o=Math.pow(2,t.length);for(let u=0;u<o;u++){let o={};t.forEach(((e,n)=>{o[e]=(u&1<<t.length-1-n)>>t.length-1-n}));let l=r(e,o);null!==l&&n.push({...o,result:l})}return{variables:t,table:n}}(t);return n.push(e),{variables:n,table:o}}function u(e,t){const n=Object.keys(e),r=Object.keys(t);if(n.length!==r.length)return!1;for(const o of n)if(e[o]!==t[o])return!1;return!0}if(!Array){(e.resolveComponent("uni-th")+e.resolveComponent("uni-tr")+e.resolveComponent("uni-table"))()}Math||(l+(()=>"../uni_modules/uni-table/components/uni-th/uni-th.js")+(()=>"../uni_modules/uni-table/components/uni-tr/uni-tr.js")+(()=>"../uni_modules/uni-table/components/uni-table/uni-table.js"))();const l=()=>"../pages/truthtable/components/FormulaInput.js",s={__name:"truthtable",setup(t){let n=e.ref(!1),r=e.ref(""),l=e.ref(""),s=e.ref("真值表1"),f=e.ref(null),a=e.ref(0),i=e.ref(!1);const p=e=>{f.value=e},c=e=>{a.value=e.target.cursor};let b=e.ref([]),h=e.ref([]);const m=(e,t)=>{if(""===e)return;i.value=!0,s.value=2===t?"真值表2":"真值表1",b.value=[],h.value=[];const{variables:n,table:r}=o(e);b.value=[...n],r.forEach((e=>{h.value.push(Object.values(e))})),i.value=!1},g=()=>{!function(e,t){if(""===e||""===t)return!1;const n=o(e).table,r=o(t).table;if(n.length!==r.length)return!1;for(let o=0;o<n.length;o++){const e=n[o];let t=0;for(;t<r.length&&!u(e,r[t]);)t++;if(t>=r.length)return!1}return!0}(r.value,l.value)?e.index.showToast({title:"两个表达式不相等",icon:"none",duration:1e3}):e.index.showToast({title:"两个表达式相等",icon:"none",duration:1e3})};return(t,o)=>({a:e.o((t=>e.isRef(n)?n.value=t:n=t)),b:e.o((e=>p("f1"))),c:e.o(c),d:e.o((t=>m(e.unref(r),1))),e:e.o((t=>e.isRef(r)?r.value=t:r=t)),f:e.p({type:"plus",modelValue:e.unref(r)}),g:e.o((t=>e.isRef(n)?n.value=t:n=t)),h:e.unref(n),i:e.o((e=>p("f2"))),j:e.o(c),k:e.o((t=>m(e.unref(l),2))),l:e.o((t=>e.isRef(l)?l.value=t:l=t)),m:e.p({type:"minus",modelValue:e.unref(l)}),n:e.t(e.unref(s)),o:e.f(e.unref(b),((t,n,r)=>({a:e.t(t),b:n,c:"1df5426b-4-"+r+",1df5426b-3"}))),p:e.f(e.unref(h),((t,n,r)=>({a:e.f(t,((t,n,o)=>({a:e.t(t),b:n,c:"1df5426b-6-"+r+"-"+o+",1df5426b-5-"+r}))),b:n,c:"1df5426b-5-"+r+",1df5426b-2"}))),q:e.p({loading:e.unref(i)}),r:!e.unref(n),s:e.o(g)})}};exports._sfc_main=s;
+"use strict";
+import { parse, calc } from './parse'
+function generateTruthTable(expr) {
+  let variables = Array.from(new Set(expr.match(/[a-zA-Z]+/g)));
+  let table = [];
+  let totalRows = Math.pow(2, variables.length);
+  for (let i = 0; i < totalRows; i++) {
+    let values = {};
+    variables.forEach((variable, index) => {
+      values[variable] = (i & 1 << variables.length - 1 - index) >> variables.length - 1 - index;
+    });
+    let result = calc(expr, values);
+    if (result !== null) {
+      table.push({ ...values, result });
+    }
+  }
+  return { variables, table };
+}
+function useTruthTable(expr) {
+  const newExpr = parse(expr);
+  let { variables, table } = generateTruthTable(newExpr);
+  variables.push(expr);
+  return { variables, table };
+}
+function objectsEqual(obj1, obj2) {
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+  if (keys1.length !== keys2.length)
+    return false;
+  for (const key of keys1) {
+    if (obj1[key] !== obj2[key])
+      return false;
+  }
+  return true;
+}
+function isEqual(expr1, expr2) {
+  if (expr1 === "" || expr2 === "")
+    return false;
+  const table1 = useTruthTable(expr1).table;
+  const table2 = useTruthTable(expr2).table;
+  if (table1.length !== table2.length)
+    return false;
+  for (let i = 0; i < table1.length; i++) {
+    const obj1 = table1[i];
+    let j = 0;
+    while (j < table2.length) {
+      const obj2 = table2[j];
+      if (objectsEqual(obj1, obj2)) {
+        break;
+      }
+      j++;
+    }
+    if (j >= table2.length)
+      return false;
+  }
+  return true;
+}
+exports.isEqual = isEqual;
+exports.useTruthTable = useTruthTable;

@@ -1,1 +1,45 @@
-"use strict";const e=require("../../../common/vendor.js");if(!Array){e.resolveComponent("uni-icons")()}Math||((()=>"../../../uni_modules/uni-icons/components/uni-icons/uni-icons.js")+o)();const o=()=>"./SymbolInput.js",s={__name:"FormulaInput",props:{modelValue:{},modelModifiers:{}},emits:e.mergeModels(["addOrDel","focus","blur","click"],["update:modelValue"]),setup(o,{emit:s}){const n=s,u=e.useModel(o,"modelValue");return(o,s)=>({a:e.o((e=>{var s;"plus"===(s=o.$attrs.type)?n("addOrDel",!0):"minus"===s&&n("addOrDel",!1)})),b:e.p({type:o.$attrs.type,size:"20"}),c:e.o((e=>u.value=e)),d:e.p({modelValue:u.value}),e:e.o((e=>n("click")))})}};wx.createComponent(s);
+"use strict";
+const common_vendor = require("../../../common/vendor.js");
+if (!Array) {
+  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
+  _easycom_uni_icons2();
+}
+const _easycom_uni_icons = () => "../../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
+if (!Math) {
+  (_easycom_uni_icons + SymbolInput)();
+}
+const SymbolInput = () => "./SymbolInput.js";
+const _sfc_main = {
+  __name: "FormulaInput",
+  props: {
+    "modelValue": {},
+    "modelModifiers": {}
+  },
+  emits: /* @__PURE__ */ common_vendor.mergeModels(["addOrDel", "focus", "blur", "click"], ["update:modelValue"]),
+  setup(__props, { emit: __emit }) {
+    const emit = __emit;
+    const modelValue = common_vendor.useModel(__props, "modelValue");
+    const handleIconClick = (type) => {
+      if (type === "plus") {
+        emit("addOrDel", true);
+      } else if (type === "minus") {
+        emit("addOrDel", false);
+      }
+    };
+    return (_ctx, _cache) => {
+      return {
+        a: common_vendor.o(($event) => handleIconClick(_ctx.$attrs.type)),
+        b: common_vendor.p({
+          type: _ctx.$attrs.type,
+          size: "20"
+        }),
+        c: common_vendor.o(($event) => modelValue.value = $event),
+        d: common_vendor.p({
+          modelValue: modelValue.value
+        }),
+        e: common_vendor.o(($event) => emit("click"))
+      };
+    };
+  }
+};
+wx.createComponent(_sfc_main);
