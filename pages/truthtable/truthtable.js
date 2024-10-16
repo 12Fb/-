@@ -1,1 +1,1 @@
-"use strict";const e=require("../../hooks/truthTable.js");wx.createPage(e._sfc_main);
+"use strict";const e=require("../../utils/truthTable.js");wx.createPage(e._sfc_main);
