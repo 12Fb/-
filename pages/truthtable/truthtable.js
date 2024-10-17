@@ -18,7 +18,7 @@ const FormulaInput = () => "./components/FormulaInput.js";
 const _sfc_main = {
   __name: "truthtable",
   setup(__props) {
-    let type = common_vendor.ref(1);
+    let switchType = common_vendor.ref(false);
     let f1 = common_vendor.ref("");
     let f2 = common_vendor.ref("");
     let tableTitle = common_vendor.ref("真值表1");
@@ -50,13 +50,13 @@ const _sfc_main = {
     };
     const clickHandler = () => {
       let msg = "";
-      if (type.value === 1) {
+      if (!switchType.value) {
         if (utils_infernce.satisfiable(f1.value)) {
           msg = `表达式${f1.value}是可满足的`;
         } else {
           msg = `表达式${f1.value}不可满足`;
         }
-      } else if (type.value === 2) {
+      } else {
         if (utils_truthTable.isEqual(f1.value, f2.value)) {
           msg = "两个表达式相等";
         } else {
@@ -71,7 +71,7 @@ const _sfc_main = {
     };
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.o(($event) => common_vendor.isRef(type) ? type.value = $event : type = $event),
+        a: common_vendor.o(($event) => common_vendor.isRef(switchType) ? switchType.value = $event : switchType = $event),
         b: common_vendor.o(($event) => inpFocus("f1")),
         c: common_vendor.o(inpBlur),
         d: common_vendor.o(($event) => getTruthTable(common_vendor.unref(f1), 1)),
@@ -80,8 +80,8 @@ const _sfc_main = {
           type: "plus",
           modelValue: common_vendor.unref(f1)
         }),
-        g: common_vendor.o(($event) => common_vendor.isRef(type) ? type.value = $event : type = $event),
-        h: common_vendor.unref(type) === 2,
+        g: common_vendor.o(($event) => common_vendor.isRef(switchType) ? switchType.value = $event : switchType = $event),
+        h: common_vendor.unref(switchType),
         i: common_vendor.o(($event) => inpFocus("f2")),
         j: common_vendor.o(inpBlur),
         k: common_vendor.o(($event) => getTruthTable(common_vendor.unref(f2), 2)),
@@ -114,7 +114,7 @@ const _sfc_main = {
         q: common_vendor.p({
           loading: common_vendor.unref(loading)
         }),
-        r: common_vendor.t(common_vendor.unref(type) === 1 ? "可满足性判断" : "判断"),
+        r: common_vendor.t(!common_vendor.unref(switchType) ? "可满足性判断" : "判断"),
         s: common_vendor.o(clickHandler)
       };
     };

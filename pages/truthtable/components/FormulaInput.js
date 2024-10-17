@@ -21,9 +21,9 @@ const _sfc_main = {
     const modelValue = common_vendor.useModel(__props, "modelValue");
     const handleIconClick = (type) => {
       if (type === "plus") {
-        emit("addOrDel", 2);
+        emit("addOrDel", true);
       } else if (type === "minus") {
-        emit("addOrDel", 1);
+        emit("addOrDel", false);
       }
     };
     return (_ctx, _cache) => {
