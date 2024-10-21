@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "传递闭包",
+  "usingComponents": {
+    "uni-number-box": "../../uni_modules/uni-number-box/components/uni-number-box/uni-number-box"
+  }
+}

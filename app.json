@@ -4,7 +4,8 @@
     "pages/truthtable/truthtable",
     "pages/fun3/fun3",
     "pages/fun4/fun4",
-    "pages/find/find"
+    "pages/find/find",
+    "pages/closure/closure"
   ],
   "window": {
     "navigationBarTextStyle": "black",

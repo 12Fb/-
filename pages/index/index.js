@@ -19,6 +19,10 @@ const _sfc_main = {
       {
         "name": "需求五",
         "path": "/pages/find/find"
+      },
+      {
+        "name": "传递闭包",
+        "path": "/pages/closure/closure"
       }
     ];
     const nextRoute = (path) => {
