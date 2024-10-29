@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "传递闭包",
   "usingComponents": {
-    "uni-number-box": "../../uni_modules/uni-number-box/components/uni-number-box/uni-number-box"
+    "uni-th": "../../uni_modules/uni-table/components/uni-th/uni-th",
+    "uni-tr": "../../uni_modules/uni-table/components/uni-tr/uni-tr",
+    "uni-table": "../../uni_modules/uni-table/components/uni-table/uni-table"
   }
 }
