@@ -23,6 +23,10 @@ const _sfc_main = {
       {
         "name": "传递闭包",
         "path": "/pages/closure/closure"
+      },
+      {
+        "name":"集合运算",
+        "path": "/pages/set/set"
       }
     ];
     const nextRoute = (path) => {

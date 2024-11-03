@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "集合运算可视化",
+  "usingComponents": {
+    "math-Button":"/Components/mathButton2/mathButton"
+  }
+
+}

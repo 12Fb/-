@@ -1,0 +1,23 @@
+/* Components/mathButton/mathButton.wxss */
+.mathBt-Container{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  width:100%;
+  gap:1rem;
+  margin:50rpx 0;
+}
+.item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50rpx;
+  widows: 50rpx;
+  font-size:50rpx;
+  padding:30rpx;
+  background: rgba(143, 205, 234,0.6);
+}
+
+/* .item:hover{
+  background: rgba(143, 205, 234,1);
+} */

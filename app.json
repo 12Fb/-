@@ -5,7 +5,9 @@
     "pages/fun3/fun3",
     "pages/fun4/fun4",
     "pages/find/find",
-    "pages/closure/closure"
+    "pages/closure/closure",
+    "pages/set/set",
+    "pages/set1/set"
   ],
   "window": {
     "navigationBarTextStyle": "black",

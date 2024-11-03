@@ -1,0 +1,55 @@
+.container{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  min-height: 80vh;
+  height: auto;
+  padding-bottom: 5vh;
+}
+.canvasWrap{
+  height: 30vh;
+  /* background: rgba(160,140,90,0.3); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.canvas{
+  border:2rpx solid black;
+  height: 100%;
+  width: 100%;
+}
+.resultWrap{
+  font-size: 32rpx;
+  height: 30vh;
+  background: rgba(60,40,90,0.3);
+}
+
+
+
+.input{
+  font-size: 32rpx;
+  border: 1rpx solid red;
+  flex:1;
+  height: 100rpx;
+  text-align: start;
+}
+.bt{
+  padding: 0.5rem;
+  border-radius: 5%;
+  background: rgba(36, 36, 36,0.2);
+  font-size:1rem;
+  width:fit-content;
+  line-height: 1rem;
+}
+.bt:hover{
+  background: rgba(36, 36, 36,0.4);
+
+}
+.subTitle{
+  font-size: 1em;
+  position:absolute;
+  width: 100%;
+  text-align: center;
+}
+.row{
+  margin-bottom: 20rpx;
+}

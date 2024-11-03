@@ -9,7 +9,7 @@
 <view class="bt" bind:tap="addPre">确认</view>
 </view>
 <view class="longText">
-<view wx:for="{{pre}}" class="row" >
+<view wx:key="{{pre}}" wx:for="{{pre}}" class="row" >
 {{index +1}} .{{pre[index]}}
 </view>
 </view>
