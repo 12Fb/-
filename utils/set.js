@@ -228,40 +228,6 @@ export default class Set {
    * @param {string} set1 集合一
    * @param {string} set2 集合二
    */
-  drawVenm(canvasId = null) {
-    //todo :完成小程序适应
-    const canvas = document.querySelector(canvasId || this.canvasId); //小程序需要兼容
-    const ctx = canvas.getContext("2d");
-    //todo：动态获取宽高
-    const height = 300;
-    const width = 400;
-    this.height = height;
-    this.width = width;
-
-    //计算rpx和px的换算
-    const rate = 1; //rate*rpx = px
-
-    //每个圆的轮廓和name,还有一个全集
-
-    this.buildCircleData(this.total, height, width);
-    this.inituSetPath(ctx);
-    for (let name in this.circleData) {
-      let item = this.circleData[name];
-      this.initCircle(item.x * rate, item.y * rate, item.r * rate, item.name, width / 2, height / 2, 32 * rate);
-    }
-    this.PaintVenm(ctx);
-    //最后再画边界和填充name
-    ctx.fillStyle = "black";
-    ctx.font = this.font;
-    ctx.fillText("U", (this.font / 2) * rate, (this.font / 2) * rate);
-    for (let name in this.circleData) {
-      let { path, text, textPos } = this.circlePathAndText[name];
-      ctx.fillStyle = "black";
-      ctx.font = text.font;
-      ctx.fillText(name, textPos.x, textPos.y);
-      ctx.stroke(path);
-    }
-  }
   clearArea(ctx, path = null) {
     ctx.save();
     ctx.clip(path);
@@ -338,14 +304,6 @@ export default class Set {
     });
   }
 }
-const set = new Set();
-set.add("3,4,5", "A");
-set.add("7,6,4", "B");
-set.add("1,5,6", "C");
-set.inituSet(); //初始化,因为这个函数用到了operate,手动调用不会导致无限循环
-let re = set.operate("(A'&B)&C ");
-set.drawVenm("canvas");
-console.log(re);
 
 //********************************************************************************************* */
 
