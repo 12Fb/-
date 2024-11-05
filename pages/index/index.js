@@ -27,6 +27,10 @@ const _sfc_main = {
       {
         "name":"集合运算",
         "path": "/pages/set/set"
+      },
+      {
+        "name":"最短路径",
+        "path":"/pages/shortest/shortest"
       }
     ];
     const nextRoute = (path) => {
