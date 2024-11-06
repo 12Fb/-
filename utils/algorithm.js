@@ -1,15 +1,1 @@
-export function warshall(graph) {
-  const n = graph.length
-  let result = [];
-  result.push(graph.map(row => row.slice()));
-  // Warshall 算法
-  for(let k = 0; k < n; k++) {
-	for(let i = 0; i < n; i++) {
-	  for(let j = 0; j < n; j++) {
-		graph[i][j] |= graph[i][k] * graph[k][j]
-	  }
-	}
-	result.push(graph.map(row => row.slice()))
-  }
-  return result
-}
+"use strict";const e=require("../common/vendor.js");exports.dijkstra=function(o,t,s){const r={};for(const[e,i,f]of o)r[e]||(r[e]=[]),r[i]||(r[i]=[]),r[e].push([i,f]),r[i].push([e,f]);const n=[],u={};t.forEach((e=>{u[e]=[s,1/0]})),u[s]=[s,0];const c=new e.priorityQueue.MinPriorityQueue;for(c.enqueue([0,s]),n.push({...u});!c.isEmpty();){const[e,o]=c.dequeue();if(!(e>u[o][1])&&r[o]){let t=!1;for(const[s,n]of r[o]){const r=+e+ +n;r<u[s][1]&&(u[s]=[o,r],c.enqueue([r,s]),t=!0)}t&&n.push({...u})}}return n},exports.warshall=function(e){const o=e.length;let t=[];t.push(e.map((e=>e.slice())));for(let s=0;s<o;s++){for(let t=0;t<o;t++)for(let r=0;r<o;r++)e[t][r]|=e[t][s]*e[s][r];t.push(e.map((e=>e.slice())))}return t};
