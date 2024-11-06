@@ -15,8 +15,10 @@ export default class Set {
     this.compositePathFn = {}; //复合运算的path函数
     this.color = "rgba(246, 87, 54,1)";
     this.blankColor = "rgba(255,255,255)";
-    this.rate = 1; // rpx*rate =px
-    this.font = 45;
+    this.font = 50;
+    this.hidCanvasIndex = 0;
+    this.lineWidth = 8; // rpx
+    this.exp = "";
   }
   /**
    * 初始化全集,默认是当前所有集合的并集
@@ -62,7 +64,6 @@ export default class Set {
    */
   add(str, index) {
     let temp = this.preProcess(str).split(",");
-    // console.log(temp);
     if (index.toLowerCase() === "u") {
       this.uSet = str.trim().split(",");
       this.uLock = 1;
@@ -107,6 +108,7 @@ export default class Set {
    */
   operate(str, initU = 0) {
     str = this.trans(this.preProcess(str));
+    this.exp = str;
     let stack = [];
     for (let i = 0; i < str.length; i++) {
       if (isLetter(str[i])) {
@@ -163,50 +165,51 @@ export default class Set {
             left: le2,
             right: le1,
             op: op,
+            result,
           };
       }
     }
     return this.setArray[stack[0]];
   }
-  buildCircleData(num, height, width) {
-    if (num === 1) {
-      this.circleData[getName(0)] = {
+  buildCircleData(nums, height, width) {
+    if (nums.length === 1) {
+      this.circleData[nums[0]] = {
         r: (Math.min(height, width) / 2) * 0.8,
         x: width / 2,
         y: height / 2,
-        name: getName(),
+        name: nums[0],
       };
-    } else if (num === 2) {
+    } else if (nums.length === 2) {
       const centerX = width / 2;
       let _r = Math.min(width / 3.5, height / 2.5);
       let leftX = centerX - 0.5 * _r;
       for (let i = 0; i < 2; i++) {
-        this.circleData[getName(i)] = {
+        this.circleData[nums[i]] = {
           r: _r,
           x: leftX + i * _r,
           y: height / 2,
-          name: getName(i),
+          name: nums[i],
         };
       }
-    } else if (num === 3) {
+    } else if (nums.length === 3) {
       const centerX = width / 2;
       const centerY = height / 2;
       const _r = Math.min(width / 3.5, height / 3.5);
       const leftX = centerX - 0.5 * _r;
       for (let i = 0; i < 2; i++) {
-        this.circleData[getName(i)] = {
+        this.circleData[nums[i]] = {
           r: _r,
           x: leftX + i * _r,
           y: height / 3,
-          name: getName(i),
+          name: nums[i],
         };
       }
       //下面单独的那个圆
-      this.circleData[getName(2)] = {
+      this.circleData[nums[2]] = {
         r: _r,
         x: leftX + 0.5 * _r,
         y: height / 3 + Math.cos(deToRa(30)) * _r,
-        name: getName(2),
+        name: nums[2],
       };
     }
     //全集不在这里面
@@ -216,7 +219,10 @@ export default class Set {
     let posY = getPos(y, centerY);
     const path = new Path2D();
     path.arc(x, y, r, 0, 2 * Math.PI);
-    const textPos = { x: x + font * posX, y: y + font * posY };
+    const textPos = {
+      x: x - font / 4 + font * posX,
+      y: y + font / 4 + font * posY,
+    };
     const text = {
       font: font,
     };
@@ -228,53 +234,46 @@ export default class Set {
    * @param {string} set1 集合一
    * @param {string} set2 集合二
    */
-  drawVenm(canvasId = null) {
-    //todo :完成小程序适应
-    const canvas = document.querySelector(canvasId || this.canvasId); //小程序需要兼容
+  async drawVenm(Canvas) {
+    const canvas = Canvas;
     const ctx = canvas.getContext("2d");
-    //todo：动态获取宽高
-    const height = 300;
-    const width = 400;
+    const height = Canvas.height;
+    const width = Canvas.width;
     this.height = height;
     this.width = width;
-
     //计算rpx和px的换算
     const rate = 1; //rate*rpx = px
 
-    //每个圆的轮廓和name,还有一个全集
+    //每个圆的轮廓和name,还有全集
 
-    this.buildCircleData(this.total, height, width);
+    this.buildCircleData(getLetter(this.exp), height, width);
     this.inituSetPath(ctx);
     for (let name in this.circleData) {
       let item = this.circleData[name];
-      this.initCircle(item.x * rate, item.y * rate, item.r * rate, item.name, width / 2, height / 2, 32 * rate);
+      this.initCircle(item.x, item.y, item.r, item.name, width / 2, height / 2, 48);
     }
-    this.PaintVenm(ctx);
+    await this.PaintVenm(ctx);
     //最后再画边界和填充name
     ctx.fillStyle = "black";
-    ctx.font = this.font;
-    ctx.fillText("U", (this.font / 2) * rate, (this.font / 2) * rate);
+    ctx.font = `bold ${this.font}px serif`;
+    ctx.fillText("U", this.font * getRate(), (this.font * getRate() * this.width) / this.height);
     for (let name in this.circleData) {
       let { path, text, textPos } = this.circlePathAndText[name];
       ctx.fillStyle = "black";
-      ctx.font = text.font;
+      ctx.lineWidth = this.lineWidth * getRate();
+
+      ctx.font = `bold ${text.font}px serif`;
       ctx.fillText(name, textPos.x, textPos.y);
       ctx.stroke(path);
     }
-  }
-  clearArea(ctx, path = null) {
-    ctx.save();
-    ctx.clip(path);
-    ctx.clearRect(0, 0, 9999, 9999);
-    ctx.restore();
   }
 
   //返回一个绘画相关cir的函数,以便存起来反复运用
   Cal(cir) {
     //用一个隐藏画布是为了解决globalCompositeOperation冲突
     let fun;
-    fun = () => {
-      const hidCanvas = document.createElement("canvas");
+    fun = async () => {
+      const hidCanvas = await promiseSelector(`#hidCanvas${this.hidCanvasIndex++}`);
       const hidCtx = hidCanvas.getContext("2d");
       hidCanvas.width = this.width;
       hidCanvas.height = this.height;
@@ -285,69 +284,85 @@ export default class Set {
     };
     return fun;
   }
-  PaintVenm(ctx) {
-    Object.entries(this.steps).forEach((step) => {
-      ctx.fillStyle = this.blankColor;
-      ctx.fillRect(0, 0, 9999, 9999);
-
-      const [exp, detail] = step;
-      console.log(exp, detail);
-      let { op, left, right } = detail;
-      let fn1, fn2, midFn;
-      if (op === "'") {
-        left = "U";
-      }
-      fn1 = left.length > 1 ? this.compositePathFn[left] : this.Cal(left);
-      fn2 = right.length > 1 ? this.compositePathFn[right] : this.Cal(right);
-      midFn = (hidCtx) => {
-        switch (op) {
-          case "&":
-            hidCtx.globalCompositeOperation = "source-in";
-            break;
-          case "|":
-            hidCtx.globalCompositeOperation = "source-over";
-            break;
-          case "-":
-            hidCtx.globalCompositeOperation = "destination-out";
-            break;
-          case "'":
-            hidCtx.globalCompositeOperation = "destination-out";
-            break;
-          default:
-            hidCtx.globalCompositeOperation = "source-over";
-
-            break;
+  async PaintVenm(ctx) {
+    let steps = Object.entries(this.steps);
+    const seqExe = async (index, length) => {
+      if (index === length) return;
+      //串行的终点
+      else {
+        let step = steps[index];
+        ctx.fillStyle = this.blankColor;
+        ctx.fillRect(0, 0, 9999, 9999);
+        const [exp, detail] = step;
+        let { op, left, right, result } = detail;
+        if (result.length <= 0) return; //不需要paint
+        let fn1, fn2, midFn;
+        if (op === "'") {
+          left = "U";
         }
-      };
-      const fn = () => {
-        const hidCanvas = document.createElement("canvas");
-        const hidCtx = hidCanvas.getContext("2d");
-        hidCanvas.width = this.width;
-        hidCanvas.height = this.height;
-        let canvas1 = fn1 && fn1();
-        hidCtx.drawImage(canvas1, 0, 0);
-        midFn(hidCtx);
-        let canvas2 = fn2 && fn2();
-        hidCtx.drawImage(canvas2, 0, 0);
-        hidCtx.globalCompositeOperation = "source-over"; //默认值
-        return hidCanvas;
-      };
-      let _canvas = fn();
-      ctx.drawImage(_canvas, 0, 0);
-      this.compositePathFn[exp] = fn;
-    });
+        fn1 = left.length > 1 ? this.compositePathFn[left] : this.Cal(left);
+        fn2 = right.length > 1 ? this.compositePathFn[right] : this.Cal(right);
+        midFn = (hidCtx) => {
+          switch (op) {
+            case "&":
+              hidCtx.globalCompositeOperation = "source-in";
+              break;
+            case "|":
+              hidCtx.globalCompositeOperation = "source-over";
+              break;
+            case "-":
+              hidCtx.globalCompositeOperation = "destination-out";
+              break;
+            case "'":
+              hidCtx.globalCompositeOperation = "destination-out";
+              break;
+            default:
+              hidCtx.globalCompositeOperation = "source-over";
+
+              break;
+          }
+        };
+        const fn = async () => {
+          const hidCanvas = await promiseSelector(`#hidCanvas${this.hidCanvasIndex++}`);
+          const hidCtx = hidCanvas.getContext("2d");
+          hidCanvas.width = this.width;
+          hidCanvas.height = this.height;
+          let canvas1 = fn1 && (await fn1());
+          hidCtx.drawImage(canvas1, 0, 0);
+          midFn(hidCtx);
+          let canvas2 = fn2 && (await fn2());
+
+          hidCtx.drawImage(canvas2, 0, 0);
+          hidCtx.globalCompositeOperation = "source-over"; //默认值
+          return hidCanvas;
+        };
+        let _canvas = await fn();
+        ctx.drawImage(_canvas, 0, 0);
+        this.compositePathFn[exp] = fn;
+        return seqExe(index + 1, length);
+      }
+    };
+    await seqExe(0, steps.length);
   }
 }
-const set = new Set();
-set.add("3,4,5", "A");
-set.add("7,6,4", "B");
-set.add("1,5,6", "C");
-set.inituSet(); //初始化,因为这个函数用到了operate,手动调用不会导致无限循环
-let re = set.operate("(A'&B)&C ");
-set.drawVenm("canvas");
-console.log(re);
 
 //********************************************************************************************* */
+
+function getRate() {
+  const systemInfo = wx.getWindowInfo();
+  return systemInfo.screenWidth / 750;
+}
+function promiseSelector(id, size = true, node = true) {
+  return new Promise((resolve, reject) => {
+    wx.createSelectorQuery()
+      .select(id)
+      .fields({ node: node, size: size })
+      .exec((res) => {
+        if (res[0]) resolve(res[0].node);
+        else reject(new Error("元素未找到"));
+      });
+  });
+}
 
 //判断是不是字母
 function isLetter(char) {
@@ -398,7 +413,8 @@ function getName(num) {
 }
 function getPos(pos, centerPos) {
   if (pos === centerPos) return 0;
-  if (pos > centerPos) return 1; //圆在右边或者下面
+  if (pos > centerPos) return 1;
+  //圆在右边或者下面
   else return -1; //圆在左边或者上面
 }
 //对小数部分向上取整

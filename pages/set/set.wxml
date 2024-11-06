@@ -1,24 +1,31 @@
 <view class="container">
-<math-Button bind:clickBt="handleMathBtClick"></math-Button>
-<view bind:tap="handleTap" >
-  <view class="row" >
-    <view>集合A:</view> <input id="A" class="input" bindinput="inputSet" />
+  <math-Button bind:clickBt="handleMathBtClick"></math-Button>
+  <view bind:tap="handleTap">
+    <view class="row">
+      <view>集合A:</view> <input id="A" class="input" bindinput="inputSet" />
+    </view>
+    <view class="row">
+      <view>集合B:</view> <input id="B" class="input" bindinput=inputSet" />
+    </view>
+    <view class="row">
+      <view>集合C:</view> <input id="C" class="input" bindinput=inputSet" />
+    </view>
   </view>
-  <view class="row">
-    <view>集合B:</view> <input id="B" class="input" bindinput=inputSet" />
-  </view>
-  <view class="row">
-    <view>集合C:</view> <input id="C" class="input" bindinput=inputSet" />
-  </view>
-</view>
   <view class="row" bind:tap="handleExpTap">
-    <view>集合运算:</view> <input id="inputExp" class="input" bindinput=expInput" value="{{expVal}}" />
-    <view class="bt" bind:tap="handleCal">计算</view>
+    <view>集合运算:</view> <input id="inputExp" bind:focus="getCursor" class="input" bindinput=expInput" value="{{exp}}" />
+    <view class="bt" bind:tap="handleCalTap">计算</view>
   </view>
   <view class="canvasWrap">
-    <canvas type="2d" id="cnavas" class="canvas"></canvas>
+    <canvas type="2d" id="canvas" class="canvas"></canvas>
   </view>
   <view class="resultWrap">
-  <view class="subTitle">结果:</view>
+    <!-- <view class="subTitle">结果:</view> -->
+    <view>{{exp}} {{exp&&":"}}</view>
+    <view>{{result}}</view>
+  </view>
+  <view style="display: none;">
+    <view wx:for="{{canvasAr}}" wx:key="index">
+      <canvas type="2d" id="{{'hidCanvas' + index}}"></canvas>
+    </view>
   </view>
 </view>

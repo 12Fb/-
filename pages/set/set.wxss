@@ -1,55 +1,54 @@
-.container{
+.container {
   overflow-x: hidden;
   overflow-y: scroll;
   min-height: 80vh;
   height: auto;
   padding-bottom: 5vh;
 }
-.canvasWrap{
-  height: 30vh;
-  /* background: rgba(160,140,90,0.3); */
+.canvasWrap {
+  width: 750rpx;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  overflow: auto;
 }
-.canvas{
-  border:2rpx solid black;
-  height: 100%;
+.canvas {
+  margin: 10rpx;
+  /* border: 2rpx solid black; */
+  position: relative;
   width: 100%;
 }
-.resultWrap{
-  font-size: 32rpx;
-  height: 30vh;
-  background: rgba(60,40,90,0.3);
+.resultWrap {
+  padding: 0 30rpx;
+  position: relative;
+  font-size: 40rpx;
+  height: 330rpx;
+  line-height: 100rpx;
 }
 
-
-
-.input{
+.input {
   font-size: 32rpx;
   border: 1rpx solid red;
-  flex:1;
+  flex: 1;
   height: 100rpx;
   text-align: start;
 }
-.bt{
+.bt {
   padding: 0.5rem;
   border-radius: 5%;
-  background: rgba(36, 36, 36,0.2);
-  font-size:1rem;
-  width:fit-content;
+  background: rgba(36, 36, 36, 0.2);
+  font-size: 1rem;
+  width: fit-content;
   line-height: 1rem;
 }
-.bt:hover{
-  background: rgba(36, 36, 36,0.4);
-
+.bt:hover {
+  background: rgba(36, 36, 36, 0.4);
 }
-.subTitle{
+.subTitle {
   font-size: 1em;
-  position:absolute;
+  position: absolute;
   width: 100%;
   text-align: center;
 }
-.row{
+.row {
   margin-bottom: 20rpx;
 }
