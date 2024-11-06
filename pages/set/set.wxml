@@ -1,5 +1,4 @@
 <view class="container">
-  <math-Button bind:clickBt="handleMathBtClick"></math-Button>
   <view bind:tap="handleTap">
     <view class="row">
       <view>集合A:</view> <input id="A" class="input" bindinput="inputSet" />
@@ -11,6 +10,7 @@
       <view>集合C:</view> <input id="C" class="input" bindinput=inputSet" />
     </view>
   </view>
+  <math-Button bind:clickBt="handleMathBtClick"></math-Button>
   <view class="row" bind:tap="handleExpTap">
     <view>集合运算:</view> <input id="inputExp" bind:focus="getCursor" class="input" bindinput=expInput" value="{{exp}}" />
     <view class="bt" bind:tap="handleCalTap">计算</view>

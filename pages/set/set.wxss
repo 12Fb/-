@@ -21,7 +21,7 @@
   padding: 0 30rpx;
   position: relative;
   font-size: 40rpx;
-  height: 330rpx;
+  height: 3300rpx;
   line-height: 100rpx;
 }
 
