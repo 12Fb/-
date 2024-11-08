@@ -64,6 +64,9 @@ Page({
       exp: val,
     });
   },
+  showCustomKb() {
+    wx.hideKeyboard();
+  },
   //计算rpx和px，px*rate = rpx
   getRate() {
     const systemInfo = wx.getWindowInfo();

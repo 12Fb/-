@@ -12,7 +12,7 @@
   </view>
   <math-Button bind:clickBt="handleMathBtClick"></math-Button>
   <view class="row" bind:tap="handleExpTap">
-    <view>集合运算:</view> <input id="inputExp" bind:focus="getCursor" class="input" bindinput=expInput" value="{{exp}}" />
+    <view>集合运算:</view> <input id="inputExp" class="input" bindinput=expInput" value="{{exp}}" />
     <view class="bt" bind:tap="handleCalTap">计算</view>
   </view>
   <view class="canvasWrap">
