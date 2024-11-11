@@ -6,14 +6,14 @@
   padding-bottom: 5vh;
 }
 .canvasWrap {
+  /* border: 2rpx solid black; */
   width: 750rpx;
   display: flex;
-  /* align-items: center; */
   overflow: auto;
 }
 .canvas {
   margin: 10rpx;
-  /* border: 2rpx solid black; */
+  border: 2rpx solid black;
   position: relative;
   width: 100%;
 }
@@ -21,7 +21,7 @@
   padding: 0 30rpx;
   position: relative;
   font-size: 40rpx;
-  height: 3300rpx;
+  height: 300rpx;
   line-height: 100rpx;
 }
 

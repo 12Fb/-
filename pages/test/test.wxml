@@ -1,2 +1,7 @@
 <!--pages/test/test.wxml-->
-<customKb></customKb>
+<customKb bind:kb_touchEnd="ontemp" show="{{show}}"></customKb>
+<view>自定义键盘</view>
+<view ></view>
+<view>
+  <input bindfocus="onFocus" style="background: skyblue;"/>
+</view>

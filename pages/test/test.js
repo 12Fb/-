@@ -1,13 +1,21 @@
-// pages/test/test.js
+import * as utils from "@/common/utils/index"
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    show:false
   },
-
+  ontemp(val){
+    console.log(val)
+  },
+  onFocus(e){
+    this.setData({
+      show: !this.data.show
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
