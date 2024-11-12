@@ -8,13 +8,8 @@ Page({
   data: {
     show:false
   },
-  ontemp(val){
-    console.log(val)
-  },
-  onFocus(e){
-    this.setData({
-      show: !this.data.show
-    })
+  onInput(e){
+    console.log(e)
   },
   /**
    * 生命周期函数--监听页面加载

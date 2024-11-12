@@ -49,11 +49,12 @@ Component({
     symbol: ["∪", "∩", "'", "(", ")", "-"],
   },
   observers:{
-    "show" :  async function(show){
+    "show" :  function(show){
       wx.hideKeyboard()
-      console.log("show",show)
-      this.setData({
-        kb_translate: show ? "0 0" : "0 100%"
+      wx.nextTick(()=>{
+        this.setData({
+          kb_translate: show ? "0 0" : "0 100%"
+        })
       })
       
     }
@@ -91,11 +92,12 @@ Component({
     processGeneral(arr) {
       //给键盘上的某个元素加上class
       const addClass = (_index, classes) => {
+        if(!Array.isArray(classes)) classes = [classes]
         let temp = arr[_index].cat;
         classes.forEach((_class) => {
           temp += " " + _class;
         });
-        arr[index].cat = temp;
+        arr[_index].cat = temp;
       };
       let index;
       //处理第二行左右两边第一个item
@@ -115,14 +117,19 @@ Component({
       arr.splice(arr.length, 0, this.initItem("- ", 1));
       arr.splice(arr.length, 0, this.initItem(" ", 4));
       arr.splice(arr.length, 0, this.initItem("∩ ", 1));
-      arr.splice(arr.length, 0, this.initItem("∪ ", 1));
-      arr.splice(arr.length, 0, this.initItem("next", 3));
+      arr.splice(arr.length, 0, this.initItem("∪ ", 1));     
+      arr.splice(arr.length, 0, this.initItem("完成", 3));
+      addClass(arr.length-1,["finish"])
 
       return arr;
     },
+    onTap(e){
+      wx.vibrateShort({
+        type: 'medium',
+      })
+    },
     handleTouchStart(e) {
       let index = e.currentTarget.dataset.index;
-      console.log(index);
       this.data.arr[index].select = true;
       this.setData({
         arr: this.data.arr,
@@ -130,12 +137,16 @@ Component({
     },
     handleTouchEnd(e) {
       let { index, value } = e.currentTarget.dataset;
-      console.log(e.currentTarget.dataset);
       this.data.arr[index].select = false;
       this.setData({
         arr: this.data.arr,
       });
-      this.triggerEvent("kb_touchEnd", { value });
+      if(value === "完成") {
+        this.triggerEvent("kb_input", { value:0 });
+      }
+      else {
+        this.triggerEvent("kb_input", { value });
+      }
     },
   },
 });

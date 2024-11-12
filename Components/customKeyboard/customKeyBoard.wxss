@@ -20,6 +20,9 @@ page {
   justify-content: center;
   transition: all 0.5s;
 }
+.finish{
+  background: black;
+}
 .letter {
   display: flex;
   flex-direction: column;

@@ -17,7 +17,9 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {},
+  "usingComponents": {
+    "viewInput":"/Components/viewInput/viewInput"
+  },
   "resolveAlias": {
     "@/*":"/*"
   }

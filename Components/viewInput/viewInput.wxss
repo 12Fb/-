@@ -1,0 +1,55 @@
+/* Components/viewInput/viewInput.wxss */
+text{
+  margin:0;
+  padding:0;
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
+.text{
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: min-content;
+}
+.viewInput{
+  display: flex;
+  align-items: center;
+  position:relative;
+  background: skyblue;
+}
+.PlaceHolder{
+  position:relative;
+  opacity: 0.4;
+}
+.item{
+  display: flex;
+  font-size: inherit;
+}
+.emptyCursor{
+  top: 0;
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  animation: blink 1s infinite  steps(1,start);
+}
+.cursor{
+  left: 85%;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  animation: blink 1s infinite  steps(1,start);
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.canvas{
+  display: none;
+}
