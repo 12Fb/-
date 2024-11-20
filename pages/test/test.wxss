@@ -1,1 +1,8 @@
 /* pages/test/test.wxss */
+.temp{
+  background: red;
+  color: red;
+}
+page{
+  height: 100vh;
+}

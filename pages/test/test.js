@@ -8,6 +8,9 @@ Page({
   data: {
     show:false
   },
+  onTap:function(e){
+    console.log(e)
+  },
   onInput(e){
     console.log(e)
   },
@@ -29,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    
   },
 
   /**

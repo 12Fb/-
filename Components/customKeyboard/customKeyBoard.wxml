@@ -1,5 +1,5 @@
-<view style="translate:{{kb_translate}}" class="kb_container">
-  <view class="{{item.select ? 'active':''}} {{item.cat}}" data-value="{{item.value}}" data-index="{{index}}" wx:for="{{arr}}" wx:key="index" bind:tap="onTap" bind:touchstart="handleTouchStart" bind:touchend="handleTouchEnd">
+<view catch:tap="stop" style="translate:{{kb_translate}}" class="kb_container">
+  <view class="{{item.select ? 'active':''}} {{item.cat}}" data-value="{{item.value}}" data-index="{{index}}" wx:for="{{arr}}" wx:key="index" catch:tap="onTap" bind:touchstart="handleTouchStart" bind:touchend="handleTouchEnd">
     {{item.value == -1 ? "" : item.value }}
   </view>
 

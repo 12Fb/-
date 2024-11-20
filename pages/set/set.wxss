@@ -1,23 +1,30 @@
 .container {
   overflow-x: hidden;
   overflow-y: scroll;
-  min-height: 80vh;
+  min-height: 110vh;
   height: auto;
   padding-bottom: 5vh;
 }
 .canvasWrap {
-  /* border: 2rpx solid black; */
-  width: 750rpx;
+  position: relative;
+  width: calc(100% - 20rpx);
   display: flex;
-  overflow: auto;
+  justify-content: center;
+  overflow:scroll;
+  margin-left: 10rpx;
+  margin-right: 1000rpx;
+  border: 2rpx solid black;
+  
 }
 .canvas {
-  margin: 10rpx;
-  border: 2rpx solid black;
+  margin: 8rpx;
   position: relative;
   width: 100%;
+  z-index: 10;
 }
 .resultWrap {
+  display: flex;
+  gap: 10rpx;
   padding: 0 30rpx;
   position: relative;
   font-size: 40rpx;
@@ -32,6 +39,14 @@
   height: 100rpx;
   text-align: start;
 }
+.inputWrap{
+  background: red;
+}
+.bts{
+  display: flex;
+  gap: 10rpx;
+}
+
 .bt {
   padding: 0.5rem;
   border-radius: 5%;

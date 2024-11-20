@@ -1,5 +1,5 @@
-<view class="container">
-  <view bind:tap="handleTap">
+<view class="container" bind:tap="closeKb">
+  <view>
     <view class="row">
       <view>集合A:</view> <input id="A" class="input" bindinput="inputSet" />
     </view>
@@ -10,18 +10,24 @@
       <view>集合C:</view> <input id="C" class="input" bindinput=inputSet" />
     </view>
   </view>
-  <math-Button bind:clickBt="handleMathBtClick"></math-Button>
   <view class="row" bind:tap="handleExpTap">
-    <view>集合运算:</view> <input id="inputExp" class="input" bindinput=expInput" value="{{exp}}" />
-    <view class="bt" bind:tap="handleCalTap">计算</view>
+    <view>集合运算:</view>
+    <view class="row ">
+      <viewInput show="{{show}}" height="100rpx" Class="input" bind:tap="scroll" bind:input="expInput" placeholder="" value="{{exp}}"></viewInput>
+    </view>
+    <view class="bts">
+      <view class="bt" bind:tap="handleCalTap">计算</view>
+      <view class="bt" bind:tap="reset">重置</view>
+    </view>
   </view>
+
   <view class="canvasWrap">
     <canvas type="2d" id="canvas" class="canvas"></canvas>
   </view>
   <view class="resultWrap">
     <!-- <view class="subTitle">结果:</view> -->
     <view>{{exp}} {{exp&&":"}}</view>
-    <view>{{result}}</view>
+    <view>{{ result ? '['+result+']':'' }}</view>
   </view>
   <view style="display: none;">
     <view wx:for="{{canvasAr}}" wx:key="index">

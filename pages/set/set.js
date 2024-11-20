@@ -14,6 +14,22 @@ Page({
     lock: 0,
     canvasAr: new Array(100),
     result: "",
+    show:false
+  },
+  async scroll(e){
+    console.log('scroll')
+    wx.pageScrollTo({
+      scrollTop:100000,
+      duration:300
+    })
+  },
+  closeKb(e){
+    this.setData({
+      show:false
+    })
+  },
+  reset(){
+
   },
   replaceMent(str) {
     let temp = str.replace(/∩/g, "&").replace(/∪/g, "|");
@@ -21,10 +37,6 @@ Page({
   },
   handleExpTap() {
     this.data.lock = 1;
-  },
-  handleTap(e) {
-    if (!e.target.id.includes("inputExp")) this.data.lock = 0;
-    console.log(this.data.lock);
   },
   handleMathBtClick(e) {
     const val = e.detail.target.dataset.text;
@@ -106,6 +118,7 @@ Page({
     canvas.width = (canvas.width * dpr * canvasNode.width) / 300;
     canvas.height = (canvas.height * dpr * canvasNode.height) / 150;
     this.data.canvas = canvas;
+    
   },
 
   /**

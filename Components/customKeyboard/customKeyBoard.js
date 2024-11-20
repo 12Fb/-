@@ -116,12 +116,15 @@ Component({
       arr.splice(arr.length, 0, this.initItem(")", 1));
       arr.splice(arr.length, 0, this.initItem("- ", 1));
       arr.splice(arr.length, 0, this.initItem(" ", 4));
-      arr.splice(arr.length, 0, this.initItem("∩ ", 1));
-      arr.splice(arr.length, 0, this.initItem("∪ ", 1));     
+      arr.splice(arr.length, 0, this.initItem("∩", 1));
+      arr.splice(arr.length, 0, this.initItem("∪", 1));     
       arr.splice(arr.length, 0, this.initItem("完成", 3));
       addClass(arr.length-1,["finish"])
 
       return arr;
+    },
+    stop(e){
+
     },
     onTap(e){
       wx.vibrateShort({
