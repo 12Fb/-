@@ -10,7 +10,8 @@ fun3{
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  padding-top: 100rpx;
+  padding-bottom: 400rpx;
   box-sizing: border-box;
 }
 .bt{

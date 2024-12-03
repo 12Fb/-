@@ -12,6 +12,10 @@ Component({
   },
   detached() {},
   properties: {
+    customKeys:{
+      type:Array,
+      value:[]
+    },
     value: {
       type: null,
       value: "",

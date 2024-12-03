@@ -9,4 +9,4 @@
   <text style=" display: {{inputValue ? 'none': 'flex' }}" class="PlaceHolder">{{placeholder}}</text>
 </view>
 <!-- <canvas class="canvas" type="2d" id="canvas"></canvas> -->
-<customKb bind:kb_input="onInput" show="{{isFocus }}"></customKb>
+<customKb customKeys="{{customKeys}}" bind:kb_input="onInput" show="{{isFocus }}"></customKb>

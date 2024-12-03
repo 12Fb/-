@@ -14,6 +14,13 @@ Page({
     pre: [],
     con: [],
   },
+  closeKb(e){
+    this.setData({
+      show1:false,
+      show2:false
+    })
+    console.log(e)
+  },
   changeFocus:function(e){
     console.log(e);
     if(e.target.id === 'pre') this.data.curFocus =1; 

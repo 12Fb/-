@@ -1,10 +1,9 @@
 
-<view class="container" >
+<view class="container"  bind:tap="closeKb">
 <view class="title">需求4</view>
-<math-Button bind:clickBt = "handleClickMathBt" ></math-Button>
 <view class="row1">
 <view>前提:</view>
-<input class="input" id="pre" type="text" bind:focus="changeFocus"	bindinput="preInput" value="{{curPre}}" />
+<viewInput placeholder=""  bindinput="preInput" vi-class="input" width="340rpx" value="{{curPre}}" show="{{show1}}"></viewInput>
 <view class="bt" bind:tap="resetPre">重置</view>
 <view class="bt" bind:tap="addPre">确认</view>
 </view>
@@ -15,7 +14,8 @@
 </view>
 <view class="row1">
   <view>结论:</view>
-  <input class="input" id="con" bind:focus="changeFocus" type="text" bindinput="conInput"	 value="{{curCon}}" />
+<viewInput placeholder="" bindinput="conInput" vi-class="input" width="340rpx" value="{{curCon}}" show="{{show2}}" ></viewInput>
+
   <view class="bt" bind:tap="resetCon">重置</view>
   <view class="bt" bind:tap="addCon">确认</view>
 </view>

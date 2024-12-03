@@ -8,12 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    show:false,
+    customKeys:['∧','∨','¬','↔','→'],
     focus:true,
     inputValue: "",
     maxItem: "",
     minItem: ""
   },
   bindInput: function (e) {
+    
     this.setData({
       inputValue: e.detail.value
     })
@@ -25,6 +28,12 @@ Page({
     this.setData({
       inputValue: str+text
     })
+  },
+  closeKb(e){
+    this.setData({
+      show:false
+    })
+    console.log(e)
   },
   //输出结果
   handleTap:function(e){
