@@ -6,3 +6,7 @@
 page{
   height: 100vh;
 }
+.red-text {
+  color: red;
+  border:1px solid
+}

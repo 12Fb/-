@@ -1,10 +1,9 @@
 <!--pages/fun3/fun3.wxml-->
 <view class="container">
-<text class="title" >需求三</text>
-
 <math-Button bind:clickBt = "handleClickMathBt" ></math-Button>
 <view class="row1">
 <text> 命题公式: </text>
+<viewInput></viewInput>
 <input id="input" class="input" focus="{{focus}}" type="text" placeholder="请输入" bindinput="bindInput" value="{{inputValue}}"/> 
 </view>
 <view class="bt" bind:tap="handleTap">输出极大值和极小值</view>

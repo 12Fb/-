@@ -1,7 +1,7 @@
 // Components/viewInput/viewInput.js
 import { promiseSelector, pxRaterpx } from "@/common/utils/index";
 Component({
-  externalClasses: ["Class11"],
+  externalClasses: ["vi-class"],
   /**
    * 组件的属性列表
    */

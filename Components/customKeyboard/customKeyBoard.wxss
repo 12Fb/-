@@ -11,6 +11,7 @@ page {
   background: rgba(91, 31, 91);
   z-index: 999;
   bottom: 0;
+  left:0;
   height: 430rpx;
   width: calc(100% - 2 * var(--kb-padding-x));
   border-radius: 5%;
