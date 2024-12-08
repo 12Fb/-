@@ -4,12 +4,20 @@ class Logic {
     this.corSeq = []; //一个元素为一个真序列
     this.fakeSeq = []; //假序列,处理之后可以得到极大值
     this.rightSeq = {}; //
+    this.symbol_Val = {
+      "!": 0,
+      "&": -1,
+      "|": -2,
+      ">": -3,
+      "<": -4,
+    };
   }
   //中缀转后缀
   trans(str) {
-    str = str.replace(" ", "");
+    str = str.replace(/\s/g, "");
     let stack1 = [];
     let stack2 = [];
+
     for (let i = 0; i < str.length; i++) {
       if (str[i] === "(") stack2.push(str[i]);
       else if (this.isLetter(str[i])) {
@@ -20,14 +28,19 @@ class Logic {
           stack1.push(sy);
         }
         stack2.pop();
-      } else if (str[i] !== "!" && stack2[stack2.length - 1] === "!") {
-        while (stack2[stack2.length - 1] === "!") {
-          let top = stack2.pop();
-          stack1.push(top);
-        }
-        stack2.push(str[i]);
       } else {
-        stack2.push(str[i]);
+        let top = stack2[stack2.length - 1];
+        if (!top) {
+          stack2.push(str[i]);
+        } else if (this.symbol_Val[top] <= this.symbol_Val[str[i]]) stack2.push(str[i]);
+        else {
+          while (this.symbol_Val[top] > this.symbol_Val[str[i]]) {
+            let sy = stack2.pop();
+            stack1.push(sy);
+            if (stack2.length === 0) break;
+          }
+          stack2.push(str[i]);
+        }
       }
     }
     while (stack2.length > 0) {
@@ -129,18 +142,20 @@ class Logic {
     return result;
   }
   maxItem() {
-    //主合取范式，由极大项得来,所有成假赋值的合取，原子命题默认为0
+    //主合取范式，由极大项得来,所有成假赋值的合取
     let str = "";
     const deal = (letter, val) => {
-      if (val === 1) return "!" + letter;
+      if (val == 1) return "!" + letter;
       else return letter;
     };
+    if (this.fakeSeq.length === 0) return str;
+
     for (let i = 0; i < this.fakeSeq.length; i++) {
       let obj = this.fakeSeq[i];
       let flag = 0;
       for (let key in obj) {
         if (flag === 0) {
-          str += "(";
+          if (this.fakeSeq.length != 1) str += "(";
           str += deal(key, obj[key]);
           flag++;
         } else {
@@ -148,24 +163,26 @@ class Logic {
           str += deal(key, obj[key]);
         }
       }
-      str += ") & ";
+      if (this.fakeSeq.length != 1) str += ") & ";
     }
-    str = str.slice(0, -3);
+    if (this.fakeSeq.length != 1) str = str.slice(0, -3);
     return str;
   }
   minItem() {
     //主汲取范式，由极小项得来，所有成真赋值的汲取
     let str = "";
     const deal = (letter, val) => {
-      if (val === 1) return "!" + letter;
+      if (val == 0) return "!" + letter;
       else return letter;
     };
+    if (this.corSeq.length === 0) return str;
+
     for (let i = 0; i < this.corSeq.length; i++) {
       let obj = this.corSeq[i];
       let flag = 0;
       for (let key in obj) {
         if (flag === 0) {
-          str += "(";
+          if (this.corSeq.length != 1) str += "(";
           str += deal(key, obj[key]);
           flag++;
         } else {
@@ -173,9 +190,9 @@ class Logic {
           str += deal(key, obj[key]);
         }
       }
-      str += ") | ";
+      if (this.corSeq.length != 1) str += ") | ";
     }
-    str = str.slice(0, -3);
+    if (this.fakeSeq.length != 1) str = str.slice(0, -3);
     return str;
   }
   //推理结论 , 得到真值表,将为真的序列存起来,
@@ -185,7 +202,7 @@ class Logic {
     let letters = this.getLetter(str);
     let letterIndex = {};
     letters.forEach((item, index) => (letterIndex[item] = index)); //建立字母对于索引
-    let max = Math.pow(2, letters.length) - 1;
+    let max = Math.pow(2, letters.length) ;
     for (let i = 0; i < max; i++) {
       let nums = this.give(i, letters.length);
       nums.push(0);

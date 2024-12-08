@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    test:"123",
     show:false,
     customKeys:['∧','∨','¬','↔','→'],
     focus:true,
@@ -16,19 +17,11 @@ Page({
     minItem: ""
   },
   bindInput: function (e) {
-    
     this.setData({
       inputValue: e.detail.value
     })
   },
-  handleClickMathBt: function(e) {
-    
-    let text = e.detail.target.dataset.text;
-    let str = this.data.inputValue;
-    this.setData({
-      inputValue: str+text
-    })
-  },
+
   closeKb(e){
     this.setData({
       show:false
@@ -46,8 +39,11 @@ Page({
       maxItem: replaceMent(logic.maxItem(),0),
       minItem: replaceMent(logic.minItem(),0)
     })
-
-    
+  },
+  handleReset(){
+      this.setData({
+        inputValue: ""
+      })
   },
   /**
    * 生命周期函数--监听页面加载

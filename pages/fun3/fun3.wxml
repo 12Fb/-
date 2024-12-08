@@ -1,18 +1,21 @@
 <!--pages/fun3/fun3.wxml-->
 <view class="container" bind:tap="closeKb">
-<view class="row1">
-<text> 命题公式: </text>
-<viewInput  vi-class="input" width="400rpx" placeholder="请输入" value="{{inputValue}}" bind:input="bindInput" 
-customKeys="{{customKeys}}" show="{{show}}" ></viewInput>
-<!-- <input id="input" class="input" focus="{{focus}}" type="text" placeholder="请输入" bindinput="bindInput" value="{{inputValue}}"/>  -->
-</view>
-<view class="bt" bind:tap="handleTap">输出极大值和极小值</view>
-<view class="row1">
-<text > 主合取范式: </text>
-</view>
-<text class="longText">{{maxItem}} </text>
-<view class="row1">
-<text > 主汲取范式: </text>
-</view>
-<text class="longText"> {{minItem}} </text>
+  <view class="row1">
+    <text> 命题公式: </text>
+    <viewInput vi-class="input" width="500rpx" placeholder="请输入" value="{{inputValue}}" bind:input="bindInput" customKeys="{{customKeys}}" show="{{show}}" test="{{test}}">
+    </viewInput>
+  </view>
+  <view style="left: 60%;" class="row1"> <text class="bt" catch:tap="handleReset">重置</text><text catch:tap="handleTap" class="bt">输出</text></view>
+
+  <view class="row1">
+
+  </view>
+  <view class="row1">
+    <text> 主合取范式: </text>
+  </view>
+  <text class="longText">{{maxItem}} </text>
+  <view class="row1">
+    <text> 主析取范式: </text>
+  </view>
+  <text class="longText"> {{minItem}} </text>
 </view>

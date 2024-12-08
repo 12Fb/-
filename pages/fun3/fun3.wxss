@@ -15,14 +15,13 @@ fun3{
   box-sizing: border-box;
 }
 .bt{
-  padding: 1rem;
   border-radius: 5%;
   background: rgba(36, 36, 36,0.2);
-  font-size:2rem;
-  width:20rem;
-  line-height: 2rem;
-  text-align: center;
-  height: 2rem;
+  font-size:36rpx;
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  height: 60rpx;
 }
 .bt:hover{
   background: rgba(36, 36, 36,0.4);
@@ -35,7 +34,8 @@ fun3{
   top:5%;
 }
 .row1{
-  width:90%;
+  position: relative;
+  width:95%;
   display: flex;
   justify-content: start;
   align-items: center;

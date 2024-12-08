@@ -54,6 +54,12 @@ Component({
    * 组件的初始数据
    */
   observers: {
+    value: function(newVal) {
+      this.setData({
+        inputValue:newVal,
+        inputArr:newVal.split('')
+      })
+    },
     fontSize: function (newVal) {
       console.log("newVal", newVal);
       const font = this.extractNumberToPx(newVal, 1.2);

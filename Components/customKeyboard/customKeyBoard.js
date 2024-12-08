@@ -64,7 +64,7 @@ Component({
     }
   },
 
-  //被添加到节点的时候
+  //生命周期
   attached() {
     //处理自定义键
     let tempCustomKeys = this.data.customKeys.concat(this.data.symbol).slice(0,6);
@@ -86,6 +86,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onTap1(e){
+      console.log("parent")
+    },
+    onCaptureTap(e){
+      console.log('son')
+    },
     //fun : 1添加， -1减少,catIndex表示哪一类按键,不同按键宽度不同
     initItem(val, catIndex, fun = 1, select = false) {
       let cats = ["letter", "secItem", "thirdItem", "fourthItem"];

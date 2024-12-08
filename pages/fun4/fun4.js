@@ -13,6 +13,8 @@ Page({
     curCon:'',
     pre: [],
     con: [],
+    customKeys:['∧','∨','¬','↔','→'],
+
   },
   closeKb(e){
     this.setData({
