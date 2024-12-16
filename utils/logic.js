@@ -65,7 +65,8 @@ class Logic {
     return num2.concat(num1);
   }
   //是否是字母
-  isLetter(char) {
+  isLetter(ch) {
+    let char = String(ch)
     const code = char.charCodeAt(0);
     return (code > 64 && code < 91) || (code > 96 && code < 123);
   }
@@ -137,6 +138,10 @@ class Logic {
         if (re) stack.push(1);
         else stack.push(0);
       }
+    }
+    if (this.isLetter(stack[0])) {
+      let letter = stack[0];
+      stack[0] = val[letterIndex[letter]];
     }
     let result = stack[0] == "0" ? false : true;
     return result;
