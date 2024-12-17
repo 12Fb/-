@@ -1,4 +1,4 @@
-// pages/set1/set.js
+// Logic/pages/fun3.js
 Page({
 
   /**

@@ -6,11 +6,11 @@
   },
   "setting": {
     "ignoreDevUnusedFiles": false,
-    "ignoreUploadUnusedFiles": false,
+    "ignoreUploadUnusedFiles": true,
     "urlCheck": false,
     "es6": true,
-    "postcss": false,
-    "minified": false,
+    "postcss": true,
+    "minified": true,
     "newFeature": true,
     "bigPackageSizeSupport": true,
     "babelSetting": {

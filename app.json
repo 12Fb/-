@@ -10,6 +10,16 @@
     "pages/set/set",
     "pages/test/test"
   ],
+  "subPackages": [
+    {
+      "root": "Logic",
+      "pages": [
+        "pages/fun3",
+        "pages/fun4",
+        "pages/set"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
@@ -17,9 +27,10 @@
     "backgroundColor": "#F8F8F8"
   },
   "usingComponents": {
-    "viewInput":"/Components/viewInput/viewInput"
+    "viewInput": "/Components/viewInput/viewInput"
   },
   "resolveAlias": {
-    "@/*":"/*"
-  }
+    "@/*": "/*"
+  },
+  "lazyCodeLoading": "requiredComponents"
 }
