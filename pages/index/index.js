@@ -9,15 +9,15 @@ const _sfc_main = {
         path: "/pages/truthtable/truthtable",
       },
       {
-        name: "需求三",
+        name: "合取范式和析取范式",
         path: "/pages/fun3/fun3",
       },
       {
-        name: "需求四",
+        name: "命题逻辑判定",
         path: "/pages/fun4/fun4",
       },
       {
-        name: "需求五",
+        name: "一阶逻辑公式",
         path: "/pages/find/find",
       },
       {
