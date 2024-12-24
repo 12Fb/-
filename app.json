@@ -15,8 +15,7 @@
       "root": "Logic",
       "pages": [
         "pages/fun3",
-        "pages/fun4",
-        "pages/set"
+        "pages/fun4"
       ]
     }
   ],

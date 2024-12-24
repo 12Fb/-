@@ -32,10 +32,10 @@ const _sfc_main = {
         name: "最短路径",
         path: "/pages/shortest/shortest",
       },
-      {
-        name: "测试",
-        path: "/pages/test/test",
-      },
+      // {
+      //   name: "测试",
+      //   path: "/pages/test/test",
+      // },
     ];
     const nextRoute = (path) => {
       const startTime = /* @__PURE__ */ new Date();

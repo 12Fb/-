@@ -97,6 +97,8 @@ class Logic {
    * @returns
    */
   infer(str, letterIndex, val) {
+    let flag = 0;
+    let set =  new Set();
     let stack = []; // 操作符栈
     for (let i = 0; i < str.length; i++) {
       if (this.isLetter(str[i])) {
@@ -252,7 +254,22 @@ class Logic {
       let result = false
       if (this.pre.length > 0) result = true;
       for (let i = 0; i < this.pre.length; i++) {
-        let re = this.infer(this.pre[i], letterIndex, val);
+        
+        let flag = 0;
+        let set = new Set();
+
+        for (let j = 0; j < this.pre[i].length; j++) {
+          if (this.isLetter(this.pre[i][j])) {
+            set.add(this.pre[i][j]);
+          }
+        }
+        Object.entries(letterIndex).forEach((item, index) => {
+          if (this.isLetter(item[0])) {
+            if (set.has(item[0])) flag = 1;
+          }
+        });
+        let re = true;
+        if (flag) re = this.infer(this.pre[i], letterIndex, val);
         result = re & result;
         // console.log(this.pre[i], val, result);
         if (!result) break;
