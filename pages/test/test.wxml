@@ -1,3 +1,6 @@
 <!--pages/test/test.wxml-->
 <!-- <customKb bind:kb_touchEnd="ontemp" show="{{show}}"></customKb> -->
 <viewInput vi-class="red-text" bind:input="onInput"></viewInput>
+<mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+    <view>test content</view> 
+</mp-dialog>

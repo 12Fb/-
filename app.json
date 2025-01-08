@@ -8,8 +8,42 @@
     "pages/closure/closure",
     "pages/shortest/shortest",
     "pages/set/set",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/login/login",
+    "pages/firstPage/首页",
+    "custom-tab-bar/index",
+    "pages/funs/index",
+    "pages/all/index"
   ],
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/firstPage/首页",
+        "text": "首页",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/funs/index",
+        "text": "功能演示",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "功能演示",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/all/index",
+        "text": "所有页面",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }
+    ]
+  },
   "subPackages": [
     {
       "root": "Logic",
@@ -31,5 +65,8 @@
   "resolveAlias": {
     "@/*": "/*"
   },
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "useExtendedLib": {
+    "weui": true
+  }
 }

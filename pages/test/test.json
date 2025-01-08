@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "customKb": "/Components/customKeyboard/customKeyBoard"
+    "customKb": "/Components/customKeyboard/customKeyBoard",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   }
 }

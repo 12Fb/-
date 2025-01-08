@@ -1,0 +1,4 @@
+<van-grid direction="horizontal" gutter="{{10}}" column-num="2" clickable custom-class="custom-class">
+  <van-grid-item class="gridItem" content-class="content-class" text-class="item-class" wx:for="{{funList}}" icon="" text="{{item.name}}" link-type="navigateTo" url="{{item.path}}" />
+
+</van-grid>

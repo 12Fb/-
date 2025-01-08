@@ -1,0 +1,25 @@
+<view class="Container">
+<van-cell-group>
+  <van-field
+  clearable
+    label="手机号"
+    value="{{ value }}"
+    placeholder="请输入手机号"
+    border="{{ true }}"
+    bind:change="onChange"
+  />
+  <van-field
+    value="{{ sms }}"
+    center
+    clearable
+    label="短信验证码"
+    placeholder="请输入短信验证码"
+    border="{{ true }}"
+    use-button-slot
+  >
+    <van-button slot="button" size="small" type="primary">
+      发送验证码
+    </van-button>
+  </van-field>
+</van-cell-group>
+</view>

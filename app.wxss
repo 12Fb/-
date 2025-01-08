@@ -3,6 +3,12 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+}
+
 page::after {
   position: fixed;
   content: "";
@@ -42,3 +48,4 @@ page {
   display: none !important;
 }
 @import "./styles/iconFont.wxss";
+@import "./styles/index.wxss";

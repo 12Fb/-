@@ -6,5 +6,5 @@ const t = {};
 function o() {
   return { app: e.createSSRApp(t) };
 }
-o().app.mount("#app"), (exports.createApp = o);
 
+o().app.mount("#app"), (exports.createApp = o);
