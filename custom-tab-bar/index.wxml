@@ -1,6 +1,16 @@
-<van-tabbar active="{{ active }}" bind:change="onChange">
+<van-tabbar style="background: blue;" active="{{ active }}" bind:change="onChange">
   <van-tabbar-item icon="home-o">首页</van-tabbar-item>
   <van-tabbar-item icon="search">功能</van-tabbar-item>
-  <van-tabbar-item icon="friends-o">标签3</van-tabbar-item>
-  <van-tabbar-item icon="setting-o">所有页面</van-tabbar-item>
+  <van-tabbar-item>
+    <view slot="icon" style="border:4rpx #333333 solid; border-radius: 50%;">
+      <van-icon name="plus" size="70rpx" />
+    </view>
+    <view slot="icon-active" style="border:4rpx #333333 solid; border-radius: 50%;">
+      <van-icon name="plus" size="70rpx" />
+    </view>
+
+  </van-tabbar-item>
+  <van-tabbar-item icon="chat-o">消息</van-tabbar-item>
+  <van-tabbar-item icon="friends-o">个人</van-tabbar-item>
+
 </van-tabbar>

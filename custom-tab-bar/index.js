@@ -7,7 +7,9 @@ Component({
   properties: {
 
   },
-
+ attached(){
+   
+ },
   /**
    * 组件的初始数据
    */
@@ -17,24 +19,30 @@ Component({
       pagePath: "/pages/firstPage/首页",
       iconPath: "",
       selectedIconPath: "",
-      text: "组件"
+      text: "首页"
     }, {
       pagePath: "/pages/funs/index",
       iconPath: "",
       selectedIconPath: "",
-      text: "接口"
+      text: "功能"
     },
     {
-      pagePath: "/pages/index/index",
+      pagePath: "/pages/funs/index",
       iconPath: "",
       selectedIconPath: "",
-      text: "接口"
+      text: "创建"
+    },
+    {
+      pagePath: "/pages/message/index",
+      iconPath: "",
+      selectedIconPath: "",
+      text: "消息"
     },
     {
       pagePath: "/pages/all/index",
       iconPath: "",
       selectedIconPath: "",
-      text: "接口"
+      text: "个人"
     }]
   },
 
@@ -45,6 +53,7 @@ Component({
     onChange(event) {
       // event.detail 的值为当前选中项的索引
       console.log(event.detail)
+      this.setData({ active: event.detail });
       //跳转
       let _url = this.data.list[Number(event.detail)].pagePath
       wx.switchTab({
@@ -53,7 +62,6 @@ Component({
           console.log(e)
         },
       })
-      this.setData({ active: event.detail });
     },
   }
 })

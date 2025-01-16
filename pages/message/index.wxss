@@ -1,0 +1,23 @@
+/* pages/message/index.wxss */
+.Container{
+  height: 90vh;
+}
+.content{
+  display: flex;
+  gap:10rpx;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dot{
+  height:11rpx;
+  width: 11rpx;
+  border-radius: 50%;
+  background: red;
+  left: 2rpx;
+  top: 35rpx;
+  position: absolute;
+  z-index: 999;
+}
+.cell-box{
+  margin-left: 20rpx;
+}

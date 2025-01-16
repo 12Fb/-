@@ -1,28 +1,11 @@
-// pages/all/index.js
+// pages/class/createClass.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    pages:[
-      "pages/index/index",
-      "pages/truthtable/truthtable",
-      "pages/fun3/fun3",
-      "pages/fun4/fun4",
-      "pages/find/find",
-      "pages/closure/closure",
-      "pages/shortest/shortest",
-      "pages/set/set",
-      "pages/test/test",
-      "pages/login/login",
-      "pages/firstPage/首页",
-      "custom-tab-bar/index",
-      "pages/funs/index",
-      "pages/all/index",
-      "pages/class/createClass",
-      "pages/message/index"
-    ]
+
   },
 
   /**

@@ -1,0 +1,43 @@
+/* pages/message/chat/components/card/index.wxss */
+.wrapper{
+  background: rgba(28, 176, 246,0.1);
+  padding: 40rpx;
+}
+.content{
+  font-size: 32rpx;
+  font-weight: 500;
+}
+.imageWrapper{
+  background: white;
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.time{
+  margin-top: 20rpx;
+  opacity: 0.6;
+  font-size: 25rpx;
+  letter-spacing: 3rpx;
+  font-family:sans-serif;
+}
+.bottom{
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.userInfo{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25rpx;
+}
+.funs{
+display: flex;
+align-items: center;
+width: 200rpx;
+gap:40rpx;
+justify-content: center;
+}

@@ -1,0 +1,22 @@
+<!--pages/message/chat/components/card/index.wxml-->
+<view class="wrapper">
+  <!-- content -->
+  <view class="content">{{info.content}}</view>
+  <view class="imageWrapper">
+    <van-image wx:for="{{info.pictureUrl}}" lazy-load width="120" height="120" src="{{item}}" />
+  </view>
+  <!-- time -->
+  <view class="time">发布于{{info.time}}</view>
+  <view class="bottom">
+    <!-- 用户头像和名字 -->
+    <view class="userInfo">
+      <van-image round fit="fill" width="70rpx" height="70rpx" src="{{info.avatar}}" />
+      <view>{{info.userName}}</view>
+    </view>
+    <view class="funs">
+      <van-icon size="55rpx" name="good-job-o" color="#0da8f7" />
+      <van-icon size="55rpx" name="chat-o" color="#0da8f7" info="9" />
+
+    </view>
+  </view>
+</view>

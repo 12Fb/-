@@ -1,0 +1,6 @@
+<!--pages/message/chat/index.wxml-->
+<view class="card-Container">
+<!-- <chat-card wx:for="{{data}}" wx:key="item" info="{{item}}"></chat-card> -->
+<chat-card wx:for="{{infos}}" info="{{item}}"></chat-card>
+
+</view>

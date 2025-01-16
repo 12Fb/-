@@ -1,27 +1,18 @@
-// pages/all/index.js
+// pages/message/chat/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    pages:[
-      "pages/index/index",
-      "pages/truthtable/truthtable",
-      "pages/fun3/fun3",
-      "pages/fun4/fun4",
-      "pages/find/find",
-      "pages/closure/closure",
-      "pages/shortest/shortest",
-      "pages/set/set",
-      "pages/test/test",
-      "pages/login/login",
-      "pages/firstPage/首页",
-      "custom-tab-bar/index",
-      "pages/funs/index",
-      "pages/all/index",
-      "pages/class/createClass",
-      "pages/message/index"
+    infos:[
+      {
+        content:"哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈",
+        time:"1月14号15:18",
+        userName:"黄博远",
+        avatar:"https://img.yzcdn.cn/vant/cat.jpeg",
+        pictureUrl:['https://img.yzcdn.cn/vant/cat.jpeg']
+      }
     ]
   },
 

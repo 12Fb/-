@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/all/index",
     "pages/index/index",
     "pages/truthtable/truthtable",
     "pages/fun3/fun3",
@@ -13,7 +14,9 @@
     "pages/firstPage/首页",
     "custom-tab-bar/index",
     "pages/funs/index",
-    "pages/all/index"
+    "pages/class/createClass",
+    "pages/message/index",
+    "pages/message/chat/index"
   ],
   "tabBar": {
     "custom": true,
@@ -26,13 +29,13 @@
       },
       {
         "pagePath": "pages/funs/index",
-        "text": "功能演示",
+        "text": "功能",
         "iconPath": "",
         "selectedIconPath": ""
       },
       {
-        "pagePath": "pages/index/index",
-        "text": "功能演示",
+        "pagePath": "pages/message/index",
+        "text": "消息",
         "iconPath": "",
         "selectedIconPath": ""
       },

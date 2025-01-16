@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "chat-card": "/pages/message/chat/components/card/index"
+
+  },
+  "navigationBarTitleText": "消息"
+}
