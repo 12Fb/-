@@ -1,0 +1,22 @@
+.end{
+  position:relative;
+  font-size: 30rpx;
+  margin:40rpx 0;
+  opacity: 0.4;
+  width: 60rpx;
+  display: flex;
+  justify-content: center;
+  left: 295rpx;
+}
+.end::after{
+  position: relative;
+  content: '________';
+  top:-15rpx;
+  left: 40rpx;
+}
+.end::before{
+  position: relative;
+  content: '________';
+  top:-15rpx;
+  right: 40rpx;
+}

@@ -1,0 +1,110 @@
+/* pages/message/chat/pages/comment/index.wxss */
+page{
+  height: 100vh;
+}
+.wrapper{
+  height: 90%;
+  background: rgb(248, 248, 248);
+  padding: 30rpx;
+  z-index: 999;
+  display: flex;
+  gap: 20rpx;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.userInfo{
+  display: flex;
+  align-items: flex-end;
+  gap: 25rpx;
+}
+.row{
+  display: flex;
+  flex-direction: column;
+}
+.name{
+  font-size: 32rpx;
+}
+.time{
+  font-size: 28rpx;
+  opacity: 0.5;
+}
+.fun{
+  margin-left: 15rpx;
+  color: #0074e0;
+  font-size: 28rpx;
+}
+.headContent{
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.text{
+  width: 700rpx;
+  max-height: 300rpx;
+  word-wrap: break-word;
+}
+.images{
+  margin-top: 40rpx;
+  display: flex;
+  gap: 30rpx;
+  justify-content: flex-start;
+  align-items: center;
+}
+.blank{
+  width: 700rpx;
+  height: 40rpx;
+  background: #f8f8f8;
+  position: sticky;
+  top:0;
+  z-index: 998;
+}
+.firstRow{
+  position: sticky;
+  top:-30rpx;
+  display:flex;
+  background: #f8f8f8;
+  opacity: 1;
+  z-index: 999;
+  width: 100%;
+  height: 130rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.comm{
+  text-underline-offset: 20rpx;
+  text-decoration: underline;
+
+}
+.comment{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2%;
+}
+.lastRow{
+  width: 680rpx;
+  position:fixed;
+  bottom: 0;
+  padding-right: 70rpx;
+  height:8%;
+  border-radius: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f8f8;
+}
+.funs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30rpx;
+}
+.input-wrapper{
+  background:#f8f8f8;
+}
+.input{
+  font-size: 25rpx;
+  
+}

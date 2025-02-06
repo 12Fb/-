@@ -1,6 +1,9 @@
 <!--pages/message/chat/index.wxml-->
-<view class="card-Container">
+<view class="card-container" bind:tap="toComment">
 <!-- <chat-card wx:for="{{data}}" wx:key="item" info="{{item}}"></chat-card> -->
 <chat-card wx:for="{{infos}}" info="{{item}}"></chat-card>
-
+<end-sign></end-sign>
+</view>
+<view class="publish-bt" bind:tap="intoPublish">
+  <van-icon name="edit" color="white" size="70rpx"  />
 </view>

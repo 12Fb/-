@@ -1,0 +1,15 @@
+<!--pages/message/chat/pages/publish/index.wxml-->
+<van-cell-group custom-class="wrapper" >
+  <van-field
+  custom-class="field-wrapper"
+  input-class="input-class"
+    value="{{ message }}"
+    type="textarea"
+    placeholder="请写下你想法..."
+    autosize
+    border="{{ false }}"
+  />
+  <view class="file">
+  <van-uploader preview-size="150rpx" file-list="{{ fileList }}" bind:before-read="beforeRead" bind:after-read="afterRead" deletable="{{ true }}" />
+  </view>
+</van-cell-group>

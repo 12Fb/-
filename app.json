@@ -16,7 +16,9 @@
     "pages/funs/index",
     "pages/class/createClass",
     "pages/message/index",
-    "pages/message/chat/index"
+    "pages/message/chat/index",
+    "pages/message/chat/pages/publish/index",
+    "pages/message/chat/pages/comment/index"
   ],
   "tabBar": {
     "custom": true,

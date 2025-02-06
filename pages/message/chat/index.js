@@ -12,10 +12,34 @@ Page({
         userName:"黄博远",
         avatar:"https://img.yzcdn.cn/vant/cat.jpeg",
         pictureUrl:['https://img.yzcdn.cn/vant/cat.jpeg']
+      },
+      {
+        content:"哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈",
+        time:"1月15号15:18",
+        userName:"黄博远",
+        avatar:"https://img.yzcdn.cn/vant/cat.jpeg",
+        pictureUrl:['https://img.yzcdn.cn/vant/cat.jpeg']
+      },
+      {
+        content:"哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈",
+        time:"1月15号15:18",
+        userName:"黄博远",
+        avatar:"https://img.yzcdn.cn/vant/cat.jpeg",
+        pictureUrl:[]
       }
     ]
   },
-
+  //
+  intoPublish(e){
+    wx.navigateTo({
+      url: '/pages/message/chat/pages/publish/index',
+    })
+  },
+  toComment(e){
+    wx.navigateTo({
+      url: '/pages/message/chat/pages/comment/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,0 +1,16 @@
+.card-container{
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+  gap:40rpx;
+  align-items: center;
+}
+.publish-bt{
+  border-radius: 50%;
+  padding: 10rpx;
+  background: cornflowerblue;
+  position: fixed;
+  bottom: 200rpx;
+  right: 50rpx;
+  z-index: 999;
+}

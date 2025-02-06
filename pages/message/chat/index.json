@@ -1,7 +1,8 @@
 {
   "usingComponents": {
-    "chat-card": "/pages/message/chat/components/card/index"
-
+    "chat-card": "/pages/message/chat/components/card/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "end-sign":"/pages/message/chat/components/end/index"
   },
   "navigationBarTitleText": "消息"
 }

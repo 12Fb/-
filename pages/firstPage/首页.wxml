@@ -1,1 +1,2 @@
 <view>首页,没想好放什么内容</view>
+<van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />

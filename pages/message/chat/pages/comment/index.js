@@ -1,15 +1,21 @@
-// pages/firstPage/首页.js
++// pages/message/chat/pages/comment/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    fileList:[]
+    headInfo:{
+      avatar:'https://img.yzcdn.cn/vant/cat.jpeg',
+      name:'hhh',
+      time:'2025-1-14 14:14:45',
+      content:"yiyiyighhdgddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      images:['https://img.yzcdn.cn/vant/cat.jpeg','https://img.yzcdn.cn/vant/cat.jpeg']
+    },
+    commentNums:90,
+    curComment:''
   },
-  afterRead(e){
-    console.log(e)
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
