@@ -1,9 +1,5 @@
 {
   "description": "项目配置文件。",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
   "setting": {
     "ignoreDevUnusedFiles": false,
     "ignoreUploadUnusedFiles": true,
@@ -18,15 +14,20 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "condition": false
+    "condition": false,
+    "coverView": false,
+    "enhance": false,
+    "showShadowRootInWxmlPanel": false,
+    "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "3.6.1",
-  "appid": "wxe042e5cbb0761dba",
-  "projectname": "lisan",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
+  },
+  "packOptions": {
+    "ignore": [],
+    "include": []
   }
 }

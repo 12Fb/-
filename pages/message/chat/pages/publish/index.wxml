@@ -12,4 +12,6 @@
   <view class="file">
   <van-uploader preview-size="150rpx" file-list="{{ fileList }}" bind:before-read="beforeRead" bind:after-read="afterRead" deletable="{{ true }}" />
   </view>
+  <van-button type="primary" custom-class="publish_bt" block>发布</van-button>
+
 </van-cell-group>

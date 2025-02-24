@@ -1,0 +1,53 @@
+<!--pages/self/index.wxml-->
+<view class="container">
+  <view class="userInfo">
+    <van-cell size="large" center is-link value="修改" link-type="navigateTo" url="/pages/message/chat/index">
+      <view slot="title">
+        <view class="row">
+          <van-image round width="100rpx" height="100rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <view class="col" style="font-size: 30rpx;">
+            <view class="name">hby</view>
+            <view class="id" style="opacity: 0.6;">123456789</view>
+          </view>
+        </view>
+      </view>
+    </van-cell>
+    <van-cell size="large" center is-link value="内容" link-type="navigateTo" url="/pages/exercises/index">
+      <view slot="title">
+        <view style="margin-left: 10rpx;" class="row">
+          <view class="col" style="font-size: 30rpx;">
+            <view class="name">题目</view>
+          </view>
+        </view>
+      </view>
+    </van-cell>
+    <van-cell size="large" center is-link value="进入" link-type="navigateTo" url="/pages/dashboard/index">
+      <view slot="title">
+        <view style="margin-left: 10rpx;" class="row">
+          <view class="col" style="font-size: 30rpx;">
+            <view class="name">班级</view>
+          </view>
+        </view>
+      </view>
+    </van-cell>
+    <van-cell size="large" center is-link value="进入" link-type="navigateTo" url="/pages/dashboard/index">
+      <view slot="title">
+        <view style="margin-left: 10rpx;" class="row">
+          <view class="col" style="font-size: 30rpx;">
+            <view class="name">题目完成情况</view>
+          </view>
+        </view>
+      </view>
+    </van-cell>
+    <van-cell size="large" center is-link value="进入" link-type="navigateTo" url="/pages/dashboard/index">
+      <view slot="title">
+        <view style="margin-left: 10rpx;" class="row">
+          <view class="col" style="font-size: 30rpx;">
+            <view class="name">未定</view>
+          </view>
+        </view>
+      </view>
+    </van-cell>
+  </view>
+  <van-button custom-class="custom-button" type="warning" block>退出登录</van-button>
+</view>

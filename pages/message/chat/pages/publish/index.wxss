@@ -2,6 +2,7 @@
 .wrapper{
   height: 90vh;
   padding: 30rpx;
+
 }
 .field-wrapper{
   max-height:400rpx;
@@ -17,4 +18,7 @@
   align-items: center;
   margin-top: 100rpx;
   position: relative;
+}
+.publish_bt{
+  margin-top:20rpx
 }

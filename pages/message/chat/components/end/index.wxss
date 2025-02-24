@@ -6,7 +6,7 @@
   width: 60rpx;
   display: flex;
   justify-content: center;
-  left: 295rpx;
+  /* left: 295rpx; */
 }
 .end::after{
   position: relative;

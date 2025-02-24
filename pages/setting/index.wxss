@@ -1,0 +1,21 @@
+/* pages/self/index.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  background: #f7f8fa;
+  height: 100vh;
+}
+.row{
+  gap:20rpx;
+  display: flex;
+  align-items: center;
+}
+.col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.custom-button{
+  position: relative;
+  bottom:0;
+}

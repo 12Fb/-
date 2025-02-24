@@ -21,11 +21,11 @@
   </view>
     <view class="firstRow">
       <view class="comm">评论</view>
-      <view>{{commentNums}}</view>
+      <view >{{commentNums}}</view>
     </view>
     <view class="comment">
       <view class="blank"></view>
-      <comment-card wx:for="{{30}}"></comment-card>
+      <comment-card wx:for="{{30}}" ></comment-card>
       <!-- <end-sign></end-sign> -->
     </view>
     <view class="lastRow">

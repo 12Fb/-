@@ -1,0 +1,22 @@
+<!--pages/exercises/index.wxml-->
+<view class="container">
+  <van-cell size="large" center is-link link-type="navigateTo" url="/pages/exercises/managerExe/index">
+    <view slot="title">
+      <view style="margin-left: 10rpx;" class="row">
+        <view class="col" style="font-size: 30rpx;">
+          <view class="name">管理题目</view>
+        </view>
+      </view>
+    </view>
+  </van-cell>
+  <van-cell size="large" center is-link link-type="navigateTo" url="/pages/managerList/index">
+    <view slot="title">
+      <view style="margin-left: 10rpx;" class="row">
+        <view class="col" style="font-size: 30rpx;">
+          <view class="name">管理题单</view>
+        </view>
+      </view>
+    </view>
+  </van-cell>
+  
+</view>

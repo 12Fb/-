@@ -39,7 +39,7 @@ Component({
       text: "消息"
     },
     {
-      pagePath: "/pages/all/index",
+      pagePath: "/pages/setting/index",
       iconPath: "",
       selectedIconPath: "",
       text: "个人"

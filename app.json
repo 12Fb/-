@@ -18,7 +18,13 @@
     "pages/message/index",
     "pages/message/chat/index",
     "pages/message/chat/pages/publish/index",
-    "pages/message/chat/pages/comment/index"
+    "pages/message/chat/pages/comment/index",
+    "pages/setting/index",
+    "pages/exercises/index",
+    "pages/exercises/createExe/index",
+    "pages/exercises/createList/index",
+    "pages/exercises/managerExe/index",
+    "pages/exercises/managerList/index"
   ],
   "tabBar": {
     "custom": true,
@@ -43,6 +49,12 @@
       },
       {
         "pagePath": "pages/all/index",
+        "text": "所有页面",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/setting/index",
         "text": "所有页面",
         "iconPath": "",
         "selectedIconPath": ""
