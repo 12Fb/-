@@ -27,37 +27,33 @@
     "pages/exercises/managerList/index"
   ],
   "tabBar": {
-    "custom": true,
+    "custom": false,
+    "position":"bottom",
+    "selectedColor": "#409bdc",
     "list": [
       {
         "pagePath": "pages/firstPage/首页",
         "text": "首页",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "iconPath": "/static/icons/home.png",
+        "selectedIconPath": "/static/icons/home-ac.png"
       },
       {
         "pagePath": "pages/funs/index",
         "text": "功能",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "iconPath": "/static/icons/compass.png",
+        "selectedIconPath": "/static/icons/compass-ac.png"
       },
       {
         "pagePath": "pages/message/index",
         "text": "消息",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "iconPath": "/static/icons/message.png",
+        "selectedIconPath": "/static/icons/message-ac.png"
       },
       {
         "pagePath": "pages/all/index",
-        "text": "所有页面",
-        "iconPath": "",
-        "selectedIconPath": ""
-      },
-      {
-        "pagePath": "pages/setting/index",
-        "text": "所有页面",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "text": "个人",
+        "iconPath": "/static/icons/user.png",
+        "selectedIconPath": "/static/icons/user-ac.png"
       }
     ]
   },
