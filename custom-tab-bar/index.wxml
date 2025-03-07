@@ -1,6 +1,6 @@
 <van-tabbar style="background: blue;" active="{{ active }}" bind:change="onChange">
   <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-  <van-tabbar-item icon="search">功能</van-tabbar-item>
+  <van-tabbar-item icon="points">功能</van-tabbar-item>
   <van-tabbar-item>
     <view slot="icon" style="border:4rpx #333333 solid; border-radius: 50%;">
       <van-icon name="plus" size="70rpx" />

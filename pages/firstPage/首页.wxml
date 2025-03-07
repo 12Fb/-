@@ -1,2 +1,37 @@
-<view>首页,没想好放什么内容</view>
-<van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+<view class="container">
+  <view class="top_bg">
+    <van-image width="750rpx" height="300rpx" fit="fill" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+  </view>
+  <view class="funList">
+    <view hover-class="tap_bg" class="icon_container">
+      <van-icon class="icon_bg" name="points" size="{{funIconSize}}rpx" />
+      <view style="font-size: 30rpx;">功能</view>
+    </view>
+    <view hover-class="tap_bg" class="icon_container">
+      <van-icon class="icon_bg" name="bar-chart-o" size="{{funIconSize}}rpx" />
+      <view style="font-size: 30rpx;">统计</view>
+
+    </view>
+    <view hover-class="tap_bg" class="icon_container">
+      <van-icon class="icon_bg" name="star-o" size="{{funIconSize}}rpx" />
+      <view style="font-size: 30rpx;">收藏</view>
+
+    </view>
+
+  </view>
+  <van-tabs tab-active-class="tab-active-class"  tab-class="tab-class" nav-class="nav-class" ellipsis  custom-class="tabs"  active="{{ active }}" bind:change="onChange">
+  <van-tab   tab-class="tab-class" title="我的班级">
+    <view class="tabContent">
+      <firstPage-card info="{{value}}"></firstPage-card>
+      
+    </view>
+
+  </van-tab>
+  <van-tab  tab-class="tab-class" title="加入的班级">
+    <view class="tabContent">
+      <firstPage-card info="{{value}}"></firstPage-card>
+      
+    </view>
+  </van-tab>
+</van-tabs>
+</view>

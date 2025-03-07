@@ -1,0 +1,39 @@
+/* pages/firstPage/components/card/index.wxss */
+page {
+  --card-border: 70rpx;
+}
+.container{
+  border-radius: 2%;
+  /* height: 250rpx; */
+  width: calc(750rpx - var(--card-border));
+  margin:0 30rpx;
+  background: #83bdfa;
+  display:flex;
+  flex-direction: column;
+  font-size: 50rpx;
+  box-shadow:  0 0 8rpx #616161;
+}
+
+.cell-class{
+  background:#F5F5F5;
+  line-height: 70rpx;
+  box-shadow: 0 -10rpx 2rpx rgba(83, 17, 17, 0.1); /* 添加阴影效果 */
+
+}
+.title-class{
+  color:#2e2e2e ;
+  margin-bottom: 10rpx;
+  font-size:35rpx !important;
+}
+.label-class{
+  font-size:30rpx !important;
+}
+.course{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.top{
+  padding: 30rpx;
+}

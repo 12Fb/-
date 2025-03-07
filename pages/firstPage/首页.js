@@ -5,9 +5,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fileList:[]
+    fileList: [],
+    funIconSize: 120,
+    avtive: 1,
+    value: {
+      courseValue: {
+        course: "计算机忘了",
+        num: 89,
+      },
+      classValue:[
+        {
+          name:"一班",
+          num:34
+        },
+        {
+          name:"一班",
+          num:334
+        }],
+    }
   },
-  afterRead(e){
+  onChange(event) {
+    wx.showToast({
+      title: `切换到标签 ${event.detail.name}`,
+      icon: 'none',
+    });
+  },
+  afterRead(e) {
     console.log(e)
   },
   /**
