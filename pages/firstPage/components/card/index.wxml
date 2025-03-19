@@ -2,13 +2,16 @@
 <view class="container">
   <van-popup
   show="{{ show }}"
-  closeable
-  close-icon="close"
   position="bottom"
-  custom-style="height: 30% ;background:#4c4c4c"
+  custom-style="height: 25% ;background:#ffffff"
   bind:close="onClose"
   round
-/>
+  >
+  <van-button type="default"  size="large">置顶</van-button>
+  <van-button bind:tap="gotoCourse" type="default" size="large">管理</van-button>
+  <van-button  type="default" size="large">取消</van-button>
+
+  </van-popup>
   <view class="top">
     <view class="course">
       <view class="col">

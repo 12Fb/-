@@ -24,11 +24,14 @@
     "pages/exercises/createExe/index",
     "pages/exercises/createList/index",
     "pages/exercises/managerExe/index",
-    "pages/exercises/managerList/index"
+    "pages/exercises/managerList/index",
+    "pages/course/index",
+    "pages/class/index",
+    "pages/exercises/showExe/index"
   ],
   "tabBar": {
     "custom": false,
-    "position":"bottom",
+    "position": "bottom",
     "selectedColor": "#409bdc",
     "list": [
       {

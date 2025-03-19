@@ -1,0 +1,44 @@
+/* pages/exercises/Components/exeCard/index.wxss */
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  background: #baf5ba;
+  padding: 20rpx;
+  border-radius: 3%;
+  height: fit-content;
+}
+.row1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+.name {
+  font-size: 45rpx;
+  font-weight: bolder;
+}
+.description {
+  max-width: 100%;
+  height: fit-content;
+  line-height: 50rpx;
+  letter-spacing: 1rpx;
+  font-size: 30rpx;
+  opacity: 0.8;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.tags {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20rpx;
+}
+.hover-class{
+  box-shadow: 0 0 20rpx rgb(31, 30, 30) ;
+}

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "exe-card":"/pages/exercises/Components/exeCard/index"
+  },
   "navigationBarTitleText": "管理题目"
 }

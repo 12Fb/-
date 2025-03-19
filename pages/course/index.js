@@ -1,44 +1,13 @@
-// pages/firstPage/首页.js
+// pages/course/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    fileList: [],
-    funIconSize: 100,
-    avtive: 1,
-    value: {
-      courseValue: {
-        course: "计算机忘了",
-        num: 89,
-      },
-      classValue:[
-        {
-          name:"一班",
-          num:34
-        },
-        {
-          name:"一班",
-          num:334
-        }],
-    }
+
   },
-  onChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.name}`,
-      icon: 'none',
-    });
-  },
-  goto(e){
-    console.log(e.currentTarget)
-    let id = parseInt(e.currentTarget.id)
-    switch(id) {
-      case 1 : wx.navigateTo({
-        url: '/pages/exercises/index',
-      })
-    }
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

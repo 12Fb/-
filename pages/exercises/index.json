@@ -2,7 +2,8 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-cell": "@vant/weapp/cell/index",
-  "van-cell-group": "@vant/weapp/cell-group/index"
+  "van-cell-group": "@vant/weapp/cell-group/index",
+  "van-icon": "@vant/weapp/icon/index"
   },
   "navigationBarTitleText": "题目管理"
 }

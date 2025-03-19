@@ -45,6 +45,11 @@ Component({
       this.setData({
         show:true
       })
+    },
+    gotoCourse(){
+      wx.navigateTo({
+        url: '/pages/course/index',
+      })
     }
   }
 })

@@ -4,6 +4,7 @@
 <chat-card wx:for="{{infos}}" info="{{item}}"></chat-card>
 <end-sign></end-sign>
 </view>
+<!-- 编辑按钮 -->
 <view class="publish-bt" bind:tap="intoPublish">
   <van-icon name="edit" color="white" size="70rpx"  />
 </view>

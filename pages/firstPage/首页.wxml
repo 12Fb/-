@@ -3,11 +3,11 @@
     <van-image width="750rpx" height="300rpx" fit="fill" src="https://img.yzcdn.cn/vant/cat.jpeg" />
   </view>
   <view class="funList">
-    <view hover-class="tap_bg" class="icon_container">
+    <view bind:tap="goto" id="1" hover-class="tap_bg" class="icon_container">
       <van-icon class="icon_bg" name="points" size="{{funIconSize}}rpx" />
-      <view style="font-size: 30rpx;">功能</view>
+      <view style="font-size: 30rpx;">题目</view>
     </view>
-    <view hover-class="tap_bg" class="icon_container">
+    <view bind:tap="goto" hover-class="tap_bg" class="icon_container">
       <van-icon class="icon_bg" name="bar-chart-o" size="{{funIconSize}}rpx" />
       <view style="font-size: 30rpx;">统计</view>
 
@@ -15,7 +15,6 @@
     <view hover-class="tap_bg" class="icon_container">
       <van-icon class="icon_bg" name="star-o" size="{{funIconSize}}rpx" />
       <view style="font-size: 30rpx;">收藏</view>
-
     </view>
 
   </view>
