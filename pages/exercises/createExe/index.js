@@ -5,9 +5,68 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    checkBox:[1,2],
+    check:true,
+    active:0,//步骤条
+ steps: [
+  {
+    text: '题目类型',
+    desc: '',
+    // inactiveIcon: 'location-o',
+    // activeIcon: 'success',
   },
+  {
+    text: '描述',
+    desc: '',
+    // inactiveIcon: 'like-o',
+    // activeIcon: 'plus',
+  },
+  {
+    text: '预览',
+    desc: '',
+    // inactiveIcon: 'star-o',
+    // activeIcon: 'cross',
+  },
+  
+    ],
+    allData:{
+      choice:-1,
+      desc:{
+        name:'',
+        description:'',
+        image:'',
+      },
+      function:{
 
+      }
+    }
+  },
+  onChoice(e){
+    let id = e.target.id
+    this.setData({
+      allData:{
+        ...this.data.allData,
+        choice:id
+      },
+      
+    })
+    this.next()
+  },
+  onCheck(e){
+    this.setData({
+      check:e.detail
+    })
+  },
+next(){
+  this.setData({
+    active:(this.data.active+1)%this.data.steps.length
+  })
+},
+previous(){
+  this.setData({
+    active:(this.data.active-1 + this.data.steps.length)%this.data.steps.length
+  })
+},
   /**
    * 生命周期函数--监听页面加载
    */

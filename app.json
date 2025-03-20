@@ -53,7 +53,7 @@
         "selectedIconPath": "/static/icons/message-ac.png"
       },
       {
-        "pagePath": "pages/all/index",
+        "pagePath": "pages/setting/index",
         "text": "个人",
         "iconPath": "/static/icons/user.png",
         "selectedIconPath": "/static/icons/user-ac.png"

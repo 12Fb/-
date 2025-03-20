@@ -1,2 +1,27 @@
 <!--pages/exercises/createExe/index.wxml-->
-<text>pages/exercises/createExe/index.wxml</text>
+<view class="container">
+  <van-steps steps="{{ steps }}" active="{{ active }}" />
+  <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab>
+      <view class="choice content-item" bind:tap="onChoice">
+        <button id="1" class="{{allData.choice ==1 ?  'active':''}}">选择题</button>
+        <button id="2" class="{{allData.choice ==2 ?  'active':''}}">填空题</button>
+      </view>
+    </van-tab>
+    <van-tab>
+      <view class="description content-item">
+        <van-field size="large" model:value="{{ allData.desc.name }}" required focus clearable label="题目名称" placeholder="请输入题目名称"  />
+        <view>描述 todo</view>
+        <view>图片选择todo</view>
+        <view>选择功能 todo</view>
+      </view>
+    </van-tab>
+    <van-tab>
+      <view class="function content-item">todo</view>
+    </van-tab>
+  </van-tabs>
+  <view class="bottom">
+    <van-button bind:tap="previous" plain type="info">上一步</van-button>
+    <van-button bind:tap="next" plain type="info">下一步</van-button>
+  </view>
+</view>
