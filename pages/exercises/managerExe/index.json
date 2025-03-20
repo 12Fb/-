@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "exe-card":"/pages/exercises/Components/exeCard/index"
+    "exe-card":"/pages/exercises/Components/exeCard/index",
+    "van-tab": "@vant/weapp/tab/index",
+  "van-tabs": "@vant/weapp/tabs/index"
   },
   "navigationBarTitleText": "管理题目"
 }

@@ -9,6 +9,7 @@
   padding: 20rpx;
   border-radius: 3%;
   height: fit-content;
+  width: 660rpx;
 }
 .row1 {
   flex: 1;

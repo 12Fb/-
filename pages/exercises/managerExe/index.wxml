@@ -1,4 +1,11 @@
 <!--pages/exercises/managerExe/index.wxml-->
 
-
+<van-tabs active="a">
+  <van-tab title="已创建" name="a">
+  <view style="display: flex;flex-direction: column; justify-content: center;align-items: center; width: 100%;margin: 20rpx 0;">
 <exe-card ></exe-card>
+  </view>
+  
+  </van-tab>
+  <van-tab title="创建中" name="b"></van-tab>
+</van-tabs>

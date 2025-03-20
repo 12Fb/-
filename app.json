@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/firstPage/首页",
     "pages/all/index",
     "pages/index/index",
     "pages/truthtable/truthtable",
@@ -10,8 +12,6 @@
     "pages/shortest/shortest",
     "pages/set/set",
     "pages/test/test",
-    "pages/login/login",
-    "pages/firstPage/首页",
     "custom-tab-bar/index",
     "pages/funs/index",
     "pages/class/createClass",
