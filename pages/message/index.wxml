@@ -1,11 +1,10 @@
 <!-- 消息页面 -->
 <van-cell-group custom-class="Container">
-  <van-cell custom-class="cell-box" clickable size="large" wx:for="{{arr}}" wx:key="item" center  value="{{item.time}}" label="{{item.info}}" border="{{ true }}"  is-link url="/pages/message/chat/index">
+  <van-cell custom-class="cell-box" clickable size="large" wx:for="{{arr}}" wx:key="item" center value="{{item.time}}" label="{{item.info}}" border="{{ true }}" is-link url="/pages/message/chat/index">
     <view class="content" slot="title">
-  <view class="dot" style="display: {{item.isRead ? 'none' : 'block'}}"></view>
-    <view class="van-cell-text">{{item.name}}</view>
-    <van-tag type="success">{{item.tag}}</van-tag>
-  </view>
+      <view class="dot" style="display: {{item.isRead ? 'none' : 'block'}}"></view>
+      <view class="van-cell-text">{{item.name}}</view>
+      <van-tag type="success">{{item.tag}}</van-tag>
+    </view>
   </van-cell>
-  
 </van-cell-group>

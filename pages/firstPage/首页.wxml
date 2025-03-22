@@ -5,32 +5,46 @@
   <view class="funList">
     <view bind:tap="goto" id="1" hover-class="tap_bg" class="icon_container">
       <van-icon class="icon_bg" name="points" size="{{funIconSize}}rpx" />
-      <view style="font-size: 30rpx;">题目</view>
+      <view style="font-size: {{funFontSize}}rpx;">题目</view>
     </view>
     <view bind:tap="goto" hover-class="tap_bg" class="icon_container">
       <van-icon class="icon_bg" name="bar-chart-o" size="{{funIconSize}}rpx" />
-      <view style="font-size: 30rpx;">统计</view>
+      <view style="font-size: {{funFontSize}}rpx;">统计</view>
 
     </view>
     <view hover-class="tap_bg" class="icon_container">
       <van-icon class="icon_bg" name="star-o" size="{{funIconSize}}rpx" />
-      <view style="font-size: 30rpx;">收藏</view>
+      <view style="font-size: {{funFontSize}}rpx;">收藏</view>
     </view>
 
   </view>
-  <van-tabs tab-active-class="tab-active-class"  tab-class="tab-class" nav-class="nav-class" ellipsis  custom-class="tabs"  active="{{ active }}" bind:change="onChange">
-  <van-tab   tab-class="tab-class" title="我的班级">
-    <view class="tabContent">
-      <firstPage-card info="{{value}}"></firstPage-card>
-      
+  <view class="content">
+    <van-tabs tab-active-class="tab-active-class" tab-class="tab-class" nav-class="nav-class" ellipsis custom-class="tabs" active="{{ active }}" bind:change="onChange">
+      <van-tab tab-class="tab-class" title="我的班级">
+        <view class="tabContent">
+          <firstPage-card info="{{value}}"></firstPage-card>
+        </view>
+      </van-tab>
+      <van-tab tab-class="tab-class" title="加入的班级">
+        <view class="tabContent">
+          <firstPage-card info="{{value}}"></firstPage-card>
+        </view>
+      </van-tab>
+    </van-tabs>
+    <view class="add" bind:tap="newClass">
+      <van-icon custom-class="icon-custom" name="plus" size="45rpx" color="#58a3f3" />
     </view>
-
-  </van-tab>
-  <van-tab  tab-class="tab-class" title="加入的班级">
-    <view class="tabContent">
-      <firstPage-card info="{{value}}"></firstPage-card>
-      
-    </view>
-  </van-tab>
-</van-tabs>
+  </view>
+  <!--  -->
+  <van-popup
+  show="{{ add_overlay }}"
+  position="bottom"
+  custom-style="height: 25% ;background:#ffffff"
+  bind:close="onClose"
+  round
+  >
+  <van-button type="default"  size="large">加入班级</van-button>
+  <van-button bind:tap="gotoCourse" type="default" size="large">创建课程</van-button>
+  <van-button  type="default" size="large">取消</van-button>
+  </van-popup>
 </view>

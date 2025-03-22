@@ -5,8 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    add_overlay:false,
     fileList: [],
-    funIconSize: 100,
+    funFontSize:25,
+    funIconSize: 90,
     avtive: 1,
     value: {
       courseValue: {
@@ -38,6 +40,16 @@ Page({
         url: '/pages/exercises/index',
       })
     }
+  },
+  newClass(){
+    this.setData({
+      add_overlay:true
+    })
+  },
+  onClose(){
+    this.setData({
+      add_overlay:false
+    })
   },
   /**
    * 生命周期函数--监听页面加载
