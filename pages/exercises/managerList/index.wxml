@@ -1,2 +1,13 @@
-<!--pages/exercises/managerList/index.wxml-->
-x
+<van-collapse  value="{{ activeNames }}" bind:change="onChange">
+  <van-collapse-item label="困难的题目"  size="large" title="题单一" name="1">
+    <view class="contents">
+      <exe-card ></exe-card>
+    </view>
+  </van-collapse-item>
+  <van-collapse-item label="简单的题目"  size="large" title="题单二" name="2">
+    <view class="contents">
+      <exe-card ></exe-card>
+    </view>
+  </van-collapse-item>
+ 
+</van-collapse>

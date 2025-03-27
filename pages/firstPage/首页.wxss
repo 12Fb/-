@@ -24,7 +24,7 @@
   opacity: 0.8;
 }
 .tap_bg{
-  background:#2e2e2e
+  background:#e7e2e2
 }
 .tabs{
   height: 100% ;
@@ -34,7 +34,7 @@
 }
 .nav-class{
   display: flex;
-  margin-right: 200rpx;
+  margin-right: 100rpx;
 }
 .tab-class{
   font-size: 25rpx !important;
@@ -58,12 +58,15 @@ font-weight: bolder !important;
   position:absolute;
   right: 25rpx;
   top: 18rpx;
-  z-index: 1000;
+  z-index: 1;
   background: rgba(176, 210, 241,0.6);
-  width: 90rpx;
+  width: 50rpx;
   height: 50rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10%;
+}
+.field-class{
+  font-size: 30rpx !important;
 }

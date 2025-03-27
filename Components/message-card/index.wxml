@@ -1,0 +1,10 @@
+<!-- 消息页面 -->
+<van-cell-group custom-class="Container">
+  <van-cell custom-class="cell-box" clickable size="large"  center value="{{value.time}}" label="{{value.info}}" border="{{ true }}" is-link url="/pages/message/chat/index">
+    <view class="content" slot="title">
+      <view class="dot" style="display: {{value.isRead ? 'none' : 'block'}}"></view>
+      <view class="van-cell-text">{{value.name}}</view>
+      <van-tag type="success">{{value.tag}}</van-tag>
+    </view>
+  </van-cell>
+</van-cell-group>

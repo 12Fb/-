@@ -13,7 +13,7 @@
 
   </van-popup>
   <view class="top">
-    <view class="course">
+    <view class="course" bind:tap="gotoCourse">
       <view class="col">
         <view style="font-size: 35rpx;"> {{info.courseValue.course}}</view>
         <view style="opacity: 0.5;font-size: 30rpx;color:#121311"> {{info.courseValue.num}}人</view>
@@ -25,8 +25,8 @@
   </view>
   <view class="bottom">
     <!-- 一个课程对应不止一个班级 -->
-    <van-cell-group>
-      <van-cell custom-class="cell-class" title-class="title-class" label-class="label-class" clickable center border wx:for="{{info.classValue}}" title="{{item.name}}" label="{{item.num}}人" is-link value="" />
+    <van-cell-group >
+      <van-cell  custom-class="cell-class" title-class="title-class" label-class="label-class"  center  wx:for="{{info.classValue}}" id="{{item.id}}" title="{{item.name}}" label="{{item.num}}人" is-link value="" bind:tap="gotoClass"/>
     </van-cell-group>
   </view>
 </view>

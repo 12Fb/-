@@ -1,5 +1,11 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+  "van-collapse-item": "@vant/weapp/collapse-item/index",
+  "exe-card":"/pages/exercises/Components/exeCard/index"
+  },
   "navigationBarTitleText": "管理题题单"
 
 }

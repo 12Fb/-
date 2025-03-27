@@ -1,0 +1,32 @@
+/* Components/message-card/index.wxss *//* pages/message/index.wxss */
+.Container{
+  height: fit-content;
+}
+.Container > view{
+  box-sizing: border-box;
+}
+.cell-box{
+  background: rgba(94, 158, 255,0.1);
+  border-radius: 8%;
+}
+.content{
+  padding: 0 10rpx;
+  display: flex;
+  gap:10rpx;
+  justify-content: flex-start;
+  align-items:baseline
+}
+.van-cell-text{
+  font-weight: bolder;
+}
+.dot{
+  height:11rpx;
+  width: 11rpx;
+  border-radius: 50%;
+  background: red;
+  left: 15rpx;
+  top: 35rpx;
+  position: absolute;
+  z-index: 999;
+}
+

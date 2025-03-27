@@ -9,7 +9,7 @@
       </view>
     </view>
   </van-cell>
-  <van-cell size="large" center is-link link-type="navigateTo" url="/pages/managerList/index">
+  <van-cell size="large" center is-link link-type="navigateTo" url="/pages/exercises/managerList/index">
     <view slot="title">
       <view style="margin-left: 10rpx;" class="row">
         <view class="col" style="font-size: 30rpx;">

@@ -14,7 +14,6 @@
     "pages/test/test",
     "custom-tab-bar/index",
     "pages/funs/index",
-    "pages/class/createClass",
     "pages/message/index",
     "pages/message/chat/index",
     "pages/message/chat/pages/publish/index",

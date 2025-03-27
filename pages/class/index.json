@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index",
+    "van-tab": "@vant/weapp/tab/index",
+  "van-tabs": "@vant/weapp/tabs/index",
+  "van-action-sheet": "@vant/weapp/action-sheet/index",
+  "exe-card": "/pages/exercises/Components/exeCard/index",
+  "message-card": "/Components/message-card/index"
+  }
 }

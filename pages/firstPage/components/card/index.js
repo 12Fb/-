@@ -10,16 +10,19 @@ Component({
       courseValue:{
         course:"计算机忘了",
         num:89,
-        temp:2
+        temp:2,
+        id:1
       },
       classValue:[
         {
           name:"一班",
-          num:34
+          num:34,
+          id:1
         },
         {
           name:"二班",
-          num:334
+          num:334,
+          id:2
         },
       ],
     }
@@ -44,6 +47,11 @@ Component({
     intoPopup(){
       this.setData({
         show:true
+      })
+    },
+    gotoClass(){
+      wx.navigateTo({
+        url: '/pages/class/index',
       })
     },
     gotoCourse(){

@@ -19,32 +19,53 @@
 
   </view>
   <view class="content">
-    <van-tabs tab-active-class="tab-active-class" tab-class="tab-class" nav-class="nav-class" ellipsis custom-class="tabs" active="{{ active }}" bind:change="onChange">
-      <van-tab tab-class="tab-class" title="我的班级">
+    <van-tabs animated sticky tab-active-class="tab-active-class" tab-class="tab-class" nav-class="nav-class" ellipsis custom-class="tabs" active="{{ active }}" bind:change="onChange">
+      <van-tab tab-class="tab-class" title="教学的课程">
         <view class="tabContent">
-          <firstPage-card info="{{value}}"></firstPage-card>
+          <firstPage-card info="{{my_class}}"></firstPage-card>
         </view>
       </van-tab>
-      <van-tab tab-class="tab-class" title="加入的班级">
+      <van-tab tab-class="tab-class" title="加入的课程">
         <view class="tabContent">
-          <firstPage-card info="{{value}}"></firstPage-card>
+          <firstPage-card info="{{added_class}}"></firstPage-card>
         </view>
       </van-tab>
+
+
     </van-tabs>
+    <!-- 加入图标 -->
     <view class="add" bind:tap="newClass">
-      <van-icon custom-class="icon-custom" name="plus" size="45rpx" color="#58a3f3" />
+      <van-icon custom-class="icon-custom" name="plus" size="35rpx" color="#58a3f3" />
     </view>
   </view>
-  <!--  -->
-  <van-popup
-  show="{{ add_overlay }}"
-  position="bottom"
-  custom-style="height: 25% ;background:#ffffff"
-  bind:close="onClose"
-  round
-  >
-  <van-button type="default"  size="large">加入班级</van-button>
-  <van-button bind:tap="gotoCourse" type="default" size="large">创建课程</van-button>
-  <van-button  type="default" size="large">取消</van-button>
+  <!-- 加入,创建 -->
+  <van-popup show="{{ add_overlay }}" position="bottom" custom-style="height: 25% ;background:#ffffff" bind:close="onClose" round>
+    <van-button type="default" size="large" bind:tap="createCourse">创建课程</van-button>
+    <van-button bind:tap="gotoCourse" type="default" size="large" bind:tap="addClass">加入班级</van-button>
+    <van-button type="default" size="large" bind:tap="">取消</van-button>
   </van-popup>
+<!-- 具体页面 -->
+<van-popup show="{{  class_popup  }}" position="center" 
+custom-style="height: 200rpx; width:600rpx; display:flex;justify-content:center;align-items:center" bind:close="onClose" round>
+  <van-cell-group >
+  <van-field
+    value="{{ code }}"
+    center
+    clearable
+    label="邀请码:"
+    placeholder="请输入邀请码"
+    border="{{ false }}"
+    use-button-slot
+    custom-class ="field-class"
+    title-width="120rpx"
+  >
+    <van-button  bind:tap="verfyCode" custom-class="button-class"  slot="button" type="primary" size="large" hairline >
+    <view style="padding: 0 20rpx;">确认</view>
+    </van-button>
+  </van-field>
+</van-cell-group>
+
+    
+  </van-popup>
+
 </view>

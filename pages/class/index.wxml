@@ -1,2 +1,34 @@
 <!--pages/class/index.wxml-->
-<text>pages/class/index.wxml</text>
+
+<view class="Container">
+  <!-- 标题 -->
+  <view class="top">{{value.name}}</view>
+  <!-- 功能 -->
+  <view class="middle">
+    <view  wx:for="{{funlist}}" bind:tap="goto" wx:key="index" id="index" hover-class="tap_bg" class="icon_container">
+      <van-icon class="icon_bg" name="{{item.icon}}" size="{{iconSize}}rpx" color="{{item.color}}" />
+      <view style="font-size: {{fontSize}}rpx;">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="title">
+    <view bind:tap="Show">教学日志</view>
+    <view class="plus" hover-class="icon-hover-class" >
+      <van-icon name="plus" color="blue"  bind:click="Show"/>
+    </view>
+  </view>
+  <van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" cancel-text="取消" />
+  <view class="bottom">
+    <van-tabs  custom-class="tabs" animated sticky  tab-active-class="tab-active-class" active="{{ active }}" bind:chassnge="onChange">
+      <van-tab   title="公告">
+        <view class="content">
+          <message-card wx:for="{{messages}}" wx:key="index" value="{{item}}"></message-card>
+        </view>
+      </van-tab>
+      <van-tab  title="题目">
+      <exe-card></exe-card>
+      </van-tab>
+      <van-tab  title="试卷">试卷</van-tab>
+    </van-tabs>
+  </view>
+
+</view>

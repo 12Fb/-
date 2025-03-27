@@ -5,14 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    code:"",//邀请码
     add_overlay:false,
     fileList: [],
     funFontSize:25,
     funIconSize: 90,
     avtive: 1,
-    value: {
+    my_class: {
       courseValue: {
-        course: "计算机忘了",
+        course: "计算机网络",
         num: 89,
       },
       classValue:[
@@ -21,16 +22,50 @@ Page({
           num:34
         },
         {
-          name:"一班",
+          name:"四班",
           num:334
         }],
-    }
+    },
+    added_class: {
+      courseValue: {
+        course: "操作系统",
+        num: 89,
+      },
+      classValue:[
+        {
+          name:"二班",
+          num:34
+        },
+        {
+          name:"三班",
+          num:334
+        },
+        {
+          name:"五班",
+          num:334
+        }],
+    },
+    course_popup:false,
+    class_popup:false,
+  },
+  addClass(){
+    this.setData({
+      class_popup:true
+    })
+    this.setData({
+      add_overlay:false,
+    })
+  },
+  createCourse(){
+    this.setData({
+      add_overlay:false,
+    })
+    wx.navigateTo({
+      url: 'url',
+    })
   },
   onChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.name}`,
-      icon: 'none',
-    });
+   
   },
   goto(e){
     console.log(e.currentTarget)
@@ -48,7 +83,15 @@ Page({
   },
   onClose(){
     this.setData({
-      add_overlay:false
+      add_overlay:false,
+      class_popup:false
+    })
+  },
+  verfyCode(){
+    console.log(33)
+    wx.showToast({
+      title: '邀请码错误',
+      icon: 'none',
     })
   },
   /**

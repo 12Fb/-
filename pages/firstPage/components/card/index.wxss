@@ -3,6 +3,7 @@ page {
   --card-border: 70rpx;
 }
 .container{
+  z-index: 999;
   border-radius: 2%;
   /* height: 250rpx; */
   width: calc(750rpx - var(--card-border));
@@ -15,7 +16,7 @@ page {
 }
 
 .cell-class{
-  background:#F5F5F5;
+  background:#fdfdfd;
   line-height: 70rpx;
   box-shadow: 0 -10rpx 2rpx rgba(83, 17, 17, 0.1); /* 添加阴影效果 */
 
