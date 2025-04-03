@@ -1,74 +1,213 @@
-+// pages/message/chat/pages/comment/index.js
+// pages/message/chat/pages/comment/index.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    headInfo:{
-      avatar:'https://img.yzcdn.cn/vant/cat.jpeg',
-      name:'hhh',
-      time:'2025-1-14 14:14:45',
-      content:"yiyiyighhdgddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-      images:['https://img.yzcdn.cn/vant/cat.jpeg','https://img.yzcdn.cn/vant/cat.jpeg']
+    headInfo: {
+      avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+      name: 'hhh',
+      time: '2025-1-14 14:14:45',
+      content: "yiyiyighhdgddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      images: [
+        'https://img.yzcdn.cn/vant/cat.jpeg',
+        'https://img.yzcdn.cn/vant/cat.jpeg'
+      ]
     },
-    commentNums:90,
-    curComment:''
+    commentNums: 90,
+    comments: [
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      },
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      },
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      },
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      },
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      },
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      },
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      },
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      },
+      {
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+        name: '我喜欢空对地',
+        time: '4小时前',
+        area:'深圳',
+        content: '真正的富豪都不在榜上',
+        replies: [
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: '哭包老板娘',
+            time: '4小时前',
+            content: '这是真的，不过他们的钱可能来路不太干净'
+          },
+          {
+            avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+            name: 'Ros7A',
+            time: '3小时前',
+            content: '能上榜的没一个来路正的，全国大部分有钱的一查一个准'
+          }
+        ]
+      }
+    ],
+    curComment: ''
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  onChange(e) {
+    this.setData({
+      curComment: e.detail.value
+    });
   }
-})
+});

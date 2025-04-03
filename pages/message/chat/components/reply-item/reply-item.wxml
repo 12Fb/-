@@ -1,0 +1,10 @@
+<view class="reply-item">
+  <view class="reply-header">
+    <image class="comment-avatar" src="{{avatar}}" />
+    <view class="reply-info">
+      <view class="reply-name">{{name}}</view>
+      <view class="reply-time">{{time}}</view>
+    </view>
+  </view>
+  <view class="reply-content">{{content}}</view>
+</view>

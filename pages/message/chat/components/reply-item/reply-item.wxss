@@ -1,0 +1,45 @@
+.reply-item {
+  display: flex;
+  flex-direction: column;
+  padding: 5rpx;
+  margin-left: 60rpx;
+  background-color: #111;
+  color: #fff;
+  border-radius: 10rpx;
+}
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5rpx;
+}
+
+.comment-avatar {
+  width: 50rpx; /* 设置头像宽度 */
+  height: 50rpx; /* 设置头像高度 */
+  border-radius: 50%; /* 设置圆边 */
+  margin-right: 10rpx; /* 设置头像与用户名之间的间距 */
+}
+
+.reply-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.reply-name {
+  font-weight: bold;
+}
+
+.reply-time {
+  color: #ccc;
+  font-size: 10px;
+}
+
+.reply-area {
+  color: #ccc;
+  font-size: 10px;
+}
+
+.reply-content {
+  font-size: 12px;
+}

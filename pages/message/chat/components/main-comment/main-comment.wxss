@@ -1,0 +1,58 @@
+.comment-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  color: black;
+  border-radius: 10rpx;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.comment-avatar {
+  width: 50rpx; /* 设置头像宽度 */
+  height: 50rpx; /* 设置头像高度 */
+  border-radius: 50%; /* 设置圆边 */
+  margin-right: 10rpx; /* 设置头像与用户名之间的间距 */
+}
+
+.comment-info {
+  display: flex;
+  flex-direction: row; /* 修改为 row 方向 */
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.comment-infos {
+  display: flex;
+  flex-direction: column; 
+}
+
+.comment-name {
+  font-weight: bold;
+  margin-right: 10rpx; /* 设置用户名与时间之间的间距 */
+}
+
+.comment-time {
+  color: #ccc;
+  font-size: 12px;
+}
+
+.comment-area {
+  color: #ccc;
+  font-size: 12px;
+  margin-left: 10rpx; /* 设置时间与地区之间的间距 */
+}
+
+.comment-content {
+  font-size: 14px;
+  margin-left: 60rpx; /* 设置内容与头像的间距 */
+}
+
+.replies {
+  margin-top: 10rpx;
+}

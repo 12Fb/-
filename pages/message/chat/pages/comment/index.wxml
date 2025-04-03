@@ -1,4 +1,3 @@
-<!--pages/message/chat/pages/comment/index.wxml-->
 <view class="wrapper">
   <view class="head">
     <view class="userInfo">
@@ -9,31 +8,33 @@
       </view>
       <view class="fun">编辑</view>
       <view class="fun">删除</view>
-
     </view>
     <view class="headContent">
       <view class="text">{{headInfo.content}}</view>
       <view class="images">
         <van-image wx:for="{{headInfo.images}}" wx:key="item" height="190rpx" width="190rpx" src="{{item}}"></van-image>
       </view>
-
     </view>
   </view>
-    <view class="firstRow">
-      <view class="comm">评论</view>
-      <view >{{commentNums}}</view>
+  <view class="firstRow">
+    <view class="comm">评论</view>
+    <view>{{commentNums}}</view>
+  </view>
+  <view class="comment">
+    <view class="blank"></view>
+    <main-comment wx:for="{{comments}}" wx:key="index" 
+      avatar="{{item.avatar}}" 
+      name="{{item.name}}" 
+      time="{{item.time}}" 
+      area="{{item.area}}"
+      content="{{item.content}}" 
+      replies="{{item.replies}}" />
+  </view>
+  <view class="lastRow">
+    <van-field custom-class="input-wrapper" input-class="input" value="{{curComment}}" placeholder="来说点什么吧~" border="{{false}}" bind:change="onChange" />
+    <view class="funs">
+      <van-icon size="60rpx" name="good-job-o" />
+      <van-icon size="60rpx" name="chat-o" info="9" />
     </view>
-    <view class="comment">
-      <view class="blank"></view>
-      <comment-card wx:for="{{30}}" ></comment-card>
-      <!-- <end-sign></end-sign> -->
-    </view>
-    <view class="lastRow">
-      <van-field custom-class="input-wrapper" input-class="input" value="{{ curComment }}" placeholder="来说点什么吧`~" border="{{ false }}" bind:change="onChange" />
-      <view class="funs">
-        <van-icon size="60rpx" name="good-job-o" />
-        <!-- <van-icon size="60rpx" name="good-job" /> -->
-        <van-icon size="60rpx" name="chat-o" info="9" />
-      </view>
-    </view>
+  </view>
 </view>

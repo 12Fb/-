@@ -1,0 +1,21 @@
+<view class="comment-item">
+  <view class="comment-header">
+    <image class="comment-avatar" src="{{avatar}}" />
+
+    <view class="comment-infos">
+        <view class="comment-name">{{name}}</view>
+      <view class="comment-info">
+        <view class="comment-time">{{time}}</view>
+        <view class="comment-area">{{area}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="comment-content">{{content}}</view>
+  <view class="replies">
+    <reply-item wx:for="{{replies}}" wx:key="index" 
+      avatar="{{item.avatar}}" 
+      name="{{item.name}}" 
+      time="{{item.time}}" 
+      content="{{item.content}}" />
+  </view>
+</view>
