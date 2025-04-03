@@ -11,6 +11,7 @@
     </view>
   </view>
   <view class="comment-content">{{content}}</view>
+<!-- 问题：在这里我写了一个自定义组件reply-item,在页面中显示不出来 -->
   <view class="replies">
     <reply-item wx:for="{{replies}}" wx:key="index" 
       avatar="{{item.avatar}}" 
