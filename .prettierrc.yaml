@@ -1,0 +1,23 @@
+{
+  "printWidth": 100, 
+  # // 每个缩进级别的空格数
+  "tabWidth": 2,
+  # // 是否使用制表符代替空格进行缩进
+  "useTabs": false,
+  # // 在语句末尾是否添加分号
+  "semi": true,
+  # // 是否使用单引号代替双引号
+  "singleQuote": true,
+  # // 对象字面量中属性名是否添加引号
+  "quoteProps": "as-needed",
+  # // 数组和对象末尾是否添加逗号
+  "trailingComma": "all",
+  # // 箭头函数参数括号的使用规则
+  "bracketSpacing": true,
+  # // 箭头函数参数括号的使用规则
+  "arrowParens": "always",
+  # // HTML、Vue 和 JSX 中的多行元素的括号是否另起一行
+  "bracketSameLine": true,
+  # // 文件的换行符类型，可选值有 "lf"、"crlf"、"cr"、"auto"
+  "endOfLine": "lf",
+}

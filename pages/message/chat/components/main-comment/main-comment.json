@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents":{
+    "reply-item":"/pages/message/chat/components/reply-item/reply-item"
+  }
 }
