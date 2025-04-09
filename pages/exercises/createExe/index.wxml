@@ -2,20 +2,50 @@
 <view class="container">
   <van-steps steps="{{ steps }}" active="{{ active }}" />
   <van-tabs active="{{ active }}" bind:change="onChange">
+    <!-- 选择填空 -->
     <van-tab>
-      <view class="choice content-item" bind:tap="onChoice">
-        <button id="1" class="{{allData.choice ==1 ?  'active':''}}">选择题</button>
-        <button id="2" class="{{allData.choice ==2 ?  'active':''}}">填空题</button>
+      <view class="choice content-item" bind:tap="onTab1">
+        <button id="1" class="{{exeData.choice ==1 ?  'active':''}}">选择题</button>
+        <button id="2" class="{{exeData.choice ==2 ?  'active':''}}">填空题</button>
       </view>
     </van-tab>
+      <!-- 知识点 -->
     <van-tab>
-      <view class="description content-item">
-        <van-field size="large" model:value="{{ allData.desc.name }}" required focus clearable label="题目名称" placeholder="请输入题目名称"  />
-        <view>描述 todo</view>
-        <view>图片选择todo</view>
-        <view>选择功能 todo</view>
+      <view class="items" wx:if="{{isTemplate}}" bind:tap="onTab2">
+        <view wx:for="{{items}}" wx:key="index" id="{{index}}" class="item" >{{item}}</view>
+      </view>
+      <!-- 自定义,暂不支持 -->
+      <view style="display:none" class="description content-item">
+        <van-field custom-class="input_class" input-class="name_Class" size="large" value="{{ exeData.desc.name }}" bind:input="onNameInput" border clearable placeholder="题目名称" maxlength='20'>
+        </van-field>
+        <!--  -->
+        <van-field custom-class="input_class" input-class="description_Class" value="{{ exeData.desc.description }}" bind:input="onDescriptionInput" type="textarea" placeholder="题目描述" autosize clearable />
+        <view class="file">
+          <van-uploader accpet="image" preview-size="150rpx" file-list="{{ exeData.desc.images }}" bind:before-read="beforeRead" bind:after-read="afterRead" deletable="{{ true }}">
+            <!-- <van-button icon="photo" type="primary">上传图片</van-button> -->
+            <view bind:tap="upload">
+              <van-image width="150rpx" height="150rpx" />
+            </view>
+          </van-uploader>
+        </view>
+        <!--  -->
+        <van-field size="large" model:value="{{ tagName }}" label="标签名称" placeholder="请输入标签名称">
+          <van-button bind:tap="addTag" slot="button" size="small" type="primary">
+            添加
+          </van-button>
+        </van-field>
+        <view class="tags">
+          <van-tag wx:for="{{exeData.desc.tags}}" id="{{index}}" wx:key="index" round type="warning" closeable size="large" bind:close="onClose">{{item}}</van-tag>
+        </view>
+        <!-- 选项内容  -->
+        <view></view>
       </view>
     </van-tab>
+    <!-- 题目预览 -->
+    <van-tab>
+      描述
+    </van-tab>
+    <!-- 题目预览 -->
     <van-tab>
       <view class="function content-item">todo</view>
     </van-tab>

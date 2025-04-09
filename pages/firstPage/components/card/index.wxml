@@ -26,7 +26,7 @@
   <view class="bottom">
     <!-- 一个课程对应不止一个班级 -->
     <van-cell-group >
-      <van-cell  custom-class="cell-class" title-class="title-class" label-class="label-class"  center  wx:for="{{info.classValue}}" id="{{item.id}}" title="{{item.name}}" label="{{item.num}}人" is-link value="" bind:tap="gotoClass"/>
+      <van-cell  custom-class="cell-class" title-class="title-class" label-class="label-class"  center  wx:for="{{info.classValue}}" wx:key="index" id="{{item.id}}" title="{{item.name}}" label="{{item.num}}人" is-link value="" bind:tap="gotoClass"/>
     </van-cell-group>
   </view>
 </view>
