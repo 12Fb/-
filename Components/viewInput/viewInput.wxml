@@ -1,12 +1,12 @@
 <view class="viewInput ~{{Class}} vi-class " style="width: {{width}}; height: {{height}}; font-size: {{fontSize}};" catch:tap="catchTap">
-  <text class="emptyCursor" style="font-size: {{cursorFont}}; display: {{ ( curIndex ==-1) && isFocus ? 'flex' :'none' }};">|</text>
+  <text class="emptyCursor tag_text" style="font-size: {{cursorFont}}; display: {{ ( curIndex ==-1) && isFocus ? 'flex' :'none' }};">|</text>
   <view class="item" bind:tap="onTap" id="item{{index}}" data-index="{{index}}" wx:for="{{inputValue}}" wx:key="{{index}}">
     <view class="text">
       {{item}}
-      <text style="font-size: {{cursorFont}}; display: {{ (index == curIndex) && isFocus ? 'flex' :'none' }};" class="cursor">|</text>
+      <text style="font-size: {{cursorFont}}; display: {{ (index == curIndex) && isFocus ? 'flex' :'none' }};" class="cursor tag_text">|</text>
     </view>
   </view>
-  <text style=" display: {{inputValue ? 'none': 'flex' }}" class="PlaceHolder">{{placeholder}}</text>
+  <text style=" display: {{inputValue ? 'none': 'flex' }}" class="PlaceHolder tag_text">{{placeholder}}</text>
 </view>
 <!-- <canvas class="canvas" type="2d" id="canvas"></canvas> -->
 <customKb customKeys="{{customKeys}}" bind:kb_input="onInput" show="{{isFocus }}"></customKb>

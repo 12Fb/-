@@ -1,14 +1,8 @@
 <!--pages/exercises/createExe/index.wxml-->
 <view class="container">
   <van-steps steps="{{ steps }}" active="{{ active }}" />
-  <van-tabs active="{{ active }}" bind:change="onChange">
-    <!-- 选择填空 -->
-    <van-tab>
-      <view class="choice content-item" bind:tap="onTab1">
-        <button id="1" class="{{exeData.choice ==1 ?  'active':''}}">选择题</button>
-        <button id="2" class="{{exeData.choice ==2 ?  'active':''}}">填空题</button>
-      </view>
-    </van-tab>
+  <van-tabs active="{{ active }}" >
+    
       <!-- 知识点 -->
     <van-tab>
       <view class="items" wx:if="{{isTemplate}}" bind:tap="onTab2">
@@ -41,7 +35,24 @@
         <view></view>
       </view>
     </van-tab>
-    <!-- 题目预览 -->
+    <!-- 选择填空 -->
+    <van-tab>
+      <view class="choice content-item" bind:tap="onTab1">
+        <button id="1" class="{{exeData.choice ==1 ?  'active':''}}">选择题</button>
+        <button id="2" class="{{exeData.choice ==2 ?  'active':''}}">填空题</button>
+      </view>
+    </van-tab>
+    <!-- 题目模板 -->
+    <van-tab>
+      <view class="items" bind:tap="onTab3">
+        <view wx:for="{{models}}" wx:key="index" id="{{index}}" class="item" >{{item}}</view>
+      </view>
+    </van-tab>
+    <!-- 创建题目 -->
+    <van-tab>
+    o'o'o'ooooo
+    </van-tab>
+    <!-- 最终题目预览 -->
     <van-tab>
       描述
     </van-tab>

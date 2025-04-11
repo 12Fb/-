@@ -1,4 +1,4 @@
-page {
+.page {
   --kb-padding-x: 10rpx;
   --kb-padding-y: 30rpx;
   --item-width: 56rpx;
