@@ -1,3 +1,4 @@
+/* main-comment.wxss */
 .comment-item {
   display: flex;
   flex-direction: column;
@@ -23,18 +24,11 @@
 
 .comment-info {
   display: flex;
-  flex-direction: row; /* 修改为 row 方向 */
-  align-items: center; /* 垂直居中对齐 */
-}
-
-.comment-infos {
-  display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 .comment-name {
   font-weight: bold;
-  margin-right: 10rpx; /* 设置用户名与时间之间的间距 */
 }
 
 .comment-time {
@@ -45,7 +39,6 @@
 .comment-area {
   color: #ccc;
   font-size: 12px;
-  margin-left: 10rpx; /* 设置时间与地区之间的间距 */
 }
 
 .comment-content {
@@ -55,4 +48,21 @@
 
 .replies {
   margin-top: 10rpx;
+}
+
+button {
+  background-color: transparent; /* 透明背景 */
+  font-size: 14px;
+  border: none; /*无边框 */
+  padding: 5rpx; /* 调整内边距 */
+  color: #007aff; /* 按钮文字颜色 */
+  display: flex; /* 使用flex布局 */
+  align-items: center; /* 垂直居中对齐 */
+  justify-content: center; /* 水平居中对齐 */
+}
+
+.arrow {
+  width: 20rpx; /* 箭头大小 */
+  height: 20rpx;
+  margin-left: 10rpx; /* 箭头与文字之间的间距 */
 }

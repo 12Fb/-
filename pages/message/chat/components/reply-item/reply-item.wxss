@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 5rpx;
   margin-left: 60rpx;
-  background-color: #111;
+  background-color: #fff;
   color: #fff;
   border-radius: 10rpx;
 }
@@ -27,6 +27,7 @@
 }
 
 .reply-name {
+  color: #111;
   font-weight: bold;
 }
 
@@ -41,5 +42,6 @@
 }
 
 .reply-content {
+  color: #111;
   font-size: 12px;
 }
