@@ -20,6 +20,7 @@ class Draw {
   curFrame = null;
   curMarkEle = '';
   imageDatas = [];
+  cache_Elements = [];
   //
   constructor(canvasId, instance = null) {
     if (!canvasId || !instance) return;
@@ -28,33 +29,31 @@ class Draw {
   init(canvasId, instance) {
     return new Promise((resolve, reject) => {
       this.canvasId = canvasId;
-      instance
-        .createSelectorQuery()
-        .select(`#${canvasId}`)
-        .fields({
-          node: true,
-          size: true,
-        })
-        .exec((res) => {
-          let canvas = res[0].node;
-          let ctx = canvas.getContext('2d');
-          const width = res[0].width;
-          const height = res[0].height;
-          const dpr = wx.getWindowInfo().pixelRatio;
-          canvas.width = width * dpr;
-          canvas.height = height * dpr;
-          ctx.scale(dpr, dpr);
-          this.canvas = canvas;
-          this.ctx = ctx;
-          this.ctx.lineWidth = this.lineWidth;
-          this.width = width;
-          this.height = height;
-          this.dpr = dpr;
-          resolve();
-        });
+      const query = instance.createSelectorQuery();
+      query.select(`#${canvasId}`).fields({
+        node: true,
+        size: true,
+      });
+      query.select(`#${canvasId}`).boundingClientRect();
+      query.exec((res) => {
+        let canvas = res[0].node;
+        let ctx = canvas.getContext('2d');
+        const width = res[0].width;
+        const height = res[0].height;
+        const dpr = wx.getWindowInfo().pixelRatio;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+        this.canvas = canvas;
+        this.ctx = ctx;
+        this.ctx.lineWidth = this.lineWidth;
+        this.width = width;
+        this.height = height;
+        this.dpr = dpr;
+        resolve();
+      });
     });
   }
-
   set(canvas, ctx) {
     this.canvas = canvas;
     this.ctx = ctx;
@@ -62,9 +61,33 @@ class Draw {
   clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
   }
-  save() {
-    const imageData = this.ctx.getImageData(0, 0, this.width, this.height);
-    this.imageDatas.unshift(imageData);
+  clean(clean_cache=true){
+    this.elements = {};
+    if(clean_cache) this.cache_Elements = []
+  }
+  deepCopy(obj = {}) {
+    const map = new Map();
+    let temp = {};
+    for (let key in obj) {
+      if (map.get(key)) temp[key] = map.get(key);
+      else {
+        if (obj[key] instanceof Object) {
+          if(obj[key].toString() === "[object Path2D]"){
+            const path = this.canvas.createPath2D(obj[key])
+            temp[key] = path
+          }
+          else {
+
+            temp[key] = this.deepCopy(obj[key]);
+            map.set(key, temp[key]);
+          }
+        } else {
+          temp[key] = obj[key];
+          map.set(key, obj[key]);
+        }
+      }
+    }
+    return temp;
   }
   newName(_name = undefined) {
     if (_name) return _name;
@@ -115,7 +138,7 @@ class Draw {
 
     let animation = () => {
       //删除旧的
-      const del = () => {
+      const clipOld = () => {
         this.ClipbyName(this.touchedNode);
         for (let edge in touchedNode.relatedEdges) {
           const { textPath } = this.elements[edge];
@@ -140,7 +163,7 @@ class Draw {
           }
         }
       };
-      del();
+      clipOld();
       create();
     };
     this.curFrame = this.canvas.requestAnimationFrame(animation);
@@ -149,6 +172,13 @@ class Draw {
   onTouchEnd() {
     this.touchstart = false;
     this.touchedNode = null;
+  }
+  getEdgeName(node1Name, node2Name) {
+    const name1 = '_' + node1Name + node2Name;
+    const name2 = '_' + node2Name + node1Name;
+    if (this.elements[name1]) return this.elements[name1].name;
+    if (this.elements[name2]) return this.elements[name2].name;
+    return undefined;
   }
   findEle(x, y) {
     let _ele = null;
@@ -161,23 +191,39 @@ class Draw {
     }
     return _ele;
   }
+  save() {
+    const imageData = this.ctx.getImageData(0, 0, this.width * 3, this.height * 3);
+    this.imageDatas.unshift(imageData);
+    this.cache_Elements.unshift(this.deepCopy(this.elements));
+  }
+  back() {
+    const imageData = this.imageDatas.shift();
+    const elements = this.cache_Elements.shift();
+    if (imageData && elements) {
+      this.elements = elements;
+      this.ctx.putImageData(imageData, 0, 0);
+    }
+  }
   //删除能选中的元素
-  del(x, y) {
-    const _ele = this.findEle(x, y);
+  del() {
+    const _ele = this.elements[this.curMarkEle];
     if (!_ele) return;
     //删除相关元素
+    this.save();
     if (_ele.type === 'node') this.delNode(_ele);
     else this.delEdge(_ele);
   }
 
   delEdge(edge = {}) {
     //删除数据以及图像
-    const { name, textPath, path, node1, node2 } = edge;
+    const { name, textPath, path, node1, node2,textName } = edge;
     this.ClipbyPath(textPath);
     this.ClipbyPath(path);
     //删除数据层面
     delete node1.relatedEdges[name];
     delete node2.relatedEdges[name];
+    delete this.elements[textName]
+    delete this.elements[name]
   }
   delNode(node = {}) {
     const { name, path } = node;
@@ -464,6 +510,7 @@ class Draw {
       textX: textX,
       textY: textY,
       textR: textR,
+      textName:abNode,
       lineWidth: lineWidth,
       color: color,
       type: 'edge',

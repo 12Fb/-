@@ -1,23 +1,18 @@
 // pages/exercises/createExe/index.js
 import Draw from '../../../common/draw'
-import djkstra from '../../../common/algos/djkstra'
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    isTemplate: true,
-    tagName: '',
-    checkBox: [1, 2],
-    check: true,
     active: 0, //步骤条
     steps: [
       {
-        text: '题目类型',
+        text: '基础信息',
       },
       {
-        text: '知识点',
+        text: '创建未知量',
       },
       {
         text: '模板',
@@ -29,111 +24,71 @@ Page({
         text: '预览',
       },
     ],
-    items: ['Dijkstra最短路径', '集合运算', '长文本测试啦啦啦啦啦啦啦啦啦啦'],
-    models: ['模板一', '模板二'],
-    exeData: {
-      choice: -1,
-      desc: {
-        name: '',
-        description: '',
-        images: [
-          {
-            url: 'http://iph.href.lu/60x60?text=default',
-            name: '图片2',
-            isImage: true,
-            deletable: true,
-          },
-        ],
-        tags: ['tag1', 'tag2'],
-      },
-      function: {},
+    algoSteps:[],
+    //tab1
+    knowledge: ['Dijkstra最短路径', '集合运算', '长文本测试啦啦啦啦啦啦啦啦啦啦lalalallalalalalallalalalalS'],
+    exeType:['选择题','填空题'],
+    tags:['离散数学','最短路径'],
+    models: ['自定义','模板一', '模板二', '模板三'],
+    tab1_choice:{
+      knowledge:0,
+      exeType:0,
+      models:0,
+      tags:{}
     },
-    models: ['模板一', '模板二', '模板三'],
+    edit:false,
+    tagValue:'',
+    //tab2
+    unKnown:['点','边','最短路径','起始点','结束点'],
+    tab2_choice:{
+    },
     //题目模板
-    modelData: {
-      algo:djkstra, 
-      params: {
-        gra: {
-          0: { 1: 2, 2: 6 },
-          1: { 0: 2, 3: 5 },
-          2: { 0: 6, 3: 8 },
-          3: { 1: 5, 2: 8, 5: 15, 4: 10 },
-        },
-        start: 0,
-        end: 6,
-      },
-      value:10,//分值
-      type:'choose' // choose | blank
-    },
-  },
-  upload(e) {
-    console.log(e);
-  },
-  afterRead(e) {
-    console.log('afterRead');
-  },
-  beforeRead(e) {
-    console.log(e, 'before');
   },
   //题目名称input
-  onNameInput(e) {
-    this.data.exeData.desc.name = e.detail;
+  onEdit(){
     this.setData({
-      exeData: this.data.exeData,
-    });
+      edit:true
+    })
   },
-  onDescriptionInput(e) {
-    //题目描述
-    this.data.exeData.desc.description = e.detail;
+  onBlur(e){
+    this.data.tags.push(this.data.tagValue)
+    this.data.tab1_choice.tags[this.data.tags.length-1] = this.data.tagValue
     this.setData({
-      exeData: this.data.exeData,
-    });
+      edit:false,
+      tagValue:'',
+      tags:this.data.tags,
+      tab1_choice:this.data.tab1_choice
+    })
   },
-  //删除标签
-  onClose(e) {
-    const id = Number(e.target.id);
-    let { tags } = this.data.exeData.desc;
-    this.data.exeData.desc.tags = tags.filter((tag, index) => index !== id);
-    this.setData({
-      exeData: {
-        ...this.data.exeData,
-      },
-    });
-  },
-  addTag() {
-    this.data.exeData.desc.tags.push(this.data.tagName);
-    this.setData({
-      tagName: '',
-      exeData: this.data.exeData,
-    });
-  },
-
   onTab1(e) {
-    let id = e.target.id;
-    this.setData({
-      allData: {
-        ...this.data.allData,
-        choice: id,
-      },
-    });
-    this.next();
+    let key = e.currentTarget.id 
+    let value = Number(e.target.id);
+    if(key === 'tags' && !this.data.edit ){
+      const item = this.data.tags[value]
+      if(!this.data.tab1_choice[key][value])
+        this.data.tab1_choice[key][value] = item
+      else delete this.data.tab1_choice[key][value]
+      this.setData({
+        tab1_choice:this.data.tab1_choice
+      })
+    }
+    else {
+      this.data.tab1_choice[key] = value
+      this.setData({
+        tab1_choice:this.data.tab1_choice
+      })
+    }
   },
   onTab2(e) {
     const id = Number(e.target.id);
     this.next();
     //暂时写死,始终进入最短路径
   },
-  onTab3(e) {
+   onTab3(e) {
     this.next()
   },
   onTab4(e) {
     this.next()
-  },
-
-  onCheck(e) {
-    this.setData({
-      check: e.detail,
-    });
   },
   next() {
     this.setData({
@@ -148,17 +103,30 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  async onReady(){
+    // this.gra = {
+    //   0: { 1: 2, 2: 6 },
+    //   1: { 0: 2, 3: 5 },
+    //   2: { 0: 6, 3: 8 },
+    //   3: { 1: 5, 2: 8, 5: 15, 4: 10 },
+    //   4: { 3: 10, 6: 2 },
+    // }
+    // const draw = new Draw('canvas',this)
+    // await draw.waiting()
+    // this.drawInstance = draw
+  },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

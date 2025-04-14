@@ -1,21 +1,15 @@
+//迪杰斯特拉
 const djkstra = (arr, start, end) => {
   //初始化一个distance
   let dis = {};
   //未被访问的节点
-  let unVisitNode = [0, 1, 2, 3, 4, 5, 6]; //值为-1表示已经访问过
+  let unVisitNode = Object.keys(arr); //值为-1表示已经访问过
   let count = 0;
-  //记录过程
-  let path = [];
-  const init = () => {
-    dis[start] = 0;
-    const obj = {};
-    obj[start] = 0;
-    path.push(obj);
-    unVisitNode[start] = -1;
-    count++;
-  };
-  init();
-  //
+  //记录前驱节点
+  let prev = {};
+  dis[start] = 0;
+  unVisitNode[start] = -1;
+  count++;
   const findMin = (ar) => {
     let minNode;
     let min = Infinity;
@@ -35,20 +29,24 @@ const djkstra = (arr, start, end) => {
     for (let node in nextArr) {
       // 遍历当前节点的邻接节点计算距离
       let cost = nextArr[node];
-      if (!dis[node] || dis[node] > cost + dis[cur]) dis[node] = cost + dis[cur];
+      if (!dis[node] || dis[node] > cost + dis[cur]) {
+        dis[node] = cost + dis[cur];
+        prev[node] = cur;
+      }
     }
-    let minNode = findMin(dis);
+    let minNode = findMin(dis); //找到下一个节点
     cur = minNode;
     unVisitNode[minNode] = -1;
-    const obj = {};
-    obj[cur] = dis[cur];
-    path.push(obj);
     count++;
   }
-  // console.log(path);
-  const re = path.find((val, index) => {
-    return val[end] !== undefined;
-  });
-  return re[end];
+  //构建path
+  let node = end;
+  let path = [node];
+  while (node != start) {
+    path.unshift(prev[node]);
+    node = prev[node];
+  }
+  return { ans: dis[end], path: path.map((v) => String(v)) };
 };
-export default djkstra
+const steps = ['图','起始点和终点','寻找最短路径','得到最短路径']
+export  {djkstra as algo, steps}

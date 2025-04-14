@@ -1,0 +1,22 @@
+<view class="container">
+<view class="canvas_container">
+  <canvas bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd" id="canvas" type="2d" class="canvas"></canvas>
+</view>
+  <view class="items">
+    <van-button  type="warning" bind:tap="initGra">初始化</van-button>
+    <van-button  type="warning" bind:tap="del">删除</van-button>
+    <van-button  type="warning" bind:tap="back">撤销</van-button>
+    <van-button  type="warning" bind:tap="algo">执行算法</van-button>
+
+  </view>
+  <view style="font-size: 40rpx;">已知条件:</view>
+  <!-- key - value -->
+  <view class="terms">
+    <view >起始点:0</view>
+    <view >终点:6</view>
+    <!-- 算法执行结果 -->
+    <view >最短路径:{{value}}</view>  
+  </view>
+  <view style="font-size: 40rpx;">未知条件:</view>
+  <view></view>
+</view>

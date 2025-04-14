@@ -4,12 +4,14 @@
     "van-button": "@vant/weapp/button/index",
     "van-transition": "@vant/weapp/transition/index",
     "van-tab": "@vant/weapp/tab/index",
-  "van-tabs": "@vant/weapp/tabs/index",
-  "van-checkbox": "@vant/weapp/checkbox/index",
-  "van-checkbox-group": "@vant/weapp/checkbox-group/index",
-  "van-field": "@vant/weapp/field/index",
-  "van-tag": "@vant/weapp/tag/index",
-  "van-uploader": "@vant/weapp/uploader/index",
-  "van-image": "@vant/weapp/image/index"
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "tab2":"/pages/exercises/createExe/pages/tab2/index"
   }
 }
