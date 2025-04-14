@@ -7,6 +7,9 @@
   "van-tabs": "@vant/weapp/tabs/index",
   "van-checkbox": "@vant/weapp/checkbox/index",
   "van-checkbox-group": "@vant/weapp/checkbox-group/index",
-  "van-field": "@vant/weapp/field/index"
+  "van-field": "@vant/weapp/field/index",
+  "van-tag": "@vant/weapp/tag/index",
+  "van-uploader": "@vant/weapp/uploader/index",
+  "van-image": "@vant/weapp/image/index"
   }
 }

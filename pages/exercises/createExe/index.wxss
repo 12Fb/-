@@ -20,6 +20,7 @@
   display: flex;
   justify-content: center;
 }
+
 .choice > button{
   padding: 5rpx 60rpx;
   min-width: fit-content;
@@ -34,5 +35,58 @@
 .description{
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+.tags{
+  box-sizing: border-box;
+  margin: 0 20rpx;
+  display: flex;
+  justify-content: flex-start;
+  gap:20rpx;
+  flex-wrap: wrap;
+  margin-bottom: 30rpx;
+}
+.input_class{
+  width: 720rpx !important;
+}
+.name_Class{
+  color: #333333 !important;
+  font-size: 40rpx;
+  font-weight: 900;
+
+}
+.description_Class{
+  min-height: 120rpx !important;
+  color: #666666 !important;
+  line-height: 40rpx !important;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.file{
+  display: flex;
   align-items: center;
+  margin-top: 100rpx;
+  position: relative;
+}
+.items{
+  display: flex;
+  gap: 50rpx;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+.item{
+  text-align: center;
+  box-sizing: border-box;
+  padding: 20rpx ;
+  font-weight: 600;
+  font-size: 30rpx ;
+  width: 300rpx;
+  height: fit-content;
+  border-radius: 5%;
+  background: rgb(220, 218, 240);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
