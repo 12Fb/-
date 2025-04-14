@@ -2,7 +2,7 @@ Component({
   properties: {
     avatar: {
       type: String,
-      value: 'https://img.yzcdn.cn/vant/cat.jpeg'
+      value: ''
     },
     name: {
       type: String,
@@ -24,5 +24,15 @@ Component({
       type: Array,
       value: []
     }
+  },
+  data: {
+    showReplies: false // 用于存储回复是否显示的状态
+  },
+  methods: {
+    toggleReplies() {
+      this.setData({ showReplies: !this.data.showReplies });
+    }
   }
 })
+
+

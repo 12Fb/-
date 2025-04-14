@@ -1,22 +1,21 @@
 <view class="comment-item">
   <view class="comment-header">
     <image class="comment-avatar" src="{{avatar}}" />
-
-    <view class="comment-infos">
-        <view class="comment-name">{{name}}</view>
-      <view class="comment-info">
-        <view class="comment-time">{{time}}</view>
-        <view class="comment-area">{{area}}</view>
-      </view>
+    <view class="comment-info">
+      <view class="comment-name">{{name}}</view>
+      <view class="comment-time">{{time}}</view>
+      <view class="comment-area">{{area}}</view>
     </view>
   </view>
   <view class="comment-content">{{content}}</view>
-<!-- 问题：在这里我写了一个自定义组件reply-item,在页面中显示不出来 -->
   <view class="replies">
-    <reply-item wx:for="{{replies}}" wx:key="index" 
-      avatar="{{item.avatar}}" 
-      name="{{item.name}}" 
-      time="{{item.time}}" 
-      content="{{item.content}}" />
+    <button bindtap="toggleReplies">查看回复({{replies.length}})</button>
+    <block wx:if="{{showReplies}}">
+      <reply-item wx:for="{{replies}}" wx:key="index" 
+        avatar="{{item.avatar}}" 
+        name="{{item.name}}" 
+        time="{{item.time}}" 
+        content="{{item.content}}" />
+    </block>
   </view>
 </view>
