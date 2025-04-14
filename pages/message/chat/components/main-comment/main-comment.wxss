@@ -59,6 +59,7 @@ button {
   display: flex; /* 使用flex布局 */
   align-items: center; /* 垂直居中对齐 */
   justify-content: center; /* 水平居中对齐 */
+  margin-top: 10rpx; /* 按钮与回复内容之间的间距 */
 }
 
 .arrow {

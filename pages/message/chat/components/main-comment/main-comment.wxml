@@ -1,4 +1,4 @@
-<view class="comment-item">
+<!-- <view class="comment-item">
   <view class="comment-header">
     <image class="comment-avatar" src="{{avatar}}" />
     <view class="comment-info">
@@ -17,5 +17,30 @@
         time="{{item.time}}" 
         content="{{item.content}}" />
     </block>
+
   </view>
+</view> -->
+<view class="comment-item">
+  <view class="comment-header">
+    <image class="comment-avatar" src="{{avatar}}" />
+    <view class="comment-info">
+      <view class="comment-name">{{name}}</view>
+      <view class="comment-time">{{time}}</view>
+      <view class="comment-area">{{area}}</view>
+    </view>
+  </view>
+  <view class="comment-content">{{content}}</view>
+  <view class="replies">
+    <block wx:if="{{showReplies}}">
+      <reply-item wx:for="{{replies}}" wx:key="index" 
+        avatar="{{item.avatar}}" 
+        name="{{item.name}}" 
+        time="{{item.time}}" 
+        content="{{item.content}}" />
+    </block>
+  </view>
+  <button bindtap="toggleReplies">
+    {{showReplies ? '收起回复' : '查看回复'}}({{replies.length}})
+    <image class="arrow" src="{{showReplies ? '/static/icons/xiangshangjiantou.png' : '/static/icons/xiangxiajiantou.png'}}" />
+  </button>
 </view>
