@@ -18,6 +18,9 @@ class Draw {
   oldTime = null;
   frame = 16;
   curFrame = null;
+  curMarkEle = '';
+  imageDatas = [];
+  cache_Elements = [];
   //
   constructor(canvasId, instance = null) {
     if (!canvasId || !instance) return;
@@ -26,38 +29,65 @@ class Draw {
   init(canvasId, instance) {
     return new Promise((resolve, reject) => {
       this.canvasId = canvasId;
-      instance
-        .createSelectorQuery()
-        .select(`#${canvasId}`)
-        .fields({
-          node: true,
-          size: true,
-        })
-        .exec((res) => {
-          let canvas = res[0].node;
-          let ctx = canvas.getContext('2d');
-          const width = res[0].width;
-          const height = res[0].height;
-          const dpr = wx.getWindowInfo().pixelRatio;
-          canvas.width = width * dpr;
-          canvas.height = height * dpr;
-          ctx.scale(dpr, dpr);
-          this.canvas = canvas;
-          this.ctx = ctx;
-          this.width = width;
-          this.height = height;
-          this.dpr = dpr;
-          resolve();
-        });
+      const query = instance.createSelectorQuery();
+      query.select(`#${canvasId}`).fields({
+        node: true,
+        size: true,
+      });
+      query.select(`#${canvasId}`).boundingClientRect();
+      query.exec((res) => {
+        let canvas = res[0].node;
+        let ctx = canvas.getContext('2d');
+        const width = res[0].width;
+        const height = res[0].height;
+        const dpr = wx.getWindowInfo().pixelRatio;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+        this.canvas = canvas;
+        this.ctx = ctx;
+        this.ctx.lineWidth = this.lineWidth;
+        this.width = width;
+        this.height = height;
+        this.dpr = dpr;
+        resolve();
+      });
     });
   }
-
   set(canvas, ctx) {
     this.canvas = canvas;
     this.ctx = ctx;
   }
   clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
+  }
+  clean(clean_cache=true){
+    this.elements = {};
+    if(clean_cache) this.cache_Elements = []
+  }
+  deepCopy(obj = {}) {
+    const map = new Map();
+    let temp = {};
+    for (let key in obj) {
+      if (map.get(key)) temp[key] = map.get(key);
+      else {
+        if (obj[key] instanceof Object) {
+          if(obj[key].toString() === "[object Path2D]"){
+            const path = this.canvas.createPath2D(obj[key])
+            temp[key] = path
+          }
+          else {
+
+            temp[key] = this.deepCopy(obj[key]);
+            map.set(key, temp[key]);
+          }
+        } else {
+          temp[key] = obj[key];
+          map.set(key, obj[key]);
+        }
+      }
+    }
+    return temp;
   }
   newName(_name = undefined) {
     if (_name) return _name;
@@ -69,13 +99,26 @@ class Draw {
   //监听画板事件
   onTouchStart(x, y) {
     for (let key in this.elements) {
+      if (this.elements[key].type === 'edge') continue;
       if (this.isPointInPath(x, y, key)) {
+        this.unMarkEle();
+        this.markEle(key);
         this.touchedNode = key;
         this.touchstart = true;
-        return key;
+        if (key[0] === '_') {
+          return {
+            type: 'edge',
+            name: key.substring(1),
+          };
+        } else {
+          return {
+            type: 'node',
+            name: key,
+          };
+        }
       }
     }
-    return 'none';
+    return {};
   }
   onTouchMove(x, y) {
     // if(this.oldTime !== null && Date.now() - this.oldTime < this.frame ) return;
@@ -95,7 +138,7 @@ class Draw {
 
     let animation = () => {
       //删除旧的
-      const del = () => {
+      const clipOld = () => {
         this.ClipbyName(this.touchedNode);
         for (let edge in touchedNode.relatedEdges) {
           const { textPath } = this.elements[edge];
@@ -120,7 +163,7 @@ class Draw {
           }
         }
       };
-      del();
+      clipOld();
       create();
     };
     this.curFrame = this.canvas.requestAnimationFrame(animation);
@@ -129,6 +172,118 @@ class Draw {
   onTouchEnd() {
     this.touchstart = false;
     this.touchedNode = null;
+  }
+  getEdgeName(node1Name, node2Name) {
+    const name1 = '_' + node1Name + node2Name;
+    const name2 = '_' + node2Name + node1Name;
+    if (this.elements[name1]) return this.elements[name1].name;
+    if (this.elements[name2]) return this.elements[name2].name;
+    return undefined;
+  }
+  findEle(x, y) {
+    let _ele = null;
+    //找
+    for (let ele in this.elements) {
+      if (this.isPointInPath(x, y, ele)) {
+        _ele = this.elements[ele];
+        break;
+      }
+    }
+    return _ele;
+  }
+  save() {
+    const imageData = this.ctx.getImageData(0, 0, this.width * 3, this.height * 3);
+    this.imageDatas.unshift(imageData);
+    this.cache_Elements.unshift(this.deepCopy(this.elements));
+  }
+  back() {
+    const imageData = this.imageDatas.shift();
+    const elements = this.cache_Elements.shift();
+    if (imageData && elements) {
+      this.elements = elements;
+      this.ctx.putImageData(imageData, 0, 0);
+    }
+  }
+  //删除能选中的元素
+  del() {
+    const _ele = this.elements[this.curMarkEle];
+    if (!_ele) return;
+    //删除相关元素
+    this.save();
+    if (_ele.type === 'node') this.delNode(_ele);
+    else this.delEdge(_ele);
+  }
+
+  delEdge(edge = {}) {
+    //删除数据以及图像
+    const { name, textPath, path, node1, node2,textName } = edge;
+    this.ClipbyPath(textPath);
+    this.ClipbyPath(path);
+    //删除数据层面
+    delete node1.relatedEdges[name];
+    delete node2.relatedEdges[name];
+    delete this.elements[textName]
+    delete this.elements[name]
+  }
+  delNode(node = {}) {
+    const { name, path } = node;
+    if (name[0] === '_') {
+      const { relatedEdge } = node;
+      this.delEdge(this.elements[relatedEdge]);
+      delete this.elements[name];
+    } else {
+      const { relatedEdges } = node;
+      this.ClipbyName(name);
+      for (const edge in relatedEdges) {
+        this.delEdge(this.elements[edge]);
+      }
+    }
+    delete this.elements[name];
+  }
+  //高亮标记一个元素
+  markEle(eleName = '', strokeStyle = '#22c32e') {
+    //只有点会被选中
+    const ele = this.elements[eleName];
+    const { name, path, value } = ele;
+    if (name === this.markEle) return;
+    //代表边的点
+    if (name[0] === '_') {
+      const { relatedEdge } = ele;
+      this.modifityEdge(relatedEdge, strokeStyle);
+    } else {
+      //普通的点
+      const { x, y, r, color, path, lineWidth, name } = ele;
+      path.arc(x, y, r, 0, Math.PI * 2);
+      this.ctx.save();
+      this.ctx.strokeStyle = strokeStyle;
+      this.ctx.lineWidth = lineWidth;
+      this.ctx.stroke(path);
+      this.fillText(x, y, name, r * 1.1);
+      this.ctx.restore();
+    }
+    this.curMarkEle = name;
+  }
+  unMarkEle() {
+    const ele = this.elements[this.curMarkEle];
+    if (!ele) return;
+    const { name, path, value } = ele;
+    if (name === this.markEle) return;
+    //代表边的点
+    if (name[0] === '_') {
+      const { relatedEdge } = ele;
+      this.modifityEdge(relatedEdge);
+    } else {
+      //普通的点
+      const { x, y, r, color, path, strokeStyle, lineWidth, name } = ele;
+      path.arc(x, y, r, 0, Math.PI * 2);
+      this.ctx.save();
+      this.ctx.strokeStyle = strokeStyle;
+      this.ctx.lineWidth = lineWidth;
+      this.ctx.stroke(path);
+      this.fillText(x, y, name, r * 1.1);
+      this.ctx.restore();
+    }
+    this.curMarkEle = '';
   }
   ClipbyPath(path) {
     if (!path) return;
@@ -238,21 +393,30 @@ class Draw {
     let re = this.ctx.isPointInPath(path, x * this.dpr, y * this.dpr);
     return re;
   }
+  modifyNode(name, newAttr = {}) {
+    // todo
+  }
+
   cNode(x = 100, y = 100, size = 10, name = null, color = '#4c88fe') {
     let _name = name;
     const path = this.canvas.createPath2D();
-    path.arc(x, y, size, 0, Math.PI * 2);
-    this.ctx.save();
-    this.ctx.strokeStyle = color;
-    this.ctx.lineWidth = this.lineWidth;
-    this.ctx.stroke(path);
-    this.fillText(x, y, _name, size * 1.1);
-    this.ctx.restore();
+    const draw = () => {
+      path.arc(x, y, size, 0, Math.PI * 2);
+      this.ctx.save();
+      this.ctx.strokeStyle = color;
+      this.ctx.lineWidth = this.lineWidth;
+      this.ctx.stroke(path);
+      this.fillText(x, y, _name, size * 1.1);
+      this.ctx.restore();
+    };
+    draw();
     let node = {
       args: Array.from(arguments),
       x: x,
       y: y,
       r: size,
+      strokeStyle: color,
+      lineWidth: this.lineWidth,
       type: 'node',
       name: _name,
       relatedEdges: {},
@@ -267,31 +431,36 @@ class Draw {
       ...node,
     };
   }
-  cNode_Ab(x = 100, y = 100, size = 10, name = null, color = '#4c88fe') {
+  cNode_Ab(x = 100, y = 100, size = 10, name = null, color = '#4c88fe', relatedEdge) {
+    const path = this.canvas.createPath2D();
+    path.arc(x, y, size, 0, Math.PI * 2);
     let _name = name;
-    let node = {
+    const node = {
       args: Array.from(arguments),
       x: x,
       y: y,
       r: size,
       type: 'node',
       name: _name,
-      relatedEdges: {},
+      relatedEdge: relatedEdge,
       relatedNodes: {},
       angles: [],
+      path: path,
     };
     this.elements[node.name] = node;
-    return {
-      ...node,
-    };
+    return node;
   }
-  modifityEdge(edgeName,value,color){
-    const edge = this.elements[edgeName]
-    const {path,node1,node2} = edge
-    this.ClipbyName(edgeName);
-    this.cEdge(node1,node2,value,color) 
+  modifityEdge(edgeName, strokeStyle = '') {
+    const edge = this.elements[edgeName];
+    const { path, textPath, textX, textY, textR, value } = edge;
+    this.ctx.save();
+    if (strokeStyle) this.ctx.strokeStyle = strokeStyle;
+    this.ctx.stroke(path); //画边
+    this.ClipbyPath(textPath);
+    this.fillText(textX, textY, value, this.lineWidth * 8, 900, 0.8);
+    this.ctx.restore();
   }
-  cEdge(node1, node2, value = 'null', color = 'rgba(0,0,0)', showValue = false, lineWidth = 2) {
+  cEdge(node1, node2, value = 'null', color = 'rgba(0,0,0)', lineWidth = 2) {
     const { x: x1, y: y1, r: r1 } = node1;
     const { x: x2, y: y2, r: r2 } = node2;
     const path = this.canvas.createPath2D();
@@ -315,23 +484,33 @@ class Draw {
     path.lineTo(endX, endY);
     this.ctx.stroke(path);
     this.ctx.restore();
-    const textX = (startX + endX) / 2;
-    const textY = (startY + endY) / 2;
-    const { path: textPath, r: textR } = this.getTextPath(textX, textY, value, lineWidth * 8, 900, 0.8);
-    this.ClipbyPath(textPath);
-    this.fillText(textX, textY, value, lineWidth * 8, 900, 0.8);
-    const abNode = '_' + node1.name + node2.name;
-    this.cNode_Ab(textX, textY, textR, abNode);
-    let x, y;
+    //画边和中间点
     const { name: name1 } = node1;
     const { name: name2 } = node2;
     const edgeName = name1 + 'edge' + name2;
+    const textX = (startX + endX) / 2;
+    const textY = (startY + endY) / 2;
+    const { path: textPath, r: textR } = this.getTextPath(
+      textX,
+      textY,
+      value,
+      this.lineWidth * 8,
+      900,
+      0.8,
+    );
+    this.ClipbyPath(textPath);
+    this.fillText(textX, textY, value, this.lineWidth * 8, 900, 0.8);
+    const abNode = '_' + node1.name + node2.name;
+    this.cNode_Ab(textX, textY, textR, abNode);
+    this.elements[abNode].relatedEdge = edgeName;
+    let x, y;
     let edge = {
       node1: node1,
       node2: node2,
       textX: textX,
       textY: textY,
       textR: textR,
+      textName:abNode,
       lineWidth: lineWidth,
       color: color,
       type: 'edge',
@@ -359,21 +538,22 @@ class Draw {
   }
   //平均点半径, 平均边长/6
   avg_r_point(nums) {
-    return this.avg_len_edge(nums) /6 ;
+    return this.avg_len_edge(nums) / 6;
   }
   // 平均边长:  最大宽 / 点的个数
   avg_len_edge(nums) {
-    return Math.floor((this.width / nums)*2);
+    return Math.floor((this.width / nums) * 2);
   }
   //判断点是否出界
   isPointOut(x, y, r) {
-    const r1 = r+this.lineWidth
+    const r1 = r + this.lineWidth;
     const toLeftBoard = Math.ceil(x - r1);
     const toRightBoard = Math.ceil(x + r1);
     const toUpBoard = Math.ceil(y - r1);
     const toBottomBoard = Math.ceil(y + r1);
     if (toLeftBoard <= 0 || toRightBoard >= this.width || toUpBoard <= 0 || toBottomBoard >= this.height)
-      return true; //出界
+      return true;
+    //出界
     else return false;
   }
   //计算新增的点的位置

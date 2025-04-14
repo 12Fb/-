@@ -26,7 +26,8 @@
     "pages/exercises/managerList/index",
     "pages/course/index",
     "pages/class/index",
-    "pages/exercises/showExe/index"
+    "pages/exercises/showExe/index",
+    "pages/exercises/createExe/pages/tab2/index"
   ],
   "tabBar": {
     "custom": false,

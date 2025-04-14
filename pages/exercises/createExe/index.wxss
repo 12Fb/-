@@ -1,17 +1,23 @@
 /* pages/exercises/createExe/index.wxss */
+
 .container{
   position: relative;
   box-sizing: border-box;
   width: 750rpx;
-  height: 100vh;
-  padding: 20rpx;
+  padding: 20rpx 20rpx 70rpx 20rpx;
   display: flex;
   flex-direction: column;
 }
-
+.canvas{
+  z-index: 1001;
+  position: relative;
+   width: 100%;
+    height: 450rpx;
+  background: #ddebf1;
+}
 .bottom{
   position: relative;
-  margin-top: 100rpx;
+  margin-top: 50rpx;
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -28,10 +34,7 @@
   background: #8bcf70;
   font-weight: bolder;
 }
-.active{
-  box-shadow: red 2rpx 2rpx 10rpx;
-  border: 6rpx dashed red;
-}
+
 .description{
   display: flex;
   flex-direction: column;
@@ -69,24 +72,61 @@
   position: relative;
 }
 .items{
+  margin: 30rpx;
+  box-sizing: border-box;
   display: flex;
   gap: 50rpx;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 
 }
+.item_icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 250rpx;
+  padding: 20rpx;
+  height: fit-content;
+  background: rgb(220, 218, 240);
+  border-radius: 5%;
+}
 .item{
+  flex: 1;
   text-align: center;
   box-sizing: border-box;
-  padding: 20rpx ;
-  font-weight: 600;
+  padding: 20rpx;
+  font-weight: bold;
   font-size: 30rpx ;
-  width: 300rpx;
+  width: fit-content;
+  min-width: 200rpx;
+  max-width: 350rpx;
   height: fit-content;
   border-radius: 5%;
   background: rgb(220, 218, 240);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-overflow: ellipsis;
+}
+.active{
+  box-shadow: red 2rpx 2rpx 10rpx;
+  border: 6rpx dashed red;
+}
+.exeContent{
+  gap:60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: center;
+}
+.title{
+  position: relative;
+  left: 10rpx;
+  margin-top: 20rpx;
+  margin-bottom: 50rpx;
+  font-weight: 900;
+  font-size: 40rpx;
+}
+.part{
+  position: relative;
+  border-bottom: 10rpx dashed #f9cc35;
 }
