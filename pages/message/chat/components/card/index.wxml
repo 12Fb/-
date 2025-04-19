@@ -3,7 +3,7 @@
   <!-- content -->
   <view class="content">{{info.content}}</view>
   <view class="imageWrapper">
-    <van-image wx:for="{{info.pictureUrl}}" lazy-load width="120" height="120" src="{{item}}" />
+    <van-image wx:for="{{info.pictureUrl}}" wx:key="index" lazy-load width="120" height="120" src="{{item}}" />
   </view>
   <!-- time -->
   <view class="time">发布于{{info.time}}</view>
