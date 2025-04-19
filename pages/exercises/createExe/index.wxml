@@ -1,6 +1,7 @@
 <!--pages/exercises/createExe/index.wxml-->
 <view class="container">
   <van-steps steps="{{ steps }}" active="{{ active }}" />
+  
   <van-tabs active="{{ active }}">
     <!-- tab1 -->
     <van-tab>
@@ -38,7 +39,7 @@
     </van-tab>
     <!-- tab2 -->
     <van-tab>
-      <tab2 algoName ='djkstra'></tab2>
+      <tab2 wx:if="{{active === 1}}" algoName ='djkstra' data ="{{tab1_choice}}" ></tab2>
     </van-tab>
     <!-- 题目模板 -->
     <van-tab>

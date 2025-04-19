@@ -2,8 +2,16 @@
 const djkstra = (arr, start, end) => {
   //初始化一个distance
   let dis = {};
+  let unVisitNode = new Set();
+  for (let key in arr) {
+    unVisitNode.add(key); // 添加顶层键
+    for (let neighbor in arr[key]) {
+      unVisitNode.add(neighbor); // 添加邻接节点
+    }
+  }
   //未被访问的节点
-  let unVisitNode = Object.keys(arr); //值为-1表示已经访问过
+
+  unVisitNode = Array.from(unVisitNode); //值为-1表示已经访问过
   let count = 0;
   //记录前驱节点
   let prev = {};
@@ -49,4 +57,4 @@ const djkstra = (arr, start, end) => {
   return { ans: dis[end], path: path.map((v) => String(v)) };
 };
 const steps = ['图','起始点和终点','寻找最短路径','得到最短路径']
-export  {djkstra as algo, steps}
+export  default djkstra

@@ -1,6 +1,5 @@
 // pages/exercises/createExe/index.js
 import Draw from '../../../common/draw'
-
 Page({
   /**
    * 页面的初始数据
@@ -33,8 +32,8 @@ Page({
     tab1_choice:{
       knowledge:0,
       exeType:0,
-      models:0,
-      tags:{}
+      models:1,
+      tags:{'0':'离散数学'}
     },
     edit:false,
     tagValue:'',

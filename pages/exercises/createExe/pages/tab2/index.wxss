@@ -36,3 +36,44 @@
   gap:30rpx;
   font-size:30rpx
 }
+
+
+.Content{
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+  letter-spacing: 3rpx;
+  gap: 30rpx;
+}
+.options{
+  display: flex;
+  flex-direction: column;
+  gap:20rpx;
+}
+.option{
+  display: flex;
+  gap:20rpx;
+  border:5rpx solid rgba(66, 202, 154,0);
+  border-radius: 2%;
+  padding: 10rpx;
+}
+.active{
+  border:5rpx solid rgba(66, 202, 154,1);
+  background: rgba(66, 202, 154,0.5);
+}
+.hover{
+  border:5rpx solid rgba(66, 202, 154,0.2);
+  background: rgba(66, 202, 154,0.2);
+}
+.point{
+  font-weight: bold;
+}
+.point::before{
+  content: "（ ";
+}
+.point::after{
+  content: "分 ）";
+}
+.changeAble{
+  background: rgba(66, 202, 154,0.7);
+}

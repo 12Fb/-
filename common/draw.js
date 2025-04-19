@@ -19,6 +19,8 @@ class Draw {
   frame = 16;
   curFrame = null;
   curMarkEle = '';
+  hiddenEles={};
+  curMarkEles=[];
   imageDatas = [];
   cache_Elements = [];
   //
@@ -67,7 +69,7 @@ class Draw {
   }
   deepCopy(obj = {}) {
     const map = new Map();
-    let temp = {};
+    let temp = Array.isArray(obj) ? [] : {};
     for (let key in obj) {
       if (map.get(key)) temp[key] = map.get(key);
       else {
@@ -97,12 +99,14 @@ class Draw {
     return name;
   }
   //监听画板事件
-  onTouchStart(x, y) {
+  onTouchStart(x, y,mark =true) {
     for (let key in this.elements) {
       if (this.elements[key].type === 'edge') continue;
       if (this.isPointInPath(x, y, key)) {
-        this.unMarkEle();
-        this.markEle(key);
+        if(mark){
+          this.unMarkEle();
+          this.markEle(key);
+        }
         this.touchedNode = key;
         this.touchstart = true;
         if (key[0] === '_') {
@@ -129,11 +133,11 @@ class Draw {
       return this.touchedNode;
     }
     // count = lastcount 说明上一个动画还没渲染完
-    if (this.lastCount == this.count) {
-      this.canvas.cancelAnimationFrame(this.curFrame);
-      this.count++;
-      return;
-    }
+    // if (this.lastCount == this.count) {
+    //   this.canvas.cancelAnimationFrame(this.curFrame);
+    //   this.count++;
+    //   return;
+    // }
     this.lastCount = this.count;
 
     let animation = () => {
@@ -194,24 +198,44 @@ class Draw {
   save() {
     const imageData = this.ctx.getImageData(0, 0, this.width * 3, this.height * 3);
     this.imageDatas.unshift(imageData);
+    this.curMarkEles.unshift(this.curMarkEle)
     this.cache_Elements.unshift(this.deepCopy(this.elements));
   }
   back() {
+    const curMarkEle = this.curMarkEles.shift()
     const imageData = this.imageDatas.shift();
     const elements = this.cache_Elements.shift();
-    if (imageData && elements) {
+    if (imageData && elements && curMarkEle) {
       this.elements = elements;
       this.ctx.putImageData(imageData, 0, 0);
+      this.curMarkEle = curMarkEle
+      delete this.hiddenEles[curMarkEle]
     }
   }
-  //删除能选中的元素
-  del() {
+  clip(){   //不会擦除相关元素
+    if (!this.curMarkEle) return;
+    const name = this.curMarkEle
+    this.save()
+    this.curMarkEle = ''
+    this.ClipbyName(name)
+    if(name[0] =='_'){
+      const {relatedEdge} = this.elements[name]
+      this.ClipbyName(relatedEdge)
+      this.hiddenEles[name] =1
+      this.hiddenEles[relatedEdge] =1
+      return name.substring(1)
+    }
+    this.hiddenEles[name] =1
+    return name
+  }
+  del() { // 会删除相关元素 
     const _ele = this.elements[this.curMarkEle];
     if (!_ele) return;
     //删除相关元素
     this.save();
-    if (_ele.type === 'node') this.delNode(_ele);
-    else this.delEdge(_ele);
+    this.curMarkEle = ''
+    if (_ele.type === 'node')return this.delNode(_ele);
+    else return  this.delEdge(_ele);
   }
 
   delEdge(edge = {}) {
@@ -224,11 +248,13 @@ class Draw {
     delete node2.relatedEdges[name];
     delete this.elements[textName]
     delete this.elements[name]
+    return textName.substring(1)
   }
   delNode(node = {}) {
     const { name, path } = node;
     if (name[0] === '_') {
       const { relatedEdge } = node;
+      delEle = relatedEdge
       this.delEdge(this.elements[relatedEdge]);
       delete this.elements[name];
     } else {
@@ -389,7 +415,7 @@ class Draw {
   //判断一个坐标是否在某个图形
   isPointInPath(x, y, name) {
     const { path } = this.elements[name];
-    if (!path) return false;
+    if (!path || this.hiddenEles[name]) return false;
     let re = this.ctx.isPointInPath(path, x * this.dpr, y * this.dpr);
     return re;
   }
@@ -632,6 +658,14 @@ class Draw {
     const dis = Math.abs(numerator / denominator - lineWidth);
     return dis;
   }
+  changeEdge(name,obj={}){
+    const ele = this.elements[name]
+    for(let key in obj){
+      if(ele[key]) {
+        ele[key] =obj[key]
+      }
+    }
+}
   collisionDetect(x, y, curNode) {
     let count = 1;
     const { r } = curNode;
