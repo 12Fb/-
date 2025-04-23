@@ -77,3 +77,19 @@
 .changeAble{
   background: rgba(66, 202, 154,0.7);
 }
+
+.custom-class{
+  padding: 10rpx 0;
+}
+.name-class{
+  height: fit-content;
+  font-size:38rpx;
+  font-weight: 600;
+}
+.content-class{
+  min-height: 120rpx;
+  line-height: 1.4 !important;
+  height: fit-content;
+  font-size:32rpx;
+  font-weight: 500;
+}

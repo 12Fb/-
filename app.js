@@ -8,3 +8,8 @@ function o() {
 }
 
 o().app.mount("#app"), (exports.createApp = o);
+App({
+  onLaunch(){
+    wx.cloud.init({env:'cloud1-5gfi5g62eef26030'})
+  }
+})

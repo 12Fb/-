@@ -7,20 +7,17 @@ Component({
   properties: {
     data:{
       type:Object,
-      value:{
-        id:"1",
-        name: 'lalala',
-        type:1,//选择题或者是填空题
-        description:'非常简单的一道题',
-        tags:['离散数学','计算机网络']
-      }
+      value:{}
     },
     url:{
       type:String,
       value:''
     }
   },
-
+  lifetimes:{
+    attached: function(){
+    }
+  },
   /**
    * 组件的初始数据
    */
@@ -32,15 +29,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    goto(e){   //跳转到题目演示页面
-      const id = e.currentTarget.id
-      const data = this.properties.data
-      wx.setStorageSync(id, data)
-      console.log(22222)
-      wx.navigateTo({
-        url: '/pages/exercises/showExe/index',
+    onTap(e){
+      this.triggerEvent('tap',{
+        event:e
       })
-      
-    }
+    },
   }
 })

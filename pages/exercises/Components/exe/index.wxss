@@ -1,0 +1,73 @@
+/* pages/exercises/createExe/pages/tab3/index.wxss */
+.container{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:10rpx;
+}
+.value{
+  font-size: 40rpx;
+  font-weight: 600;
+}
+.custom-class{
+  padding: 10rpx 0;
+}
+.description-class{
+  height: fit-content;
+  font-size:28rpx;
+  font-weight: 600;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+.name-class{
+  height: fit-content;
+  font-size:38rpx;
+  font-weight: 900;
+}
+.content-class{
+  line-height: 1.6 !important;
+  height: fit-content;
+  font-size:34rpx;
+  font-weight: 900;
+  opacity: 0.7;
+}
+.image{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: fit-content;
+}
+.image-tag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: bolder;
+  background:rgba(86, 88, 93,0.2);
+}
+.options{
+  display: flex;
+  flex-direction: column;
+  font-size: 35rpx;
+  gap: 5rpx;
+}
+.option{
+  box-sizing: border-box;
+  display: flex;
+  gap:20rpx;
+  border:5rpx solid rgba(66, 202, 154,0.4);
+  border-radius: 2%;
+  padding: 25rpx 10rpx;
+
+}
+.active{
+  border:5rpx solid rgba(66, 202, 154,1);
+  background: rgba(66, 202, 154,0.5);
+}
+.hover{
+  border:5rpx solid rgba(66, 202, 154,0.2);
+  background: rgba(66, 202, 154,0.2);
+}

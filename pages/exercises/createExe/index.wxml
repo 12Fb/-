@@ -39,29 +39,12 @@
     </van-tab>
     <!-- tab2 -->
     <van-tab>
-      <tab2 wx:if="{{active === 1}}" algoName ='djkstra' data ="{{tab1_choice}}" ></tab2>
-    </van-tab>
-    <!-- 题目模板 -->
-    <van-tab>
-      <view class="items" bind:tap="onTab3">
-        <view wx:for="{{models}}" wx:key="index" id="{{index}}" class="item">{{item}}</view>
-      </view>
-    </van-tab>
-    <!-- 题目内容 -->
-    <van-tab>
-      <view class="exeContent">
-        <!-- <canvas id="canvas" type="2d" class="canvas"></canvas> -->
-        <view>dd</view>
-        <view>dd</view>
-      </view>
-    </van-tab>
-    <!-- 最终题目预览 -->
-    <van-tab>
-      描述
+      <tab2 wx:if="{{active === 1}}" algoName ='djkstra' data ="{{tab1_choice}}"
+      bind:onSave="onTab2Save" ></tab2>
     </van-tab>
     <!-- 题目预览 -->
     <van-tab>
-      <view class="function content-item">todo</view>
+      <tab3 wx:if="{{active === 2}}" data="{{tab3_info}}" bind:onSave="onTab3Save"></tab3>
     </van-tab>
   </van-tabs>
   <view class="bottom">

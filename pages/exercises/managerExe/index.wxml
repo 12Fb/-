@@ -2,8 +2,8 @@
 
 <van-tabs active="a">
   <van-tab title="已创建" name="a">
-  <view style="display: flex;flex-direction: column; justify-content: center;align-items: center; width: 100%;margin: 20rpx 0;">
-<exe-card ></exe-card>
+  <view class="card_container" wx:for="{{exeArr}}" wx:key="index" bind:tap="onTap"  >
+    <exe-card id="{{index}}" data="{{item}}" ></exe-card>
   </view>
   
   </van-tab>

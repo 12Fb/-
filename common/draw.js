@@ -110,14 +110,18 @@ class Draw {
         this.touchedNode = key;
         this.touchstart = true;
         if (key[0] === '_') {
+        const {value} = this.elements[key]
           return {
             type: 'edge',
             name: key.substring(1),
+            ori_name:key,
+            value
           };
         } else {
           return {
             type: 'node',
             name: key,
+            ori_name:key,
           };
         }
       }
@@ -201,11 +205,18 @@ class Draw {
     this.curMarkEles.unshift(this.curMarkEle)
     this.cache_Elements.unshift(this.deepCopy(this.elements));
   }
+  getImageData(){
+    const imageData = this.ctx.getImageData(0, 0, this.width * 3, this.height * 3);
+    return imageData
+  }
+  putImageData(imageData){
+    this.ctx.putImageData(imageData, 0, 0);
+  }
   back() {
     const curMarkEle = this.curMarkEles.shift()
     const imageData = this.imageDatas.shift();
     const elements = this.cache_Elements.shift();
-    if (imageData && elements && curMarkEle) {
+    if (imageData && elements ) {
       this.elements = elements;
       this.ctx.putImageData(imageData, 0, 0);
       this.curMarkEle = curMarkEle
@@ -457,7 +468,7 @@ class Draw {
       ...node,
     };
   }
-  cNode_Ab(x = 100, y = 100, size = 10, name = null, color = '#4c88fe', relatedEdge) {
+  cNode_Ab(x = 100, y = 100, size = 10, name, value,relatedEdge, color = '#4c88fe', ) {
     const path = this.canvas.createPath2D();
     path.arc(x, y, size, 0, Math.PI * 2);
     let _name = name;
@@ -472,6 +483,7 @@ class Draw {
       relatedNodes: {},
       angles: [],
       path: path,
+      value
     };
     this.elements[node.name] = node;
     return node;
@@ -485,6 +497,12 @@ class Draw {
     this.ClipbyPath(textPath);
     this.fillText(textX, textY, value, this.lineWidth * 8, 900, 0.8);
     this.ctx.restore();
+  }
+  hideEdgeValue(name){
+    // console.log(this.elements[name])
+    if(!this.elements[name]) return undefined
+    const {path} = this.elements[name]
+    this.ClipbyPath(path);
   }
   cEdge(node1, node2, value = 'null', color = 'rgba(0,0,0)', lineWidth = 2) {
     const { x: x1, y: y1, r: r1 } = node1;
@@ -527,8 +545,7 @@ class Draw {
     this.ClipbyPath(textPath);
     this.fillText(textX, textY, value, this.lineWidth * 8, 900, 0.8);
     const abNode = '_' + node1.name + node2.name;
-    this.cNode_Ab(textX, textY, textR, abNode);
-    this.elements[abNode].relatedEdge = edgeName;
+    this.cNode_Ab(textX, textY, textR,abNode,value,edgeName);
     let x, y;
     let edge = {
       node1: node1,
@@ -561,6 +578,9 @@ class Draw {
   getWidth() {
     //逻辑宽
     return this.width;
+  }
+  getDpr(){
+    return this.dpr
   }
   //平均点半径, 平均边长/6
   avg_r_point(nums) {
@@ -696,5 +716,4 @@ class Draw {
     return true;
   }
 }
-
 export default Draw

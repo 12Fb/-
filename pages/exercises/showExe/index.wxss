@@ -1,1 +1,5 @@
 /* pages/exercises/showExe/index.wxss */
+.container{
+  box-sizing: border-box;
+  padding: 10rpx;
+}
