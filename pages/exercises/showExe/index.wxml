@@ -1,2 +1,4 @@
 <!--pages/exercises/showExe/index.wxml-->
-<text>pages/exercises/showExe/index.wxml</text>
+<view class="container">
+  <exe data="{{data}}" name="{{false}}" description="{{false}}"></exe>
+</view>

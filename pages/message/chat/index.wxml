@@ -1,7 +1,7 @@
 <!--pages/message/chat/index.wxml-->
 <view class="card-container" bind:tap="toComment">
 <!-- <chat-card wx:for="{{data}}" wx:key="item" info="{{item}}"></chat-card> -->
-<chat-card wx:for="{{infos}}" info="{{item}}"></chat-card>
+<chat-card wx:for="{{infos}}" wx:key="index" info="{{item}}"></chat-card>
 <end-sign></end-sign>
 </view>
 <!-- 编辑按钮 -->

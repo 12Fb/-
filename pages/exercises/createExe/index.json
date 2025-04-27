@@ -12,6 +12,8 @@
     "van-uploader": "@vant/weapp/uploader/index",
     "van-image": "@vant/weapp/image/index",
     "van-icon": "@vant/weapp/icon/index",
-    "tab2":"/pages/exercises/createExe/pages/tab2/index"
+    "tab2":"/pages/exercises/createExe/pages/tab2/index",
+    "tab3":"/pages/exercises/createExe/pages/tab3/index"
+
   }
 }

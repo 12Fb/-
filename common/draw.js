@@ -19,6 +19,8 @@ class Draw {
   frame = 16;
   curFrame = null;
   curMarkEle = '';
+  hiddenEles={};
+  curMarkEles=[];
   imageDatas = [];
   cache_Elements = [];
   //
@@ -67,7 +69,7 @@ class Draw {
   }
   deepCopy(obj = {}) {
     const map = new Map();
-    let temp = {};
+    let temp = Array.isArray(obj) ? [] : {};
     for (let key in obj) {
       if (map.get(key)) temp[key] = map.get(key);
       else {
@@ -97,23 +99,29 @@ class Draw {
     return name;
   }
   //监听画板事件
-  onTouchStart(x, y) {
+  onTouchStart(x, y,mark =true) {
     for (let key in this.elements) {
       if (this.elements[key].type === 'edge') continue;
       if (this.isPointInPath(x, y, key)) {
-        this.unMarkEle();
-        this.markEle(key);
+        if(mark){
+          this.unMarkEle();
+          this.markEle(key);
+        }
         this.touchedNode = key;
         this.touchstart = true;
         if (key[0] === '_') {
+        const {value} = this.elements[key]
           return {
             type: 'edge',
             name: key.substring(1),
+            ori_name:key,
+            value
           };
         } else {
           return {
             type: 'node',
             name: key,
+            ori_name:key,
           };
         }
       }
@@ -129,11 +137,11 @@ class Draw {
       return this.touchedNode;
     }
     // count = lastcount 说明上一个动画还没渲染完
-    if (this.lastCount == this.count) {
-      this.canvas.cancelAnimationFrame(this.curFrame);
-      this.count++;
-      return;
-    }
+    // if (this.lastCount == this.count) {
+    //   this.canvas.cancelAnimationFrame(this.curFrame);
+    //   this.count++;
+    //   return;
+    // }
     this.lastCount = this.count;
 
     let animation = () => {
@@ -194,24 +202,51 @@ class Draw {
   save() {
     const imageData = this.ctx.getImageData(0, 0, this.width * 3, this.height * 3);
     this.imageDatas.unshift(imageData);
+    this.curMarkEles.unshift(this.curMarkEle)
     this.cache_Elements.unshift(this.deepCopy(this.elements));
   }
+  getImageData(){
+    const imageData = this.ctx.getImageData(0, 0, this.width * 3, this.height * 3);
+    return imageData
+  }
+  putImageData(imageData){
+    this.ctx.putImageData(imageData, 0, 0);
+  }
   back() {
+    const curMarkEle = this.curMarkEles.shift()
     const imageData = this.imageDatas.shift();
     const elements = this.cache_Elements.shift();
-    if (imageData && elements) {
+    if (imageData && elements ) {
       this.elements = elements;
       this.ctx.putImageData(imageData, 0, 0);
+      this.curMarkEle = curMarkEle
+      delete this.hiddenEles[curMarkEle]
     }
   }
-  //删除能选中的元素
-  del() {
+  clip(){   //不会擦除相关元素
+    if (!this.curMarkEle) return;
+    const name = this.curMarkEle
+    this.save()
+    this.curMarkEle = ''
+    this.ClipbyName(name)
+    if(name[0] =='_'){
+      const {relatedEdge} = this.elements[name]
+      this.ClipbyName(relatedEdge)
+      this.hiddenEles[name] =1
+      this.hiddenEles[relatedEdge] =1
+      return name.substring(1)
+    }
+    this.hiddenEles[name] =1
+    return name
+  }
+  del() { // 会删除相关元素 
     const _ele = this.elements[this.curMarkEle];
     if (!_ele) return;
     //删除相关元素
     this.save();
-    if (_ele.type === 'node') this.delNode(_ele);
-    else this.delEdge(_ele);
+    this.curMarkEle = ''
+    if (_ele.type === 'node')return this.delNode(_ele);
+    else return  this.delEdge(_ele);
   }
 
   delEdge(edge = {}) {
@@ -224,11 +259,13 @@ class Draw {
     delete node2.relatedEdges[name];
     delete this.elements[textName]
     delete this.elements[name]
+    return textName.substring(1)
   }
   delNode(node = {}) {
     const { name, path } = node;
     if (name[0] === '_') {
       const { relatedEdge } = node;
+      delEle = relatedEdge
       this.delEdge(this.elements[relatedEdge]);
       delete this.elements[name];
     } else {
@@ -389,7 +426,7 @@ class Draw {
   //判断一个坐标是否在某个图形
   isPointInPath(x, y, name) {
     const { path } = this.elements[name];
-    if (!path) return false;
+    if (!path || this.hiddenEles[name]) return false;
     let re = this.ctx.isPointInPath(path, x * this.dpr, y * this.dpr);
     return re;
   }
@@ -431,7 +468,7 @@ class Draw {
       ...node,
     };
   }
-  cNode_Ab(x = 100, y = 100, size = 10, name = null, color = '#4c88fe', relatedEdge) {
+  cNode_Ab(x = 100, y = 100, size = 10, name, value,relatedEdge, color = '#4c88fe', ) {
     const path = this.canvas.createPath2D();
     path.arc(x, y, size, 0, Math.PI * 2);
     let _name = name;
@@ -446,6 +483,7 @@ class Draw {
       relatedNodes: {},
       angles: [],
       path: path,
+      value
     };
     this.elements[node.name] = node;
     return node;
@@ -459,6 +497,12 @@ class Draw {
     this.ClipbyPath(textPath);
     this.fillText(textX, textY, value, this.lineWidth * 8, 900, 0.8);
     this.ctx.restore();
+  }
+  hideEdgeValue(name){
+    // console.log(this.elements[name])
+    if(!this.elements[name]) return undefined
+    const {path} = this.elements[name]
+    this.ClipbyPath(path);
   }
   cEdge(node1, node2, value = 'null', color = 'rgba(0,0,0)', lineWidth = 2) {
     const { x: x1, y: y1, r: r1 } = node1;
@@ -501,8 +545,7 @@ class Draw {
     this.ClipbyPath(textPath);
     this.fillText(textX, textY, value, this.lineWidth * 8, 900, 0.8);
     const abNode = '_' + node1.name + node2.name;
-    this.cNode_Ab(textX, textY, textR, abNode);
-    this.elements[abNode].relatedEdge = edgeName;
+    this.cNode_Ab(textX, textY, textR,abNode,value,edgeName);
     let x, y;
     let edge = {
       node1: node1,
@@ -535,6 +578,9 @@ class Draw {
   getWidth() {
     //逻辑宽
     return this.width;
+  }
+  getDpr(){
+    return this.dpr
   }
   //平均点半径, 平均边长/6
   avg_r_point(nums) {
@@ -632,6 +678,14 @@ class Draw {
     const dis = Math.abs(numerator / denominator - lineWidth);
     return dis;
   }
+  changeEdge(name,obj={}){
+    const ele = this.elements[name]
+    for(let key in obj){
+      if(ele[key]) {
+        ele[key] =obj[key]
+      }
+    }
+}
   collisionDetect(x, y, curNode) {
     let count = 1;
     const { r } = curNode;
@@ -662,5 +716,4 @@ class Draw {
     return true;
   }
 }
-
 export default Draw

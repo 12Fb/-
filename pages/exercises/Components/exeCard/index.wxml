@@ -1,13 +1,15 @@
 <!--pages/exercises/Components/exeCard/index.wxml-->
-<view class="container" hover-class="hover-class" id="{{data.id}}" bind:tap="goto">
+<view class="container" hover-class="hover-class" id="{{data._id}}" bind:tap="onTap">
   <view class="card">
-  <view class="row1">
+  <view class="col">
+  <view class="row">
     <view class="name">{{data.name}}</view>
+    <view class="type">{{data.exeType == 0 ? "选择题":"填空题"}}</view>
+  </view>
     <view class="description">{{data.description}}</view>
-    <view>展开</view>
   </view>
     <view class="tags" >
-      <van-tag size='large' wx:for="{{data.tags}}" color="#ee0a24">{{item}}</van-tag>
+      <van-tag size='large' wx:for="{{data.tags}}" wx:key="index" color="#ee0a24">{{item}}</van-tag>
     </view>
   </view>
 </view>

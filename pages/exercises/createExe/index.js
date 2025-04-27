@@ -1,6 +1,5 @@
 // pages/exercises/createExe/index.js
 import Draw from '../../../common/draw'
-
 Page({
   /**
    * 页面的初始数据
@@ -12,19 +11,12 @@ Page({
         text: '基础信息',
       },
       {
-        text: '创建未知量',
-      },
-      {
-        text: '模板',
-      },
-      {
-        text: '描述',
+        text: '编辑',
       },
       {
         text: '预览',
       },
     ],
-    algoSteps:[],
     //tab1
     knowledge: ['Dijkstra最短路径', '集合运算', '长文本测试啦啦啦啦啦啦啦啦啦啦lalalallalalalalallalalalalS'],
     exeType:['选择题','填空题'],
@@ -33,15 +25,15 @@ Page({
     tab1_choice:{
       knowledge:0,
       exeType:0,
-      models:0,
-      tags:{}
+      models:1,
+      tags:{'0':'离散数学'}
     },
     edit:false,
     tagValue:'',
     //tab2
-    unKnown:['点','边','最短路径','起始点','结束点'],
     tab2_choice:{
     },
+    tab3_info:{},
     //题目模板
   },
   //题目名称input
@@ -79,16 +71,20 @@ Page({
       })
     }
   },
-  onTab2(e) {
-    const id = Number(e.target.id);
-    this.next();
-    //暂时写死,始终进入最短路径
+  onTab2Save(e){
+    const data = {
+      ...this.data.tab1_choice,
+      ...(e.detail)
+    }
+    this.setData({
+      tab3_info:data
+    })
   },
-   onTab3(e) {
-    this.next()
-  },
-  onTab4(e) {
-    this.next()
+  onTab3Save(e){
+    // 回到题目管理页面
+    wx.redirectTo({
+      url: '/pages/exercises/index',
+    })
   },
   next() {
     this.setData({
@@ -106,25 +102,6 @@ Page({
   onLoad(options) {
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  async onReady(){
-    // this.gra = {
-    //   0: { 1: 2, 2: 6 },
-    //   1: { 0: 2, 3: 5 },
-    //   2: { 0: 6, 3: 8 },
-    //   3: { 1: 5, 2: 8, 5: 15, 4: 10 },
-    //   4: { 3: 10, 6: 2 },
-    // }
-    // const draw = new Draw('canvas',this)
-    // await draw.waiting()
-    // this.drawInstance = draw
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
   },
 

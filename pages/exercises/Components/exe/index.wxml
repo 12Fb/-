@@ -1,0 +1,18 @@
+<view class="container" style="padding:{{padding}}">
+<!-- 名字 -->
+  <van-field wx:if="name" readonly class="name" input-class="name-class" custom-class="custom-class" model:value="{{ data.name }}" placeholder="题目名字(非必需)" border="{{ false }}" />
+  <!-- 描述 -->
+  <van-field wx:if="description" readonly class="name" input-class="description-class" custom-class="custom-class" type="textarea" autosize model:value="{{ data.description }}" placeholder="题目描述(非必需)" border="{{ false }}" />
+  <!-- 内容 -->
+  <van-field class="content" input-class="content-class" custom-class="custom-class" value="{{ data.text }}" type="textarea" placeholder="请输入内容" autosize readonly border="{{ false }}" />
+  <!-- 图片 -->
+  <view class="image">
+    <van-image width="700rpx" height="400rpx" src="{{data.url}}" />
+    <view class="image-tag"></view>
+  </view>
+  <view class="options" bind:tap="onChoose">
+    <view wx:for="{{data.options}}" wx:key="index" class="{{index == selected ? 'option active' : 'option'}}" id="{{index}}" hover-class="hover">
+      {{index}}: {{item}}
+    </view>
+  </view>
+</view>

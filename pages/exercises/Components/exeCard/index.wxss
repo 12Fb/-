@@ -12,23 +12,34 @@
   width: 660rpx;
   box-sizing: border-box;
 }
-.row1 {
+.row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap:10rpx;
+}
+.col {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10rpx;
 }
 .name {
-  font-size: 45rpx;
+  font-size: 40rpx;
   font-weight: bolder;
 }
+.type{
+  opacity: 0.7;
+  font-weight: 900;
+}
 .description {
-  max-width: 100%;
+  max-width: 75%;
   height: fit-content;
-  line-height: 50rpx;
+  line-height: 1.2;
   letter-spacing: 1rpx;
   font-size: 30rpx;
-  opacity: 0.8;
+  opacity: 0.5;
+  font-weight: 900;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
