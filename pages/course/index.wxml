@@ -1,2 +1,37 @@
 <!--pages/course/index.wxml-->
-<text>pages/course/index.wxml</text>
+<view class="container">
+  <view class="header">
+    <view class="shangan">
+      <text class="title">岸上</text>
+      <image class="edit-icon" src="/static/icons/compile.png"></image> 
+    </view>
+    <view class="stats">
+      <image class="edit-icon" src="/static/icons/renyuan-.png"></image> 
+      <text>活跃班级 2</text>
+    </view>
+  </view>
+  <view class="class">
+    <text>班级</text>
+    <button class="add-class">+ 添加班级</button>
+  </view>
+  <view class="class-list">
+    <view class="class-item">
+      <view class="class-item1">
+        <text class="class-number">11</text>
+        <button class="add-alias">+ 添加简称</button>
+      </view>
+      <view class="class-item2">
+        <image class="edit-icon" src="/static/icons/gengduo.png"></image> 
+      </view>
+    </view>
+    <view class="class-item">
+      <view class="class-item1">
+        <text class="class-number">11</text>
+        <button class="add-alias">+ 添加简称</button>
+      </view>
+      <view class="class-item2">
+        <image class="edit-icon" src="/static/icons/gengduo.png"></image> 
+      </view>
+    </view>
+  </view>
+</view>

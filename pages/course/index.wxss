@@ -1,1 +1,88 @@
-/* pages/course/index.wxss */
+.container {
+  padding: 16px;
+}
+
+.header {
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  background-color: #b3d4f5;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.shangan {
+  display: flex;
+  justify-content: space-between; /* 子元素分别靠左和靠右对齐 */
+  align-items: center;
+  width: 100%; /* 使 .shangan 占满 .header 的宽度 */
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.edit-icon {
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%) brightness(0.9);
+}
+
+.class {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.class-item1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.class-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.class-number {
+  font-size: 16px;
+}
+
+.add-alias {
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.add-class {
+  margin-right: 0px;
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+  color: #007aff;
+  background-color: #b3d4f5;
+  text-decoration: none;
+  border: none;
+  border-radius: 20px;
+}
